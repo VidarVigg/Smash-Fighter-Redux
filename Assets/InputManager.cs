@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
 
     private void Jump()
     {
-        bool jump = Input.GetKey(jumpKey);
+        bool jump = Input.GetKeyDown(jumpKey);
 
         if (jump)
         {

@@ -18,9 +18,9 @@ public class MovementController
 
     public void Update()
     {
-        Move();
         GroundCheck();
         Gravity();
+        Move();
     }
 
     private void Move()
@@ -36,36 +36,36 @@ public class MovementController
             if (data.PlayerState != MovementStates.Jumping)
             {
                 data.PlayerState = MovementStates.Grounded;
-                data.VerticalVelocity = 0f;
+
             }
         }
-        else
-        {
-            if (data.PlayerState == MovementStates.Grounded)
-            {
-                data.PlayerState = MovementStates.Falling;
-            }
-        }
+
     }
 
     public void Jump()
     {
-        if (data.PlayerState != MovementStates.Grounded)
-        {
-            data.VerticalVelocity = data.JumpForce;
-            data.PlayerState = MovementStates.Jumping;
-            if (data.VerticalVelocity < 0)
-            {
-                data.PlayerState = MovementStates.Falling;
-            }
-        }
+
+        data.VerticalVelocity = data.JumpForce;
+        data.PlayerState = MovementStates.Jumping;
+
     }
 
     public void Gravity()
     {
         if (data.PlayerState != MovementStates.Grounded)
         {
-            data.VerticalVelocity -= data.GravityStrength * Time.deltaTime;
+            data.VerticalVelocity -= config.GravityStrength * Time.deltaTime;
+            if (data.PlayerState == MovementStates.Jumping)
+            {
+                if (data.VerticalVelocity < 0)
+                {
+                    data.PlayerState = MovementStates.Falling;
+                }
+            }
+        }
+        else
+        {
+            data.VerticalVelocity = -config.GravityStrength * Time.deltaTime;
         }
     }
 }
