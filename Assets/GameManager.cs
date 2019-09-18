@@ -20,5 +20,14 @@ public class GameManager : MonoBehaviour
         {
             INSTANCE = this;
         }
+        Initialize();
+    }
+
+    void Initialize()
+    {
+
+        ServiceLocator.Initialize();
+        ServiceLocator.TimerService = FindObjectOfType<TimerProvider>();
+
     }
 }

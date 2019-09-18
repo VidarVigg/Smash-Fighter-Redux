@@ -13,7 +13,7 @@ public class MovementManager : MonoBehaviour
     {
         controller = new MovementController(this, config, data);
         config.Rb = GetComponent<Rigidbody2D>();
-        
+
     }
     private void Start()
     {
@@ -23,6 +23,8 @@ public class MovementManager : MonoBehaviour
     private void Update()
     {
         controller.Update();
+
+        ServiceLocator.TimerService.Time(1, 300, 1);
     }
     public void Move(int dir)
     {
@@ -33,7 +35,5 @@ public class MovementManager : MonoBehaviour
     {
         controller.Jump();
     }
-    
-
 
 }
