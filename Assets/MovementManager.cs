@@ -19,21 +19,21 @@ public class MovementManager : MonoBehaviour
     {
         InputManager.INSTANCE.moveDelegate += Move;
         InputManager.INSTANCE.jumpDelegate += Jump;
+
     }
     private void Update()
     {
         controller.Update();
-
-        ServiceLocator.TimerService.Time(1, 300, 1);
     }
     public void Move(int dir)
     {
         data.HorizontalDirection = dir;
     }
 
-    public void Jump()
+    public void Jump(float multiplier)
     {
-        controller.Jump();
+        controller.Jump(multiplier);
     }
+
 
 }
