@@ -20,5 +20,13 @@ public class GameManager : MonoBehaviour
         {
             INSTANCE = this;
         }
+        Initialize();
+    }
+
+    void Initialize()
+    {
+
+
+
     }
 }

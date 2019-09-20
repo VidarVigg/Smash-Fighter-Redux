@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 
+
 public class InputManager : MonoBehaviour
 {
     public static InputManager INSTANCE;
+    [SerializeField] private InputConfig inputConfig = new InputConfig();
 
     private KeyCode rightKey = KeyCode.D;
     private KeyCode leftKey = KeyCode.A;
     private KeyCode jumpKey = KeyCode.Space;
 
     public delegate void VoidDelegate();
-    public VoidDelegate jumpDelegate;
 
-    public delegate void IntDelegate(int dir);
+    public delegate void IntDelegate(int variable);
+
+    public delegate void FloatDelegate(float variable);
     public IntDelegate moveDelegate;
+    public FloatDelegate jumpDelegate;
 
     private void Awake()
     {
@@ -23,13 +27,14 @@ public class InputManager : MonoBehaviour
         }
 
         INSTANCE = this;
-
+        
     }
 
     private void Update()
     {
         Move();
         Jump();
+
     }
     private void Move()
     {
@@ -53,12 +58,24 @@ public class InputManager : MonoBehaviour
 
     private void Jump()
     {
-        bool jump = Input.GetKeyDown(jumpKey);
+        bool jump = Input.GetKey(jumpKey);
+        bool release = Input.GetKeyUp(jumpKey);
 
         if (jump)
         {
-            Debug.Log("Jump");
-            jumpDelegate.Invoke();
+            inputConfig.Multiplier += 1.5f * Time.deltaTime; // todo: change from hard coded value
+            Debug.Log(inputConfig.Multiplier);
         }
+
+        if (release)
+        {
+            if (inputConfig.Multiplier > inputConfig.MaxMultiplierValue)
+            {
+                inputConfig.Multiplier = inputConfig.MaxMultiplierValue;
+            }
+            jumpDelegate.Invoke(inputConfig.Multiplier);
+            inputConfig.Multiplier = inputConfig.Reset;
+        }
+
     }
 }

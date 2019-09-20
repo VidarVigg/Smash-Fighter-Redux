@@ -30,7 +30,7 @@ public class MovementController
 
     private void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(manager.gameObject.transform.position, Vector2.down, 0.4f, config.Lm);
+        RaycastHit2D hit = Physics2D.Raycast(manager.gameObject.transform.position, Vector2.down, 0.2f, config.Lm);
         if (hit.collider != null)
         {
             if (data.PlayerState != MovementStates.Jumping)
@@ -42,19 +42,22 @@ public class MovementController
 
     }
 
-    public void Jump()
+    public void Jump(float multiplier)
     {
 
-        data.VerticalVelocity = data.JumpForce;
+        data.VerticalVelocity = data.JumpForce * multiplier;
         data.PlayerState = MovementStates.Jumping;
 
     }
+
 
     public void Gravity()
     {
         if (data.PlayerState != MovementStates.Grounded)
         {
+
             data.VerticalVelocity -= config.GravityStrength * Time.deltaTime;
+
             if (data.PlayerState == MovementStates.Jumping)
             {
                 if (data.VerticalVelocity < 0)

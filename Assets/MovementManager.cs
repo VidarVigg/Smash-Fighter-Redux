@@ -13,12 +13,13 @@ public class MovementManager : MonoBehaviour
     {
         controller = new MovementController(this, config, data);
         config.Rb = GetComponent<Rigidbody2D>();
-        
+
     }
     private void Start()
     {
         InputManager.INSTANCE.moveDelegate += Move;
         InputManager.INSTANCE.jumpDelegate += Jump;
+
     }
     private void Update()
     {
@@ -29,11 +30,10 @@ public class MovementManager : MonoBehaviour
         data.HorizontalDirection = dir;
     }
 
-    public void Jump()
+    public void Jump(float multiplier)
     {
-        controller.Jump();
+        controller.Jump(multiplier);
     }
-    
 
 
 }
