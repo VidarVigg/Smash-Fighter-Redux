@@ -20,9 +20,6 @@ public class MovementData
     [SerializeField]
     private float gravityStrength;
 
-    [SerializeField]
-    private MovementStates playerState;
-
     #endregion
 
     #region Properties
@@ -52,11 +49,8 @@ public class MovementData
     public float GravityStrength
     { get { return gravityStrength; } }
 
-    public MovementStates PlayerState
-    {
-        get { return playerState; }
-        set { playerState = value; }
-    }
+    public MovementStates PlayerState { get; internal set; }
+
 
     #endregion
 

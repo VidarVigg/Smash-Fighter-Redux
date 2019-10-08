@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private MovementData data = new MovementData();
     [SerializeField] private MovementConfig config = new MovementConfig();
     [SerializeField] private MovementController controller = null;
+
 
     private void Awake()
     {

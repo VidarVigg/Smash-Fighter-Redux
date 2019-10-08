@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class MovementController
@@ -7,6 +6,7 @@ public class MovementController
     private MovementManager manager = null;
     private MovementConfig config = null;
     private MovementData data = null;
+
 
     private MovementController() { }
     public MovementController(MovementManager manager, MovementConfig config, MovementData data)
@@ -35,6 +35,7 @@ public class MovementController
         {
             if (data.PlayerState != MovementStates.Jumping)
             {
+
                 data.PlayerState = MovementStates.Grounded;
 
             }
@@ -71,4 +72,5 @@ public class MovementController
             data.VerticalVelocity = -config.GravityStrength * Time.deltaTime;
         }
     }
+
 }

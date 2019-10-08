@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+using System.Timers;
+using System.Diagnostics;
 
 public class InputManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class InputManager : MonoBehaviour
     public IntDelegate moveDelegate;
     public FloatDelegate jumpDelegate;
 
+    public Stopwatch timer = new Stopwatch();
+
     private void Awake()
     {
         if (INSTANCE)
@@ -34,7 +37,6 @@ public class InputManager : MonoBehaviour
     {
         Move();
         Jump();
-
     }
     private void Move()
     {
@@ -64,7 +66,6 @@ public class InputManager : MonoBehaviour
         if (jump)
         {
             inputConfig.Multiplier += 1.5f * Time.deltaTime; // todo: change from hard coded value
-            Debug.Log(inputConfig.Multiplier);
         }
 
         if (release)
