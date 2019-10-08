@@ -6,6 +6,7 @@ using System;
 [Serializable]
 public class EnemyAIConfig
 {
+
     [SerializeField]
     private LayerMask layerMask;
 
@@ -22,4 +23,6 @@ public class EnemyAIConfig
         get { return raycastLength; }
         set { raycastLength = value; }
     }
+
+
 }

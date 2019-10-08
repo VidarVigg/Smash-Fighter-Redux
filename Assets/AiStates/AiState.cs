@@ -4,15 +4,15 @@ using UnityEngine;
 
 public abstract class AiState
 {
-    protected Character affectedCharacter;
+    protected EnemyAIMaster enemy;
+    protected Character player;
 
     public abstract void StateUpdate();
-    public abstract void EnterState();
-    public abstract void ExitState();
 
-    public AiState (Character affectedCharacter)
+    public AiState (EnemyAIMaster enemy, Character player)
     {
-        this.affectedCharacter = affectedCharacter;
+        this.enemy = enemy;
+        this.player = player;
     }
 
 

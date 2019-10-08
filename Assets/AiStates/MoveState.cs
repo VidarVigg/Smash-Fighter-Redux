@@ -6,38 +6,20 @@ public class MoveState : AiState
 {
 
     int direction;
+    public Rigidbody2D enemyRb;
+    
 
-    public MoveState(Character affectedCharacter) : base(affectedCharacter)
-    {
-    }
-
-    public override void EnterState()
-    {
-    }
-
-    public override void ExitState()
+    public MoveState(EnemyAIMaster enemy, Character player) : base(enemy, player)
     {
     }
 
     public override void StateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        enemy.GetComponent<Rigidbody2D>().velocity = (player.transform.position - enemy.transform.position).normalized * 5;
+        if ((enemy.transform.position - player.transform.position).sqrMagnitude > 4)
         {
-            direction = 1;
+            enemy.UpdateCurrentState(EnemyAIStates.Idle);
         }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            direction = -1;
-        }
-        else
-        {
-            direction = 0;
-        }
-
-        
-
-        // send velocity To whoever is listening;
-
     }
 
 }

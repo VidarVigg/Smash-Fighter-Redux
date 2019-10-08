@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
     private void Awake()
     {
-        
+
     }
     private void Start()
     {
@@ -14,6 +15,5 @@ public class Enemy : Character
     }
     private void Update()
     {
-        
     }
 }

@@ -14,19 +14,37 @@ public class EnemyAIMaster : MonoBehaviour
     [SerializeField]
     private EnemyAIController aIController = null;
 
+    [SerializeField]
+    private EnemyStateMachine enemyStateMachine = null;
+
+    private AiState currentState;
+
+    
     private void Awake()
     {
         aIController = new EnemyAIController(this, aIConfig, aIData);
+        enemyStateMachine = new EnemyStateMachine(this, aIData.Player); 
     }
 
     void Start()
     {
-        
+        UpdateCurrentState(EnemyAIStates.Idle);
     }
 
 
     void Update()
     {
-        aIController.RaycastWallCheck();
+       currentState.StateUpdate();
     }
+
+    public void UpdateCurrentState(EnemyAIStates state)
+    {
+        currentState = enemyStateMachine.stateDictionary[state];
+    }
+
+    public bool GetWallCollisions()
+    {
+
+    }
+
 }
