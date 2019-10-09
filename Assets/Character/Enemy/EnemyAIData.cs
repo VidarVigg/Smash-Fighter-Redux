@@ -16,9 +16,15 @@ public class EnemyAIData
     private RaycastHit2D hitRight;
     private RaycastHit2D hitLeft;
     private RaycastHit2D hitUp;
-    private Vector3 right = new Vector2(1, 0);
-    private Vector3 left = new Vector2(-1, 0);
-    private Vector3 up = new Vector2(0, 1);
+    private RaycastHit2D hitDown;
+    private Vector2 right;
+    private Vector2 left;
+    private Vector2 up;
+    private Vector2 down;
+    [SerializeField]
+    private RaycastHit2D[] hitPoints = new RaycastHit2D[4];
+
+    public bool test;
 
     #endregion
 
@@ -45,17 +51,32 @@ public class EnemyAIData
         get { return hitUp; }
         set { hitUp = value; }
     }
-    public Vector3 Right
+    public RaycastHit2D HitDown
     {
-        get { return new Vector3(1, 0); }
+        get { return hitDown; }
+        set { hitDown = value; }
     }
-    public Vector3 Left
+    public Vector2 Right
     {
-        get { return new Vector3(-1, 0); }
+        get { return new Vector2(1, 0); }
     }
-    public Vector3 Up
+    public Vector2 Left
     {
-        get { return new Vector3(0, 1); }
+        get { return new Vector2(-1, 0); }
+    }
+    public Vector2 Up
+    {
+        get { return new Vector2(0, 1); }
+    }
+    public Vector2 Down
+    {
+        get { return new Vector2(0, -1); }
+    }
+    public RaycastHit2D[] HitPoints
+    {
+        get { return hitPoints; }
+        set { hitPoints = value; }
+
     }
 
     #endregion

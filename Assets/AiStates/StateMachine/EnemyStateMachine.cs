@@ -9,8 +9,13 @@ public class EnemyStateMachine
 
     EnemyAIStates aIStates;
     public Dictionary<EnemyAIStates, AiState> stateDictionary;
+    
+    public PatrolState patrolState;
+
     private EnemyAIMaster enemy;
     private Player player;
+
+    public List<AiState> availableStates = new List<AiState>();
 
     public EnemyStateMachine(EnemyAIMaster enemy, Player player)
     {
@@ -23,9 +28,8 @@ public class EnemyStateMachine
     {
         stateDictionary = new Dictionary<EnemyAIStates, AiState>();
         stateDictionary.Add(EnemyAIStates.Idle, new IdleState(enemy, player));
-        stateDictionary.Add(EnemyAIStates.Moving, new MoveState(enemy, player));
+        stateDictionary.Add(EnemyAIStates.Hunting, new HuntState(enemy, player));
         stateDictionary.Add(EnemyAIStates.Patrolling, new PatrolState(enemy, player));
     }
-
 
 }

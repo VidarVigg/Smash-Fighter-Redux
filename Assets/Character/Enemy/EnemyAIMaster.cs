@@ -19,22 +19,22 @@ public class EnemyAIMaster : MonoBehaviour
 
     private AiState currentState;
 
-    
+
     private void Awake()
     {
         aIController = new EnemyAIController(this, aIConfig, aIData);
-        enemyStateMachine = new EnemyStateMachine(this, aIData.Player); 
+        enemyStateMachine = new EnemyStateMachine(this, aIData.Player);
     }
 
     void Start()
     {
-        UpdateCurrentState(EnemyAIStates.Idle);
+        UpdateCurrentState(EnemyAIStates.Patrolling);
     }
-
 
     void Update()
     {
-       currentState.StateUpdate();
+        currentState.StateUpdate();
+        RayCastWallCheck();
     }
 
     public void UpdateCurrentState(EnemyAIStates state)
@@ -42,9 +42,14 @@ public class EnemyAIMaster : MonoBehaviour
         currentState = enemyStateMachine.stateDictionary[state];
     }
 
-    public bool GetWallCollisions()
+    public void RayCastWallCheck()
     {
+       aIController.RaycastWallCheck();
+    }
 
+    public RaycastHit2D[] GetWallCollisionArray()
+    {
+        return aIData.HitPoints;
     }
 
 }

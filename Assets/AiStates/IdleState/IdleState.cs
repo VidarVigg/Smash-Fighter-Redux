@@ -21,7 +21,7 @@ public class IdleState : AiState
 
         if  ((enemyPosition-playerPosition).sqrMagnitude < 1)
         {
-            enemy.UpdateCurrentState(EnemyAIStates.Moving);
+            enemy.UpdateCurrentState(EnemyAIStates.Hunting);
             Debug.Log("Moving State");
         }
 

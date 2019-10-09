@@ -1,7 +1,7 @@
 ﻿public enum EnemyAIStates
 {
     Idle, 
-    Moving,
+    Hunting,
     Attacking,
     Patrolling,
 
