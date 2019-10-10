@@ -6,12 +6,10 @@ using System;
 
 [Serializable]
 
-public class EnemyAIData
+public class EnemyData
 {
 
     #region Fields
-
-    [SerializeField] private Player player;
 
     private RaycastHit2D hitRight;
     private RaycastHit2D hitLeft;
@@ -21,20 +19,14 @@ public class EnemyAIData
     private Vector2 left;
     private Vector2 up;
     private Vector2 down;
+
+
     [SerializeField]
     private RaycastHit2D[] hitPoints = new RaycastHit2D[4];
-
-    public bool test;
 
     #endregion
 
     #region Properties
-
-    public Player Player
-    {
-        get { return player; }
-        set { player = value; }
-    }
 
     public RaycastHit2D HitRight
     {
@@ -76,7 +68,6 @@ public class EnemyAIData
     {
         get { return hitPoints; }
         set { hitPoints = value; }
-
     }
 
     #endregion

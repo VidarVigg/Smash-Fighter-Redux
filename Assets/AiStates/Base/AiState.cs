@@ -4,15 +4,13 @@ using UnityEngine;
 
 public abstract class AiState
 {
-    protected EnemyAIMaster enemy;
-    protected Character player;
+    protected Character character;
 
     public abstract void StateUpdate();
 
-    public AiState (EnemyAIMaster enemy, Character player)
+    public AiState (Character character)
     {
-        this.enemy = enemy;
-        this.player = player;
+        this.character = character;
     }
 
 

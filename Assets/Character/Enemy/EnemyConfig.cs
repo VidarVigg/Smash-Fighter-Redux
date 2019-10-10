@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class EnemyAIConfig
+public class EnemyConfig
 {
 
     [SerializeField]
@@ -15,6 +15,9 @@ public class EnemyAIConfig
 
     [SerializeField]
     private float raycastLengthVertical;
+
+    [SerializeField]
+    private Transform target;
 
     public LayerMask LayerMask
     {
@@ -30,6 +33,12 @@ public class EnemyAIConfig
     {
         get { return raycastLengthVertical; }
         set { raycastLengthVertical = value; }
+    }
+
+    public Transform Target
+    {
+        get { return target; }
+        set { target = value; }
     }
 
 

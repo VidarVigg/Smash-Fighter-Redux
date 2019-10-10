@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAIController
+public class EnemyController
 {
-    private EnemyAIMaster enemyAIMaster;
-    private EnemyAIConfig aIConfig;
-    private EnemyAIData aIData;
+    private EnemyMaster enemyAIMaster;
+    private EnemyConfig aIConfig;
+    private EnemyData aIData;
 
-    private EnemyAIController() { }
+    private EnemyController() { }
 
-    public EnemyAIController(EnemyAIMaster enemyAIMaster, EnemyAIConfig aIConfig, EnemyAIData aIData)
+    public EnemyController(EnemyMaster enemyAIMaster, EnemyConfig aIConfig, EnemyData aIData)
     {
         this.enemyAIMaster = enemyAIMaster;
         this.aIConfig = aIConfig;
         this.aIData = aIData;
     }
-
-
 
     public void RaycastWallCheck()
     {
@@ -25,10 +23,9 @@ public class EnemyAIController
         aIData.HitLeft = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Left, aIConfig.RaycastLengthHorizontal, aIConfig.LayerMask);
         aIData.HitUp = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Up, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
         aIData.HitDown = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Down, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
-
         DebugRays();
 
-
+        //Using the null object pattern, all the indexes is set to null
         for (int i = 0; i < aIData.HitPoints.Length; i++)
         {
             aIData.HitPoints[i] = new RaycastHit2D();
@@ -36,34 +33,20 @@ public class EnemyAIController
 
         if (aIData.HitRight.collider != null)
         {
-            //Debug.Log("We Hit The Right Wall");
             aIData.HitPoints[0] = aIData.HitRight;
-            //aIData.test = true;
-
         }
         if (aIData.HitLeft.collider != null)
         {
-            //Debug.Log("We Hit The Left Wall");
             aIData.HitPoints[1] = aIData.HitLeft;
-            //aIData.HitPoints.Add(aIData.HitLeft.point);
-            //aIData.test = true;
         }
         if (aIData.HitUp.collider != null)
         {
-            //Debug.Log("We hit the roof");
             aIData.HitPoints[2] = aIData.HitUp;
-            //aIData.HitPoints.Add(aIData.HitUp.point);
-            //aIData.test = true;
         }
         if(aIData.HitDown.collider != null)
         {
-            //Debug.Log("We Hit The Floor");
             aIData.HitPoints[3] = aIData.HitDown;
-            //aIData.HitPoints.Add(aIData.HitDown.point);
-            //aIData.test = true;
         }
-
-
 
     }
 

@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Player : Character
 {
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        movementManager = GetComponent<MovementManager>();
+    }
     void Start()
     {
-        
+        InputManager.INSTANCE.moveDelegate += movementManager.Move;
+        InputManager.INSTANCE.jumpDelegate += movementManager.Jump;
     }
 
     // Update is called once per frame

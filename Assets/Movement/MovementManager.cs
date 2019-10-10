@@ -10,17 +10,13 @@ public class MovementManager : MonoBehaviour
     [SerializeField] private MovementConfig config = new MovementConfig();
     [SerializeField] private MovementController controller = null;
 
-
     private void Awake()
     {
         controller = new MovementController(this, config, data);
         config.Rb = GetComponent<Rigidbody2D>();
-
     }
     private void Start()
     {
-        InputManager.INSTANCE.moveDelegate += Move;
-        InputManager.INSTANCE.jumpDelegate += Jump;
 
     }
     private void Update()

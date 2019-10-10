@@ -16,24 +16,34 @@ public class PatrolState : AiState
     [SerializeField]
     private PatrolController patrolController = null;
 
+    private EnemyMaster enemy;
+    public float tick;
+
+
     #endregion
 
-    public PatrolState(EnemyAIMaster enemy, Character player) : base(enemy, player)
+    public PatrolState(Character character) : base(character)
     {
+        this.enemy = (EnemyMaster)character;
         Initialize();
     }
 
     public void Initialize()
     {
-
         patrolController = new PatrolController(this, patrolConfig, patrolData);
-        SetRandomDirection(GetRandomDirection());
-
+        //SetRandomDirection(GetRandomDirection());
     }
 
     public override void StateUpdate()
     {
+        tick += Time.deltaTime;
+        if (tick >= Random.Range(2, 4))
+        {
+
+        }
+
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
+
         for (int i = 0; i < test.Length; i++)
         {
             if (test[i].collider != null)
@@ -42,10 +52,9 @@ public class PatrolState : AiState
             }
         }
 
-        if ((enemy.transform.position - player.transform.position).sqrMagnitude < 20)
+        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < 20)
         {
             enemy.UpdateCurrentState(EnemyAIStates.Hunting);
-            Debug.Log("Moving State");
         }
 
     }
@@ -59,6 +68,7 @@ public class PatrolState : AiState
     }
     public Vector2 CalculateDirection(Vector2 hitPoint)
     {
+        Debug.Log("Test");
         Vector2 dir = (Vector2)enemy.transform.position-hitPoint;
         dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir) * 10;
         return dir;

@@ -4,32 +4,28 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class EnemyStateMachine
+[RequireComponent (typeof (EnemyMaster))]
+public class EnemyStateMachine : MonoBehaviour
 {
 
-    EnemyAIStates aIStates;
     public Dictionary<EnemyAIStates, AiState> stateDictionary;
     
     public PatrolState patrolState;
 
-    private EnemyAIMaster enemy;
-    private Player player;
+    private EnemyMaster enemy;
+
 
     public List<AiState> availableStates = new List<AiState>();
 
-    public EnemyStateMachine(EnemyAIMaster enemy, Player player)
+    private void Awake()
     {
-        this.enemy = enemy;
-        this.player = player;
         Initalize();
     }
 
     public void Initalize()
     {
         stateDictionary = new Dictionary<EnemyAIStates, AiState>();
-        stateDictionary.Add(EnemyAIStates.Idle, new IdleState(enemy, player));
-        stateDictionary.Add(EnemyAIStates.Hunting, new HuntState(enemy, player));
-        stateDictionary.Add(EnemyAIStates.Patrolling, new PatrolState(enemy, player));
+
     }
 
 }
