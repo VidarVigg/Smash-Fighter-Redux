@@ -196,21 +196,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 163274797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626a296bb9847744e995f1f1bba5c692, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ae3116616989c34f97eb8d63eeab9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-    horizontalDirection: 0
-    verticalVelocity: 0
-    jumpForce: 10
-    movementSpeed: 10
-    gravityStrength: 0
-  config:
-    rb: {fileID: 0}
-    lm:
-      serializedVersion: 2
-      m_Bits: 256
-    gravityStrength: 30
+  horizontalDirection: 0
+  verticalVelocity: 0
+  jumpForce: 3.53
+  movementSpeed: 5.37
+  gravityStrength: 8.78
+  playerState: 0
+  rb: {fileID: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 256
+  dirx: 0
+  diry: 0
 --- !u!4 &163274801
 Transform:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e8bb837d28e7342a1cc992ad7f03d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementManager: {fileID: 0}
+  movement: {fileID: 0}
 --- !u!1 &335303175
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335303175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.15, y: -0.14, z: 0}
   m_LocalScale: {x: 20, y: 30, z: 1}
   m_Children: []
   m_Father: {fileID: 163274801}
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 1082078272}
   - component: {fileID: 1082078271}
   - component: {fileID: 1082078270}
-  - component: {fileID: 1082078273}
+  - component: {fileID: 1082078269}
   - component: {fileID: 1082078274}
   m_Layer: 0
   m_Name: Enemy
@@ -736,6 +736,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1082078269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082078268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68503bc8d859071449ef4a00d2be2fbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalDirection: 0
+  verticalVelocity: 0
+  jumpForce: 0
+  movementSpeed: 4.46
+  gravityStrength: 0
+  playerState: 0
+  rb: {fileID: 0}
+  lm:
+    serializedVersion: 2
+    m_Bits: 0
+  dirx: 0
+  diry: 0
 --- !u!61 &1082078270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -791,37 +815,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082078268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: -0.33, z: 0}
+  m_LocalPosition: {x: -7.73, y: -0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 794620023}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1082078273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1082078268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626a296bb9847744e995f1f1bba5c692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    horizontalDirection: 0
-    verticalVelocity: 0
-    jumpForce: 0
-    movementSpeed: 3.11
-    gravityStrength: 0
-  config:
-    rb: {fileID: 0}
-    lm:
-      serializedVersion: 2
-      m_Bits: 0
-    gravityStrength: 0
 --- !u!114 &1082078274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab77a4cb7bf18d448b015d134688e93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementManager: {fileID: 0}
+  movement: {fileID: 0}
   aIConfig:
     layerMask:
       serializedVersion: 2

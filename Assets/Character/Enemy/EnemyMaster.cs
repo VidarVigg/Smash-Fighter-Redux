@@ -21,25 +21,27 @@ public class EnemyMaster : Character
     private void Awake()
     {
         aIController = new EnemyController(this, aIConfig, aIData);
-        movementManager = GetComponent<MovementManager>();
+        movement = GetComponent<MovementController>();
     }
 
     void Start()
     {
         stateDictionary.Add(EnemyAIStates.Hunting, new HuntState(this));
         stateDictionary.Add(EnemyAIStates.Patrolling, new PatrolState(this));
+
         UpdateCurrentState(EnemyAIStates.Patrolling);
     }
 
     void Update()
     {
-        currentState.StateUpdate();
+        currentState.Update();
         RayCastWallCheck();
     }
 
     public void UpdateCurrentState(EnemyAIStates state)
     {
         currentState = stateDictionary[state];
+        currentState.EnterState();
     }
 
     private void RayCastWallCheck()

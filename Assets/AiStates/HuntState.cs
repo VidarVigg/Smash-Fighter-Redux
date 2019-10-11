@@ -14,7 +14,12 @@ public class HuntState : AiState
         this.enemy = (EnemyMaster)character;
     }
 
-    public override void StateUpdate()
+    public override void EnterState()
+    {
+        Debug.Log("Hunt State");
+    }
+
+    public override void Update()
     {
         enemy.GetComponent<Rigidbody2D>().velocity = (enemy.GetTarget() - enemy.transform.position).normalized * 2;
         if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude > 30)

@@ -1,42 +1,72 @@
 ﻿using System;
 using UnityEngine;
 
-public class MovementController
+public abstract class MovementController : MonoBehaviour
 {
-    private MovementManager manager = null;
-    private MovementConfig config = null;
-    private MovementData data = null;
+
+    [SerializeField]
+    private float horizontalDirection;
+
+    [SerializeField]
+    private float verticalVelocity;
+
+    [SerializeField]
+    private float jumpForce;
+
+    [SerializeField]
+    private float movementSpeed;
+
+    [SerializeField]
+    private float gravityStrength;
+
+    public MovementStates playerState;
 
 
-    private MovementController() { }
-    public MovementController(MovementManager manager, MovementConfig config, MovementData data)
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private LayerMask lm;
+
+    public float dirx;
+    public float diry;
+
+
+    private void Awake()
     {
-        this.manager = manager;
-        this.config = config;
-        this.data = data;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Update()
     {
-        GroundCheck();
-        Gravity();
-        Move();
+        // Call global behavior
     }
 
-    private void Move()
+    public void Move(float x = 1, float y = 1)
     {
-        config.Rb.velocity = new Vector2(data.HorizontalDirection * data.MovementSpeed, data.VerticalVelocity);
+        dirx = x;
+        diry = y;
+        rb.velocity = new Vector2(x, y) * movementSpeed;
     }
 
-    private void GroundCheck()
+    public void Move(int dir)
     {
-        RaycastHit2D hit = Physics2D.Raycast(manager.gameObject.transform.position, Vector2.down, 0.2f, config.Lm);
+        horizontalDirection = dir;
+        rb.velocity = new Vector2(horizontalDirection * movementSpeed, verticalVelocity);
+    }
+
+    public void Move(Vector2 dir)
+    {
+        Move(dir.x, dir.y);
+        
+    }
+
+    public void GroundCheck()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 0.3f, lm);
         if (hit.collider != null)
         {
-            if (data.PlayerState != MovementStates.Jumping)
+            if (playerState != MovementStates.Jumping)
             {
-
-                data.PlayerState = MovementStates.Grounded;
+                verticalVelocity = 0;
+                playerState = MovementStates.Grounded;
 
             }
         }
@@ -46,30 +76,30 @@ public class MovementController
     public void Jump(float multiplier)
     {
 
-        data.VerticalVelocity = data.JumpForce * multiplier;
-        data.PlayerState = MovementStates.Jumping;
+        verticalVelocity = jumpForce * multiplier;
+        playerState = MovementStates.Jumping;
 
     }
 
 
     public void Gravity()
     {
-        if (data.PlayerState != MovementStates.Grounded)
+        if (playerState != MovementStates.Grounded)
         {
 
-            data.VerticalVelocity -= config.GravityStrength * Time.deltaTime;
+            verticalVelocity -= gravityStrength * Time.deltaTime;
 
-            if (data.PlayerState == MovementStates.Jumping)
+            if (playerState == MovementStates.Jumping)
             {
-                if (data.VerticalVelocity < 0)
+                if (verticalVelocity < 0)
                 {
-                    data.PlayerState = MovementStates.Falling;
+                    playerState = MovementStates.Falling;
                 }
             }
         }
         else
         {
-            data.VerticalVelocity = -config.GravityStrength * Time.deltaTime;
+            verticalVelocity = -gravityStrength * Time.deltaTime;
         }
     }
 

@@ -5,43 +5,26 @@ using UnityEngine;
 public class PatrolState : AiState
 {
 
-    #region Fields
-
-    [SerializeField]
-    private PatrolConfig patrolConfig = null;
-
-    [SerializeField]
-    private PatrolData patrolData = null;
-
-    [SerializeField]
-    private PatrolController patrolController = null;
 
     private EnemyMaster enemy;
     public float tick;
 
 
-    #endregion
 
     public PatrolState(Character character) : base(character)
     {
         this.enemy = (EnemyMaster)character;
-        Initialize();
     }
 
-    public void Initialize()
+    public override void EnterState()
     {
-        patrolController = new PatrolController(this, patrolConfig, patrolData);
-        //SetRandomDirection(GetRandomDirection());
+        Debug.Log("Patrol State");
+        character.movement.Move(GetRandomDirection());
+
     }
 
-    public override void StateUpdate()
+    public override void Update()
     {
-        tick += Time.deltaTime;
-        if (tick >= Random.Range(2, 4))
-        {
-
-        }
-
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
 
         for (int i = 0; i < test.Length; i++)
@@ -73,4 +56,6 @@ public class PatrolState : AiState
         dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir) * 10;
         return dir;
     }
+
+
 }

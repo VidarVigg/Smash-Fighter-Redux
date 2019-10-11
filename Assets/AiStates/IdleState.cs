@@ -9,7 +9,12 @@ public class NullState : AiState
 
     }
 
-    public override void StateUpdate()
+    public override void EnterState()
+    {
+
+    }
+
+    public override void Update()
     {
         
         Debug.Log("We are In Null State");

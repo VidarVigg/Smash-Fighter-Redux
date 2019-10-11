@@ -6,17 +6,18 @@ public class Player : Character
 {
     private void Awake()
     {
-        movementManager = GetComponent<MovementManager>();
     }
     void Start()
     {
-        InputManager.INSTANCE.moveDelegate += movementManager.Move;
-        InputManager.INSTANCE.jumpDelegate += movementManager.Jump;
+        movement = GetComponent<MovementController>();
+        InputManager.INSTANCE.moveDelegate += movement.Move;
+        InputManager.INSTANCE.jumpDelegate += movement.Jump;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //movementManager.Gravity();
+        //movementManager.GroundCheck();
     }
 }

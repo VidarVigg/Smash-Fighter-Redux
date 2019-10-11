@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public MovementManager movementManager; // should not be public. Change This
+    public MovementController movement; // should not be public. Change This
 
     private void Awake()
     {
