@@ -8,14 +8,21 @@ public class AttackCollision : MonoBehaviour
 
     private Character damageDealer;
     private Character victim;
+    private bool successfulHit;
 
     float tick;
 
     [SerializeField]
     private float attackResetTime = 0.1f;
 
+    public bool SuccessfulHit
+    {
+        get { return successfulHit; }
+    }
+
     private void Start()
     {
+
         damageDealer = GetComponentInParent<Character>();
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
@@ -28,6 +35,7 @@ public class AttackCollision : MonoBehaviour
             if (boxCollider2D.enabled == true)
             {
                 boxCollider2D.enabled = false;
+                damageDealer.successfulHit = false;
             }
         }
 
@@ -38,6 +46,8 @@ public class AttackCollision : MonoBehaviour
         {
             Character victim = collision.GetComponent<Character>();
             victim.ReceiveDamage(damageDealer.damage);
+            damageDealer.successfulHit = true;
+            Debug.Log(victim.name + "Took Damage");
         }
 
     }

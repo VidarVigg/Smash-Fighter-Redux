@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class HuntState : State
 {
-
-    int direction;
-    public Rigidbody2D enemyRb;
     private EnemyMaster enemy;
 
     public HuntState(Character character) : base(character)
@@ -16,14 +13,25 @@ public class HuntState : State
 
     public override void EnterState()
     {
-        Debug.Log("Entered Hunt State");
+        Debug.Log("Entered Hunt");
+
     }
 
     public override void Update()
     {
-        enemy.GetComponent<Rigidbody2D>().velocity = (enemy.GetTarget() - enemy.transform.position).normalized * 2;
-        enemy.attackController.Attack();
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude > 30)
+        enemy.movementController.Move((enemy.GetTarget() - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < 3)
+        {
+            enemy.UpdateCurrentState(new AttackState(character));
+        }
+        else
+        {
+
+        }
+
+
+
+        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
 
             enemy.UpdateCurrentState(new PatrolState(character));
@@ -33,6 +41,6 @@ public class HuntState : State
 
     public override void ExitState()
     {
-        Debug.Log("Exited Hunt State");
+
     }
 }

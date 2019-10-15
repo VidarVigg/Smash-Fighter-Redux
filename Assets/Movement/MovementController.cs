@@ -14,7 +14,7 @@ public abstract class MovementController : MonoBehaviour
     private float jumpForce;
 
     [SerializeField]
-    private float movementSpeed;
+    private float baseMovementSpeed;
 
     [SerializeField]
     private float gravityStrength;
@@ -39,13 +39,13 @@ public abstract class MovementController : MonoBehaviour
     public void Move(float x = 1, float y = 1)
     {
 
-        rb.velocity = new Vector2(x, y) * movementSpeed;
+        rb.velocity = new Vector2(x, y) * baseMovementSpeed;
     }
 
     public void Move(int dir)
     {
         horizontalDirection = dir;
-        rb.velocity = new Vector2(horizontalDirection * movementSpeed, verticalVelocity);
+        rb.velocity = new Vector2(horizontalDirection * baseMovementSpeed, verticalVelocity);
     }
 
     public void Move(Vector2 dir)

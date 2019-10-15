@@ -4,10 +4,27 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    #region Fields
+
     public MovementController movementController; // should not be public. Change This
     public AttackController attackController;
 
-    public abstract void ReceiveDamage(ulong damage);
     internal ulong damage = ulong.MaxValue;
+    public bool successfulHit;
+    protected Material hitMaterial;
+
+    #endregion
+
+    #region Properties
+
+
+
+    #endregion
+
+    #region Methods
+
+
+    #endregion
+    public abstract void ReceiveDamage(ulong damage);
 
 }

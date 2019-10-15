@@ -20,7 +20,6 @@ public class EnemyData
     private Vector2 up;
     private Vector2 down;
 
-
     [SerializeField]
     private RaycastHit2D[] hitPoints = new RaycastHit2D[4];
 

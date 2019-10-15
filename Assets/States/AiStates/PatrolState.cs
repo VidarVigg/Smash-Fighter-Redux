@@ -5,11 +5,7 @@ using UnityEngine;
 public class PatrolState : State
 {
 
-
     private EnemyMaster enemy;
-    public float tick;
-
-
 
     public PatrolState(Character character) : base(character)
     {
@@ -18,9 +14,7 @@ public class PatrolState : State
 
     public override void EnterState()
     {
-        Debug.Log("Entered Patrol State");
         character.movementController.Move(GetRandomDirection());
-
     }
 
     public override void Update()
@@ -31,11 +25,11 @@ public class PatrolState : State
         {
             if (test[i].collider != null)
             {
-                SetRandomDirection(CalculateDirection(test[i].point));
+                SetRandomDirection(CalculateDirection(test[i].point).normalized * enemy.PatrolConfig.patrolMovementSpeed);
             }
         }
 
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < 20)
+        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < enemy.PatrolConfig.patrolRange)
         {
             enemy.UpdateCurrentState(new HuntState(character));
         }
@@ -51,13 +45,14 @@ public class PatrolState : State
     }
     public Vector2 CalculateDirection(Vector2 hitPoint)
     {
-        Vector2 dir = (Vector2)enemy.transform.position-hitPoint;
-        dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir) * 10;
+        Debug.Log((Vector2)enemy.transform.position - hitPoint);
+        Vector2 dir = (Vector2)enemy.transform.position - hitPoint;
+        dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir).normalized * enemy.PatrolConfig.patrolMovementSpeed;
         return dir;
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exited Patrol State");
+
     }
 }

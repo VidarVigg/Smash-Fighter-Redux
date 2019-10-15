@@ -16,7 +16,6 @@ public class PlayerMaster : Character
     public override void ReceiveDamage(ulong damage)
     {
         Debug.Log("Player Took Damage");
-        throw new System.NotImplementedException();
     }
 
     private void Awake()

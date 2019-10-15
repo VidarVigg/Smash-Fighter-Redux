@@ -11,9 +11,6 @@ public class PlayerAttackController : AttackController
     {
         Debug.Log("Player Attacked");
         attackCollider.enabled = true;
-
-        //have a trigger on the sword and eneble it on this method
-
     }
 
 }
