@@ -25,9 +25,6 @@ public abstract class MovementController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private LayerMask lm;
 
-    public float dirx;
-    public float diry;
-
 
     private void Awake()
     {
@@ -41,8 +38,7 @@ public abstract class MovementController : MonoBehaviour
 
     public void Move(float x = 1, float y = 1)
     {
-        dirx = x;
-        diry = y;
+
         rb.velocity = new Vector2(x, y) * movementSpeed;
     }
 
@@ -80,7 +76,6 @@ public abstract class MovementController : MonoBehaviour
         playerState = MovementStates.Jumping;
 
     }
-
 
     public void Gravity()
     {

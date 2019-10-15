@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Timers;
 using System.Diagnostics;
+using TMPro;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager INSTANCE;
     [SerializeField] private InputConfig inputConfig = new InputConfig();
 
+    public TextMeshProUGUI text;
+
     private KeyCode rightKey = KeyCode.D;
     private KeyCode leftKey = KeyCode.A;
     private KeyCode jumpKey = KeyCode.Space;
+    private KeyCode attackKey = KeyCode.Mouse0;
 
     public delegate void VoidDelegate();
+    public VoidDelegate attackDelegate;
 
     public delegate void IntDelegate(int variable);
 
@@ -37,6 +42,7 @@ public class InputManager : MonoBehaviour
     {
         Move();
         Jump();
+        Attack();
     }
     private void Move()
     {
@@ -65,7 +71,7 @@ public class InputManager : MonoBehaviour
 
         if (jump)
         {
-            inputConfig.Multiplier += 1.5f * Time.deltaTime; // todo: change from hard coded value
+            inputConfig.Multiplier += 2f * Time.deltaTime; // todo: change from hard coded value
         }
 
         if (release)
@@ -76,6 +82,16 @@ public class InputManager : MonoBehaviour
             }
             jumpDelegate.Invoke(inputConfig.Multiplier);
             inputConfig.Multiplier = inputConfig.Reset;
+        }
+
+    }
+    public void Attack()
+    {
+        bool attack = Input.GetKeyDown(attackKey);
+
+        if (attack)
+        {
+            attackDelegate.Invoke();
         }
 
     }

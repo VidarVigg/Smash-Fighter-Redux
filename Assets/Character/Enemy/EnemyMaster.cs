@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(MovementController), (typeof(AttackController)))]
 public class EnemyMaster : Character
 {
     [SerializeField]
@@ -13,23 +14,19 @@ public class EnemyMaster : Character
 
     private EnemyController aIController = null;
 
-    private Dictionary<EnemyAIStates, AiState> stateDictionary = new Dictionary<EnemyAIStates, AiState>();
-
-    private AiState currentState;
+    private State currentState;
 
 
     private void Awake()
     {
         aIController = new EnemyController(this, aIConfig, aIData);
-        movement = GetComponent<MovementController>();
+        movementController = GetComponent<MovementController>();
+        attackController = GetComponent<AttackController>();
     }
 
     void Start()
     {
-        stateDictionary.Add(EnemyAIStates.Hunting, new HuntState(this));
-        stateDictionary.Add(EnemyAIStates.Patrolling, new PatrolState(this));
-
-        UpdateCurrentState(EnemyAIStates.Patrolling);
+        UpdateCurrentState(new PatrolState(this));
     }
 
     void Update()
@@ -38,20 +35,19 @@ public class EnemyMaster : Character
         RayCastWallCheck();
     }
 
-    public void UpdateCurrentState(EnemyAIStates state)
+    public void UpdateCurrentState(State newState)
     {
-        currentState = stateDictionary[state];
+        if (currentState != null)
+        {
+            currentState.ExitState();
+        }
+        currentState = newState;
         currentState.EnterState();
     }
 
     private void RayCastWallCheck()
     {
-       aIController.RaycastWallCheck();
-    }
-
-    public void AddStates()
-    {
-
+        aIController.RaycastWallCheck();
     }
 
     public RaycastHit2D[] GetWallCollisionArray()
@@ -64,4 +60,10 @@ public class EnemyMaster : Character
         return aIConfig.Target.position;
     }
 
+
+    public override void ReceiveDamage(ulong damage)
+    {
+        Debug.Log("Enemy Took " + damage + " Damage");
+        
+    }
 }

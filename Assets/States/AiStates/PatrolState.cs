@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : AiState
+public class PatrolState : State
 {
 
 
@@ -18,8 +18,8 @@ public class PatrolState : AiState
 
     public override void EnterState()
     {
-        Debug.Log("Patrol State");
-        character.movement.Move(GetRandomDirection());
+        Debug.Log("Entered Patrol State");
+        character.movementController.Move(GetRandomDirection());
 
     }
 
@@ -37,7 +37,7 @@ public class PatrolState : AiState
 
         if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < 20)
         {
-            enemy.UpdateCurrentState(EnemyAIStates.Hunting);
+            enemy.UpdateCurrentState(new HuntState(character));
         }
 
     }
@@ -51,11 +51,13 @@ public class PatrolState : AiState
     }
     public Vector2 CalculateDirection(Vector2 hitPoint)
     {
-        Debug.Log("Test");
         Vector2 dir = (Vector2)enemy.transform.position-hitPoint;
         dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir) * 10;
         return dir;
     }
 
-
+    public override void ExitState()
+    {
+        Debug.Log("Exited Patrol State");
+    }
 }

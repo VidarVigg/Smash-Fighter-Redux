@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
-    public MovementController movement; // should not be public. Change This
+    public MovementController movementController; // should not be public. Change This
+    public AttackController attackController;
 
-    private void Awake()
-    {
-
-    }
+    public abstract void ReceiveDamage(ulong damage);
+    internal ulong damage = ulong.MaxValue;
 
 }

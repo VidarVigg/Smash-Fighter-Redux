@@ -1,4 +1,4 @@
-﻿public enum EnemyAIStates
+﻿public enum EnemyStates
 {
     Idle, 
     Hunting,

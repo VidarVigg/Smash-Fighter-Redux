@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,13 +17,5 @@ public class GameManager : MonoBehaviour
         {
             INSTANCE = this;
         }
-        Initialize();
-    }
-
-    void Initialize()
-    {
-
-
-
     }
 }
