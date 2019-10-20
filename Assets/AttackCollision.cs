@@ -49,7 +49,6 @@ public class AttackCollision : MonoBehaviour
             victim.ReceiveDamage(damageDealer.damage);
             damageDealer.successfulHit = true;
             victim.isHit = true;
-            Debug.Log(victim.name + "Took Damage");
         }
 
     }

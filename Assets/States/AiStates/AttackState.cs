@@ -14,7 +14,6 @@ public class AttackState : State
 
     public override void EnterState()
     {
-        Debug.Log("Entered Attack State");
         enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.AttackConfig.attackMovementSpeed);
         enemy.attackController.Attack();
 
@@ -24,7 +23,6 @@ public class AttackState : State
 
         if (enemy.successfulHit)
         {
-            Debug.Log("SuccessfulHit");
             enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
             
         }

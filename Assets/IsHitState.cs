@@ -20,15 +20,12 @@ public class IsHitState : State
         enemyRigidbody.constraints = RigidbodyConstraints2D.None;
         enemyRigidbody.AddForce(((enemy.transform.position - enemy.GetTarget().position).normalized) * 1000);
         enemyRigidbody.gravityScale = 1;
-        Debug.Log("Entered Ragdoll State");
-        Debug.Log("kjskefsjefksfkksef");
     }
 
     public override void Update()
     {
         if ((tick += Time.deltaTime) >= stunTime)
         {
-            Debug.Log("sefsesff");
             tick -= stunTime;
             enemy.isHit = false;
             enemy.transform.rotation = Quaternion.identity;

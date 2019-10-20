@@ -46,7 +46,6 @@ public class PatrolState : State
     }
     public Vector2 CalculateDirection(Vector2 hitPoint)
     {
-        Debug.Log((Vector2)enemy.transform.position - hitPoint);
         Vector2 dir = (Vector2)enemy.transform.position - hitPoint;
         dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir).normalized * enemy.PatrolConfig.patrolMovementSpeed;
         return dir;

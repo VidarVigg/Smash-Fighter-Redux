@@ -201,15 +201,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalDirection: 0
-  verticalVelocity: 0
-  jumpForce: 7
+  verticalVelocity: 1
+  jumpForce: 10
   baseMovementSpeed: 5
-  gravityStrength: 15
-  playerState: 0
+  gravityStrength: 20
+  jumping: 0
+  grounded: 0
   rb: {fileID: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!4 &163274801
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +240,9 @@ MonoBehaviour:
   attackController: {fileID: 0}
   successfulHit: 0
   isHit: 0
-  grounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &163274803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,11 +923,9 @@ MonoBehaviour:
   jumpForce: 0
   baseMovementSpeed: 1
   gravityStrength: 0
-  playerState: 0
+  jumping: 0
+  grounded: 0
   rb: {fileID: 0}
-  lm:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!61 &1082078270
 BoxCollider2D:
   m_ObjectHideFlags: 0

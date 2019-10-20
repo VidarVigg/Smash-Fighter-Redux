@@ -15,9 +15,7 @@ public class HuntState : State
 
     public override void EnterState()
     {
-        Debug.Log("Entered Hunt");
         attackFrequency = GenerateRandomNumber(1, 5);
-
     }
 
     public override void Update()
@@ -29,7 +27,6 @@ public class HuntState : State
             tick -= attackFrequency;
             enemy.UpdateCurrentState(new AttackState(character));
             attackFrequency = GenerateRandomNumber(1, 5);
-            Debug.Log(attackFrequency);
         }
 
         if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)

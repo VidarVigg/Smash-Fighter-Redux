@@ -19,12 +19,11 @@ public abstract class MovementController : MonoBehaviour
     [SerializeField]
     protected float gravityStrength;
 
-    [SerializeField]
-    protected MovementStates playerState;
+    public bool jumping;
 
+    public bool grounded;
 
     [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] protected LayerMask lm;
 
     private void Awake()
     {
@@ -43,6 +42,7 @@ public abstract class MovementController : MonoBehaviour
 
     public void Move(int dir)
     {
+        Debug.Log("Call");
         horizontalDirection = dir;
         rb.velocity = new Vector2(horizontalDirection * baseMovementSpeed, verticalVelocity);
     }
@@ -50,21 +50,30 @@ public abstract class MovementController : MonoBehaviour
     public void Move(Vector2 dir)
     {
         Move(dir.x, dir.y);
-        
+
     }
 
     public void Jump(float multiplier)
     {
-
+        Debug.Log("Jumping");
+        jumping = true;
         verticalVelocity = jumpForce * multiplier;
-        playerState = MovementStates.Jumping;
     }
 
     public float BaseMovementSpeed
     {
         set { baseMovementSpeed = value; }
     }
+    public float VerticalVelocity
+    {
+        get { return verticalVelocity; }
+        set { verticalVelocity = value; }
+    }
 
+    public float GravityStrength
+    {
+        get { return gravityStrength; }
+    }
 
 
 }

@@ -13,17 +13,19 @@ public class PlayerIsHitState : State
 
     public override void EnterState()
     {
-        Debug.Log("PlayerIsHit");
-        player.Rigidbody2D.constraints = RigidbodyConstraints2D.None;
-        player.Rigidbody2D.gravityScale = 1;
+        //player.Rigidbody2D.constraints = RigidbodyConstraints2D.None;
         InputManager.INSTANCE.moveDelegate -= player.movementController.Move;  
-        player.movementController.BaseMovementSpeed = 0;
-        
     }
 
     public override void Update()
     {
-
+        player.movementController.Move(0, -1);
+        if (player.movementController.grounded)
+        {
+            player.isHit = false;
+            player.UpdateCurrentState(new NullState(player));
+            InputManager.INSTANCE.moveDelegate += player.movementController.Move;
+        }
     }
 
     public override void ExitState()
