@@ -11,7 +11,9 @@ public abstract class Character : MonoBehaviour
 
     internal ulong damage = ulong.MaxValue;
     public bool successfulHit;
-    protected Material hitMaterial;
+    public bool isHit;
+    public Rigidbody2D Rigidbody { get; set; }
+
 
     #endregion
 
@@ -26,5 +28,6 @@ public abstract class Character : MonoBehaviour
 
     #endregion
     public abstract void ReceiveDamage(ulong damage);
+    public abstract void UpdateCurrentState(State newState);
 
 }

@@ -8,6 +8,7 @@ public class AttackCollision : MonoBehaviour
 
     private Character damageDealer;
     private Character victim;
+    private Character character;
     private bool successfulHit;
 
     float tick;
@@ -47,6 +48,7 @@ public class AttackCollision : MonoBehaviour
             Character victim = collision.GetComponent<Character>();
             victim.ReceiveDamage(damageDealer.damage);
             damageDealer.successfulHit = true;
+            victim.isHit = true;
             Debug.Log(victim.name + "Took Damage");
         }
 

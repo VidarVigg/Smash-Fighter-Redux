@@ -5,26 +5,26 @@ public abstract class MovementController : MonoBehaviour
 {
 
     [SerializeField]
-    private float horizontalDirection;
+    protected float horizontalDirection;
 
     [SerializeField]
-    private float verticalVelocity;
+    protected float verticalVelocity;
 
     [SerializeField]
-    private float jumpForce;
+    protected float jumpForce;
 
     [SerializeField]
-    private float baseMovementSpeed;
+    protected float baseMovementSpeed;
 
     [SerializeField]
-    private float gravityStrength;
+    protected float gravityStrength;
 
-    public MovementStates playerState;
+    [SerializeField]
+    protected MovementStates playerState;
 
 
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private LayerMask lm;
-
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected LayerMask lm;
 
     private void Awake()
     {
@@ -38,7 +38,6 @@ public abstract class MovementController : MonoBehaviour
 
     public void Move(float x = 1, float y = 1)
     {
-
         rb.velocity = new Vector2(x, y) * baseMovementSpeed;
     }
 
@@ -54,48 +53,18 @@ public abstract class MovementController : MonoBehaviour
         
     }
 
-    public void GroundCheck()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, Vector2.down, 0.3f, lm);
-        if (hit.collider != null)
-        {
-            if (playerState != MovementStates.Jumping)
-            {
-                verticalVelocity = 0;
-                playerState = MovementStates.Grounded;
-
-            }
-        }
-
-    }
-
     public void Jump(float multiplier)
     {
 
         verticalVelocity = jumpForce * multiplier;
         playerState = MovementStates.Jumping;
-
     }
 
-    public void Gravity()
+    public float BaseMovementSpeed
     {
-        if (playerState != MovementStates.Grounded)
-        {
-
-            verticalVelocity -= gravityStrength * Time.deltaTime;
-
-            if (playerState == MovementStates.Jumping)
-            {
-                if (verticalVelocity < 0)
-                {
-                    playerState = MovementStates.Falling;
-                }
-            }
-        }
-        else
-        {
-            verticalVelocity = -gravityStrength * Time.deltaTime;
-        }
+        set { baseMovementSpeed = value; }
     }
+
+
 
 }

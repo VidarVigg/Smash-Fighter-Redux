@@ -15,28 +15,20 @@ public class AttackState : State
     public override void EnterState()
     {
         Debug.Log("Entered Attack State");
-        //enemy.movementController.Move((enemy.GetTarget() - enemy.transform.position).normalized * enemy.AttackConfig.attackMovementSpeed);
-        //enemy.attackController.Attack();
-        attackFrequency = GenerateRandomNumber(1, 5);
+        enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.AttackConfig.attackMovementSpeed);
+        enemy.attackController.Attack();
+
     }
     public override void Update()
     {
-        // Should move this functionality to the hunt state
-            enemy.movementController.Move((enemy.GetTarget() - enemy.transform.position).normalized * enemy.AttackConfig.attackMovementSpeed);
 
-        if ((tick += Time.deltaTime) >= attackFrequency)
-        {
-            tick -= attackFrequency;
-            enemy.attackController.Attack();
-            attackFrequency = GenerateRandomNumber(1, 5);
-            Debug.Log(attackFrequency);
-        }
         if (enemy.successfulHit)
         {
-            enemy.movementController.Move((enemy.transform.position - enemy.GetTarget()).normalized * enemy.AttackConfig.attackMovementSpeed);
-
+            Debug.Log("SuccessfulHit");
+            enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
+            
         }
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude >= enemy.HuntConfig.huntRange / 2)
+        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude >= enemy.HuntConfig.huntRange / 3)
         {
             enemy.UpdateCurrentState(new HuntState(character));
         }
@@ -45,12 +37,9 @@ public class AttackState : State
 
     public override void ExitState()
     {
-
+       
     }
 
-    public float GenerateRandomNumber (float min, float max)
-    {
-        return Random.Range(min, max);
-    }
+
 
 }

@@ -24,16 +24,11 @@ public class EnemyMaster : Character
 
     private EnemyController aIController = null;
     private State currentState;
-    private Rigidbody2D rigidbody;
+
     #endregion
 
     #region Properties
 
-    public Rigidbody2D Rigidbody
-    {
-        get { return rigidbody; }
-        set { rigidbody = value; }
-    }
     public HuntConfig HuntConfig
     {
         get { return huntConfig; }
@@ -66,11 +61,16 @@ public class EnemyMaster : Character
 
     void Update()
     {
+        if (isHit)
+        {
+            UpdateCurrentState(new IsHitState(this));
+            isHit = false;
+        }
         currentState.Update();
         RayCastWallCheck();
     }
 
-    public void UpdateCurrentState(State newState)
+    public override void UpdateCurrentState(State newState)
     {
         if (currentState != null)
         {
@@ -90,9 +90,9 @@ public class EnemyMaster : Character
         return aIData.HitPoints;
     }
 
-    public Vector3 GetTarget()
+    public Transform GetTarget()
     {
-        return aIConfig.Target.position;
+        return aIConfig.Target;
     }
 
     public override void ReceiveDamage(ulong damage)
@@ -100,4 +100,6 @@ public class EnemyMaster : Character
         Debug.Log("Enemy Took " + damage + " Damage");
         
     }
+
+
 }

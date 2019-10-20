@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: New Attack Config
   m_EditorClassIdentifier: 
   attackRange: 0
-  attackMovementSpeed: 10
+  attackMovementSpeed: 15
   baseDamage: 0
-  attackMovementDuration: 0.3
+  attackFrequency: 0

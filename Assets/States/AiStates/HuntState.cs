@@ -5,6 +5,8 @@ using UnityEngine;
 public class HuntState : State
 {
     private EnemyMaster enemy;
+    private float tick;
+    private float attackFrequency;
 
     public HuntState(Character character) : base(character)
     {
@@ -14,29 +16,32 @@ public class HuntState : State
     public override void EnterState()
     {
         Debug.Log("Entered Hunt");
+        attackFrequency = GenerateRandomNumber(1, 5);
 
     }
 
     public override void Update()
     {
-        enemy.movementController.Move((enemy.GetTarget() - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < 3)
+        enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+
+        if ((tick += Time.deltaTime) >= attackFrequency)
         {
+            tick -= attackFrequency;
             enemy.UpdateCurrentState(new AttackState(character));
-        }
-        else
-        {
-
+            attackFrequency = GenerateRandomNumber(1, 5);
+            Debug.Log(attackFrequency);
         }
 
-
-
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude > enemy.HuntConfig.huntRange)
+        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
 
             enemy.UpdateCurrentState(new PatrolState(character));
 
         }
+    }
+    public float GenerateRandomNumber(float min, float max)
+    {
+        return Random.Range(min, max);
     }
 
     public override void ExitState()

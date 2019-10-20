@@ -14,7 +14,7 @@ public class PatrolState : State
 
     public override void EnterState()
     {
-        character.movementController.Move(GetRandomDirection());
+        character.movementController.Move(GetRandomDirection() * enemy.PatrolConfig.patrolMovementSpeed);
     }
 
     public override void Update()
@@ -25,11 +25,12 @@ public class PatrolState : State
         {
             if (test[i].collider != null)
             {
-                SetRandomDirection(CalculateDirection(test[i].point).normalized * enemy.PatrolConfig.patrolMovementSpeed);
+                //SetRandomDirection(CalculateDirection(test[i].point).normalized * enemy.PatrolConfig.patrolMovementSpeed);
+                enemy.movementController.Move((CalculateDirection(test[i].point).normalized) * enemy.PatrolConfig.patrolMovementSpeed);
             }
         }
 
-        if ((enemy.transform.position - enemy.GetTarget()).sqrMagnitude < enemy.PatrolConfig.patrolRange)
+        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude < enemy.PatrolConfig.patrolRange)
         {
             enemy.UpdateCurrentState(new HuntState(character));
         }
@@ -37,7 +38,7 @@ public class PatrolState : State
     }
     public Vector2 GetRandomDirection()
     {
-        return new Vector2(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;
+        return new Vector2(Random.Range(1, 2), Random.Range(1, 2)).normalized;
     }
     public void SetRandomDirection(Vector2 rand)
     {
