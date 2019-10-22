@@ -125,17 +125,19 @@ public class InputManager : MonoBehaviour
         {
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
-
-            if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
-            {
-                
-                inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            }
-            else
-            { 
-                inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            }
             dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+            inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+
+            //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
+            //{
+            //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+            //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            //}
+            //else
+            //{
+            //    dashDelegate?.Invoke(MousePosition());
+            //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            //}
         }
     }
 
