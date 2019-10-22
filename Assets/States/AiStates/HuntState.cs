@@ -22,11 +22,11 @@ public class HuntState : State
     {
         enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
-        if ((tick += Time.deltaTime) >= attackFrequency)
+        if ((tick += Time.deltaTime) >= attackFrequency)// should be put in a config file
         {
             tick -= attackFrequency;
             enemy.UpdateCurrentState(new AttackState(character));
-            attackFrequency = GenerateRandomNumber(1, 5);
+            attackFrequency = GenerateRandomNumber(1, 3);
         }
 
         if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)

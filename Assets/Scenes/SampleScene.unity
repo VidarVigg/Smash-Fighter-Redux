@@ -201,12 +201,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalDirection: 0
-  verticalVelocity: 1
-  jumpForce: 10
+  verticalVelocity: 0
+  jumpForce: 4.75
   baseMovementSpeed: 5
+  dashSpeed: 60
   gravityStrength: 20
+  dashDuration: 0.15
   jumping: 0
   grounded: 0
+  dashing: 0
+  chargingDash: 0
   rb: {fileID: 0}
 --- !u!4 &163274801
 Transform:
@@ -239,7 +243,6 @@ MonoBehaviour:
   movementController: {fileID: 0}
   attackController: {fileID: 0}
   successfulHit: 0
-  isHit: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -922,9 +925,13 @@ MonoBehaviour:
   verticalVelocity: 0
   jumpForce: 0
   baseMovementSpeed: 1
+  dashSpeed: 0
   gravityStrength: 0
+  dashDuration: 0
   jumping: 0
   grounded: 0
+  dashing: 0
+  chargingDash: 0
   rb: {fileID: 0}
 --- !u!61 &1082078270
 BoxCollider2D:
@@ -971,7 +978,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1082078272
 Transform:
@@ -1017,7 +1024,6 @@ MonoBehaviour:
   movementController: {fileID: 0}
   attackController: {fileID: 0}
   successfulHit: 0
-  isHit: 0
   aIConfig:
     layerMask:
       serializedVersion: 2
@@ -1165,9 +1171,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputConfig:
-    maxMultiplierValue: 2.5
-    multiplier: 0.5
-    reset: 0.5
+    maxJumpMultiplierValue: 4
+    maxDashMultiplierValue: 5
+    jumpMultiplier: 2
+    resetJumpMultiplier: 2
+    dashMultiplier: 2
+    resetDashMultiplier: 2
+    slowMoMultiplier: 2
   text: {fileID: 0}
 --- !u!4 &1849825299
 Transform:

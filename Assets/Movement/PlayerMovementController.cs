@@ -22,9 +22,6 @@ public class PlayerMovementController : MovementController
     }
 
 
-
-
-
     #endregion
 
 }

@@ -5,26 +5,61 @@ using System;
 public class InputConfig 
 {
 
-    [SerializeField] private float maxMultiplierValue;
-    [SerializeField] private float multiplier ;
-    [SerializeField] private float reset;
+    [SerializeField] 
+    private float maxJumpMultiplierValue;
 
-    public float MaxMultiplierValue
+    [SerializeField] 
+    private float maxDashMultiplierValue;
+    [SerializeField] 
+    private float jumpMultiplier;
+    [SerializeField] 
+    private float resetJumpMultiplier;
+    [SerializeField]
+    private float dashMultiplier;
+    [SerializeField]
+    private float resetDashMultiplier;
+    [SerializeField]
+    private float slowMoMultiplier;
+
+    public float MaxJumpMultiplierValue
     {
-        get { return maxMultiplierValue; }
-        set { maxMultiplierValue = value; }
+        get { return maxJumpMultiplierValue; }
+        set { maxJumpMultiplierValue = value; }
+    }
+    public float MaxDashMultiplierValue
+    {
+        get { return maxDashMultiplierValue; }
+        set { maxDashMultiplierValue = value; }
     }
 
-    public float Multiplier
+    public float JumpMultiplier
     {
-        get { return multiplier; }
-        set { multiplier = value; }
+        get { return jumpMultiplier; }
+        set { jumpMultiplier = value; }
     }
 
-    public float Reset
+    public float ResetJumpMultiplier
     {
-        get { return reset; }
-        set { reset = value; }
+        get { return resetJumpMultiplier; }
+        set { resetJumpMultiplier = value; }
+    }
+
+    public float ResetDashMultiplier
+    {
+        get { return resetDashMultiplier; }
+        set { resetDashMultiplier = value; }
+    }
+
+    public float DashMultiplier
+    {
+        get { return dashMultiplier; }
+        set { dashMultiplier = value; }
+    }
+
+    public float SlowMoMultiplier
+    {
+        get { return slowMoMultiplier; }
+        private set { slowMoMultiplier = value; }
     }
 
 }

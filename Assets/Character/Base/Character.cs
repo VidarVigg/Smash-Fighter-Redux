@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,6 @@ public abstract class Character : MonoBehaviour
 
     internal ulong damage = ulong.MaxValue;
     public bool successfulHit;
-    public bool isHit;
     public Rigidbody2D Rigidbody { get; set; }
 
 
@@ -29,5 +29,7 @@ public abstract class Character : MonoBehaviour
     #endregion
     public abstract void ReceiveDamage(ulong damage);
     public abstract void UpdateCurrentState(State newState);
+
+    public abstract void GetHit();
 
 }

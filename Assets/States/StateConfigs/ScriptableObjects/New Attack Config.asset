@@ -15,4 +15,4 @@ MonoBehaviour:
   attackRange: 0
   attackMovementSpeed: 15
   baseDamage: 0
-  attackFrequency: 0
+  attackFrequency: 2

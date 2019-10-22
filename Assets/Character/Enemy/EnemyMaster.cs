@@ -61,11 +61,6 @@ public class EnemyMaster : Character
 
     void Update()
     {
-        if (isHit)
-        {
-            UpdateCurrentState(new IsHitState(this));
-            isHit = false;
-        }
         currentState.Update();
         RayCastWallCheck();
     }
@@ -97,9 +92,12 @@ public class EnemyMaster : Character
 
     public override void ReceiveDamage(ulong damage)
     {
-        Debug.Log("Enemy Took " + damage + " Damage");
+
         
     }
 
-
+    public override void GetHit()
+    {
+        UpdateCurrentState(new IsHitState(this));
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
-public class PlayerMaster : Character
+public class PlayerMaster : Character, Test
 {
     //[SerializeField]
     //private PlayerConfig config = null;
@@ -24,20 +24,28 @@ public class PlayerMaster : Character
     }
     void Start()
     {
-        baseStates = new List<State>() { new GroundedState(this), new GravityState(this) };
+        baseStates = new List<State>() { new GroundedState(this), new GravityState(this) };// Make Components
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
+
+        movementController.test[0] = this;
+
         InputManager.INSTANCE.moveDelegate += movementController.Move;
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
+        InputManager.INSTANCE.dashAttackDelegate += movementController.DashAttack;
+        InputManager.INSTANCE.dashDelegate += SetDashState;
+        //movementController.setDashState += SetDashState;
     }
     private void Update()
     {
-        if (isHit)
+        if (currentState != null)
         {
-            UpdateCurrentState(new PlayerIsHitState(this));
+
             currentState.Update();
         }
+
+
         for (int i = 0; i < baseStates.Count; i++)
         {
             baseStates[i].Update();
@@ -59,9 +67,25 @@ public class PlayerMaster : Character
         currentState.EnterState();
     }
 
+    public override void GetHit()
+    {
+        UpdateCurrentState(new PlayerIsHitState(this));
+    }
+
+    public void SetDashState(Vector2 pos, float multiplier)
+    {
+        UpdateCurrentState(new DashState(this, pos));
+    }
+
+    public void Notify()
+    {
+        Debug.Log("Got notified on Dash");
+    }
+
     public Rigidbody2D Rigidbody2D
     {
         get { return rigidbody; }
     }
+
 
 }

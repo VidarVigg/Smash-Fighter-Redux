@@ -16,7 +16,7 @@ public class IsHitState : State
 
     public override void EnterState()
     {
-        enemyRigidbody = enemy.Rigidbody;  
+        enemyRigidbody = enemy.Rigidbody;
         enemyRigidbody.constraints = RigidbodyConstraints2D.None;
         enemyRigidbody.AddForce(((enemy.transform.position - enemy.GetTarget().position).normalized) * 1000);
         enemyRigidbody.gravityScale = 1;
@@ -27,7 +27,6 @@ public class IsHitState : State
         if ((tick += Time.deltaTime) >= stunTime)
         {
             tick -= stunTime;
-            enemy.isHit = false;
             enemy.transform.rotation = Quaternion.identity;
             enemy.UpdateCurrentState(new PatrolState(character));
 
@@ -37,11 +36,8 @@ public class IsHitState : State
         {
             if (enemy.GetWallCollisionArray()[3].collider != null)
             {
-                if (enemy.isHit)
-                {
-                    enemy.transform.rotation = Quaternion.identity;
-                    enemy.UpdateCurrentState(this);
-                }
+                enemy.transform.rotation = Quaternion.identity;
+                enemy.UpdateCurrentState(new PatrolState(enemy));
             }
         }
 

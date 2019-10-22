@@ -8,8 +8,10 @@ public class PlayerIsHitState : State
 
     public PlayerIsHitState(Character character) : base(character)
     {
+        Debug.Log("SERJESJFE");
         this.player = (PlayerMaster)character;
     }
+
 
     public override void EnterState()
     {
@@ -22,7 +24,6 @@ public class PlayerIsHitState : State
         player.movementController.Move(0, -1);
         if (player.movementController.grounded)
         {
-            player.isHit = false;
             player.UpdateCurrentState(new NullState(player));
             InputManager.INSTANCE.moveDelegate += player.movementController.Move;
         }

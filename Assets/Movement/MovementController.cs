@@ -4,6 +4,10 @@ using UnityEngine;
 public abstract class MovementController : MonoBehaviour
 {
 
+    public Test[] test = new Test[1];
+    public delegate void TestDelegate();
+    public TestDelegate setDashState;
+
     [SerializeField]
     protected float horizontalDirection;
 
@@ -17,11 +21,25 @@ public abstract class MovementController : MonoBehaviour
     protected float baseMovementSpeed;
 
     [SerializeField]
+    protected float dashSpeed;
+
+    [SerializeField]
     protected float gravityStrength;
+
+    [SerializeField]
+    protected float dashDuration;
+
+    protected Vector2 dashVelocity;
+
+    float tick;
 
     public bool jumping;
 
     public bool grounded;
+
+    public bool dashing;
+
+    public bool chargingDash;
 
     [SerializeField] protected Rigidbody2D rb;
 
@@ -32,7 +50,16 @@ public abstract class MovementController : MonoBehaviour
 
     public void Update()
     {
-        // Call global behavior
+        //if (dashing)
+        //{
+        //    if ((tick += Time.deltaTime) >= dashDuration)
+        //    {
+        //        tick -= dashDuration;
+        //        dashVelocity = Vector2.zero;
+
+        //        dashing = false;
+        //    }
+        //}
     }
 
     public void Move(float x = 1, float y = 1)
@@ -42,9 +69,8 @@ public abstract class MovementController : MonoBehaviour
 
     public void Move(int dir)
     {
-        Debug.Log("Call");
         horizontalDirection = dir;
-        rb.velocity = new Vector2(horizontalDirection * baseMovementSpeed, verticalVelocity);
+        rb.velocity = new Vector2(horizontalDirection * baseMovementSpeed, verticalVelocity) + dashVelocity;
     }
 
     public void Move(Vector2 dir)
@@ -55,9 +81,19 @@ public abstract class MovementController : MonoBehaviour
 
     public void Jump(float multiplier)
     {
-        Debug.Log("Jumping");
         jumping = true;
         verticalVelocity = jumpForce * multiplier;
+    }
+
+    public void Dash(Vector2 aim)
+    {
+        //dashing = true;
+        Debug.Log("MC call");
+        dashVelocity = (aim - (Vector2)transform.position).normalized * dashSpeed;
+    }
+    public void DashAttack(Vector2 aim)
+    {
+        Debug.Log("DashAttack");
     }
 
     public float BaseMovementSpeed

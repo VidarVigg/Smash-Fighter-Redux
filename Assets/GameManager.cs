@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager INSTANCE;
-
-    [SerializeField] private InputManager inputManager;
 
     private void Awake()
     {
@@ -16,6 +15,13 @@ public class GameManager : MonoBehaviour
         else
         {
             INSTANCE = this;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

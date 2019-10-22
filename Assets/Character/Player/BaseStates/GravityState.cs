@@ -33,9 +33,7 @@ public class GravityState : State
 
             if (player.movementController.VerticalVelocity < 0)
             {
-                Debug.Log("Falling");
                 player.movementController.jumping = false;
-                
             }
 
         }

@@ -14,9 +14,15 @@ public class InputManager : MonoBehaviour
     private KeyCode leftKey = KeyCode.A;
     private KeyCode jumpKey = KeyCode.Space;
     private KeyCode attackKey = KeyCode.Mouse0;
+    private KeyCode dashKey = KeyCode.LeftShift;
 
     public delegate void VoidDelegate();
     public VoidDelegate attackDelegate;
+
+    public delegate void Vector2Delegate(Vector2 aim, float time);
+    public Vector2Delegate dashAttackDelegate;
+    public Vector2Delegate dashDelegate;
+
 
     public delegate void IntDelegate(int variable);
 
@@ -24,7 +30,6 @@ public class InputManager : MonoBehaviour
     public IntDelegate moveDelegate;
     public FloatDelegate jumpDelegate;
 
-    public Stopwatch timer = new Stopwatch();
 
     private void Awake()
     {
@@ -35,7 +40,7 @@ public class InputManager : MonoBehaviour
         }
 
         INSTANCE = this;
-        
+
     }
 
     private void Update()
@@ -43,7 +48,9 @@ public class InputManager : MonoBehaviour
         Move();
         Jump();
         Attack();
+        Dash();
     }
+
     private void Move()
     {
         int dir = 0;
@@ -71,20 +78,21 @@ public class InputManager : MonoBehaviour
 
         if (jump)
         {
-            inputConfig.Multiplier += 2f * Time.deltaTime; // todo: change from hard coded value
+            inputConfig.JumpMultiplier += 2f * Time.deltaTime; // todo: change from hard coded value
         }
 
         if (release)
         {
-            if (inputConfig.Multiplier > inputConfig.MaxMultiplierValue)
+            if (inputConfig.JumpMultiplier > inputConfig.MaxJumpMultiplierValue)
             {
-                inputConfig.Multiplier = inputConfig.MaxMultiplierValue;
+                inputConfig.JumpMultiplier = inputConfig.MaxJumpMultiplierValue;
             }
-            jumpDelegate.Invoke(inputConfig.Multiplier);
-            inputConfig.Multiplier = inputConfig.Reset;
+            jumpDelegate?.Invoke(inputConfig.JumpMultiplier);
+            inputConfig.JumpMultiplier = inputConfig.ResetJumpMultiplier;
         }
 
     }
+
     public void Attack()
     {
         bool attack = Input.GetKeyDown(attackKey);
@@ -95,4 +103,45 @@ public class InputManager : MonoBehaviour
         }
 
     }
+
+    public void Dash()
+    {
+        bool dash = Input.GetKey(dashKey);
+        bool dashRelease = Input.GetKeyUp(dashKey);
+
+        if (dash)
+        {
+
+            inputConfig.DashMultiplier += 0.01f;
+            Time.timeScale -= Time.deltaTime * inputConfig.SlowMoMultiplier;
+            Time.fixedDeltaTime = Time.timeScale * 0.02f;
+            if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
+            {
+                inputConfig.DashMultiplier = inputConfig.MaxDashMultiplierValue;
+            }
+
+        }
+        if (dashRelease)
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f;
+
+            if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
+            {
+                
+                inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            }
+            else
+            { 
+                inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            }
+            dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+        }
+    }
+
+    public Vector2 MousePosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
 }

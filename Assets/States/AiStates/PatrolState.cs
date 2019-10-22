@@ -36,15 +36,15 @@ public class PatrolState : State
         }
 
     }
-    public Vector2 GetRandomDirection()
+    private Vector2 GetRandomDirection()
     {
         return new Vector2(Random.Range(1, 2), Random.Range(1, 2)).normalized;
     }
-    public void SetRandomDirection(Vector2 rand)
+    private void SetRandomDirection(Vector2 rand)
     {
         enemy.GetComponent<Rigidbody2D>().velocity = rand;
     }
-    public Vector2 CalculateDirection(Vector2 hitPoint)
+    private Vector2 CalculateDirection(Vector2 hitPoint)
     {
         Vector2 dir = (Vector2)enemy.transform.position - hitPoint;
         dir = (Quaternion.AngleAxis(Random.Range(-180, 180), enemy.transform.position) * dir).normalized * enemy.PatrolConfig.patrolMovementSpeed;
