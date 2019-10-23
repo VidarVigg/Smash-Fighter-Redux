@@ -19,7 +19,7 @@ public class DashChargeState : State
     public override void EnterState()
     {
         Debug.Log("Test");
-
+        player.stateObserver.Notify(this);
     }
 
     public override void Update()
@@ -50,7 +50,4 @@ public class DashChargeState : State
     {
 
     }
-
-
-
 }

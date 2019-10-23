@@ -18,6 +18,7 @@ public class DashState : State
     {
         Debug.Log("Hello");
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
+        player.stateObserver.Notify(this);
     }
 
     public override void ExitState()

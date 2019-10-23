@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
-public class PlayerMaster : Character, Test
+public class PlayerMaster : Character
 {
     //[SerializeField]
     //private PlayerConfig config = null;
@@ -15,13 +15,13 @@ public class PlayerMaster : Character, Test
     private DashConfig dashConfig;
     [SerializeField]
     private DashChargeConfig dashChargeConfig;
+    public IStateObserver stateObserver;
 
 
     public Rigidbody2D rigidbody;
     private State currentState;
 
     public LayerMask groundLayer;
-    public List<State> baseStates;
 
     #region Properties
 
@@ -43,21 +43,19 @@ public class PlayerMaster : Character, Test
     {
         //controller = new PlayerController(this, config, data);
         rigidbody = GetComponent<Rigidbody2D>();
+        stateObserver = FindObjectOfType<EnemyMaster>(); // Think About This
     }
     void Start()
     {
-        //baseStates = new List<State>() { new GroundedState(this), new GravityState(this) };// Make Components
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
-
-        movementController.test[0] = this;
 
         InputManager.INSTANCE.moveDelegate += movementController.Move;
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
         //InputManager.INSTANCE.dashAttackDelegate += movementController.DashAttack;
         InputManager.INSTANCE.dashDelegate += SetDashState;
-        //movementController.setDashState += SetDashState;
+
     }
     private void Update()
     {
@@ -65,13 +63,6 @@ public class PlayerMaster : Character, Test
         {
             currentState.Update();
         }
-
-       
-
-        //for (int i = 0; i < baseStates.Count; i++)
-        //{
-        //    baseStates[i].Update(); // todo: make components
-        //}
     }
 
     public override void ReceiveDamage(ulong damage)
@@ -97,13 +88,7 @@ public class PlayerMaster : Character, Test
 
     public void SetDashState(Vector2 pos)
     {
-        Debug.Log("Test1");
         UpdateCurrentState(new DashChargeState(this, pos));
-    }
-
-    public void Notify()
-    {
-        Debug.Log("Got notified on Dash");
     }
 
     public Rigidbody2D Rigidbody2D

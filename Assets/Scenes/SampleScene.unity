@@ -1741,6 +1741,7 @@ MonoBehaviour:
   huntConfig: {fileID: 11400000, guid: 989eb16b5daddb34f84c69d1da8698c3, type: 2}
   patrolConfig: {fileID: 11400000, guid: f2432ba11fcd4c74a82e71c857e2836d, type: 2}
   attackConfig: {fileID: 11400000, guid: 650400a81c98483449d97ec67c136b47, type: 2}
+  fleeConfig: {fileID: 11400000, guid: 4297ff40d990b744a9e5bcbfcecb829c, type: 2}
 --- !u!1 &1393491143
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
-public class EnemyMaster : Character
+public class EnemyMaster : Character, IStateObserver
 {
 
     #region Fields
@@ -21,9 +21,12 @@ public class EnemyMaster : Character
     private PatrolConfig patrolConfig;
     [SerializeField]
     private AttackConfig attackConfig;
+    [SerializeField]
+    private FleeConfig fleeConfig;
 
     private EnemyController aIController = null;
     private State currentState;
+    private State playerStateOfInterest;
 
     #endregion
 
@@ -42,6 +45,11 @@ public class EnemyMaster : Character
     public AttackConfig AttackConfig
     {
         get { return attackConfig; }
+    }
+
+    public FleeConfig FleeConfig
+    {
+        get { return fleeConfig; }
     }
 
     #endregion
@@ -90,6 +98,11 @@ public class EnemyMaster : Character
         return aIConfig.Target;
     }
 
+    public State PlayerStateOfInterest
+    {
+        get { return playerStateOfInterest; }
+    }
+
     public override void ReceiveDamage(ulong damage)
     {
 
@@ -99,5 +112,11 @@ public class EnemyMaster : Character
     public override void GetHit(Vector2 pos)
     {
         UpdateCurrentState(new IsHitState(this, pos));
+    }
+
+    public void Notify(State state)
+    {
+        playerStateOfInterest = state;
+        Debug.Log("Enemy Got Notified" + state.ToString());
     }
 }

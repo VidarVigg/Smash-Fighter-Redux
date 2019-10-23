@@ -29,6 +29,11 @@ public class HuntState : State
             attackFrequency = GenerateRandomNumber(1, 3);
         }
 
+        if(enemy.PlayerStateOfInterest is DashChargeState)
+        {
+            enemy.UpdateCurrentState(new FleeState(character));
+        }
+
         if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
 
