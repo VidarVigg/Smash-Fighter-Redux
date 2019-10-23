@@ -8,18 +8,20 @@ public class IsHitState : State
     private Rigidbody2D enemyRigidbody;
     private float tick;
     private float stunTime = 0.5f;// move to config file
+    private Vector2 pos;
 
-    public IsHitState(Character character) : base(character)
+    public IsHitState(Character character, Vector2 pos) : base(character)
     {
         this.enemy = (EnemyMaster)character;
+        this.pos = pos;
     }
 
     public override void EnterState()
     {
         enemyRigidbody = enemy.Rigidbody;
         enemyRigidbody.constraints = RigidbodyConstraints2D.None;
-        enemyRigidbody.AddForce(((enemy.transform.position - enemy.GetTarget().position).normalized) * 1000);
-        enemyRigidbody.gravityScale = 1;
+        enemyRigidbody.AddForce(((Vector2)enemy.transform.position - pos).normalized * 20, ForceMode2D.Impulse);
+        enemyRigidbody.gravityScale = 3;
     }
 
     public override void Update()
@@ -45,7 +47,7 @@ public class IsHitState : State
 
     public override void ExitState()
     {
-        enemy.transform.rotation = Quaternion.identity;
+        enemy.transform.rotation = new Quaternion(0, 0, 0, 0);
         enemy.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         enemy.Rigidbody.gravityScale = 0;
     }

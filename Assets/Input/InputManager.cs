@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
     public delegate void VoidDelegate();
     public VoidDelegate attackDelegate;
 
-    public delegate void Vector2Delegate(Vector2 aim, float time);
+    public delegate void Vector2Delegate(Vector2 aim);
     public Vector2Delegate dashAttackDelegate;
     public Vector2Delegate dashDelegate;
 
@@ -106,9 +106,15 @@ public class InputManager : MonoBehaviour
 
     public void Dash()
     {
+        bool dashCharge = Input.GetKeyDown(dashKey);
         bool dash = Input.GetKey(dashKey);
         bool dashRelease = Input.GetKeyUp(dashKey);
 
+        if (dashCharge)
+        {
+            dashDelegate?.Invoke(MousePosition());
+
+        }
         if (dash)
         {
 
@@ -121,24 +127,24 @@ public class InputManager : MonoBehaviour
             }
 
         }
-        if (dashRelease)
-        {
-            Time.timeScale = 1;
-            Time.fixedDeltaTime = 0.02f;
-            dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
-            inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+        //if (dashRelease)
+        //{
+        //    Time.timeScale = 1;
+        //    Time.fixedDeltaTime = 0.02f;
+        //    dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+        //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
 
-            //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
-            //{
-            //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
-            //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            //}
-            //else
-            //{
-            //    dashDelegate?.Invoke(MousePosition());
-            //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            //}
-        }
+        //    //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
+        //    //{
+        //    //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+        //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+        //    //}
+        //    //else
+        //    //{
+        //    //    dashDelegate?.Invoke(MousePosition());
+        //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+        //    //}
+        //}
     }
 
     public Vector2 MousePosition()

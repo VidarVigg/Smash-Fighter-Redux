@@ -48,7 +48,7 @@ public class AttackCollision : MonoBehaviour
             Character victim = collision.GetComponent<Character>();
             victim.ReceiveDamage(damageDealer.damage);
             damageDealer.successfulHit = true;
-            victim.GetHit();
+            victim.GetHit(damageDealer.transform.position);
         }
 
     }

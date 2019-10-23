@@ -2,28 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GravityState : State
+public class GravityState : MonoBehaviour
 {
 
     private PlayerMaster player;
-    public GravityState(Character character) : base(character)
+
+    private void Start()
     {
-        this.player = (PlayerMaster)character;
+        player = GetComponent<PlayerMaster>();
     }
 
-    public override void EnterState()
-    {
-
-    }
-
-    public override void Update()
+    private void Update()
     {
         Gravity();
-    }
-
-    public override void ExitState()
-    {
-
     }
     public void Gravity()
     {

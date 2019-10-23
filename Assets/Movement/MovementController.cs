@@ -96,6 +96,11 @@ public abstract class MovementController : MonoBehaviour
         Debug.Log("DashAttack");
     }
 
+    public void ResetDash()
+    {
+        dashVelocity = Vector2.zero;
+    }
+
     public float BaseMovementSpeed
     {
         set { baseMovementSpeed = value; }

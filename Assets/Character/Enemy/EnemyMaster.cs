@@ -96,8 +96,8 @@ public class EnemyMaster : Character
         
     }
 
-    public override void GetHit()
+    public override void GetHit(Vector2 pos)
     {
-        UpdateCurrentState(new IsHitState(this));
+        UpdateCurrentState(new IsHitState(this, pos));
     }
 }

@@ -10,12 +10,34 @@ public class PlayerMaster : Character, Test
     //[SerializeField]
     //private PlayerData data = null;
     //private PlayerController controller = null;
+    [Header("State Configs")]
+    [SerializeField]
+    private DashConfig dashConfig;
+    [SerializeField]
+    private DashChargeConfig dashChargeConfig;
 
-    protected Rigidbody2D rigidbody;
+
+    public Rigidbody2D rigidbody;
     private State currentState;
 
     public LayerMask groundLayer;
     public List<State> baseStates;
+
+    #region Properties
+
+    public DashConfig DashConfig
+    {
+        get { return dashConfig; }
+    }
+
+    public DashChargeConfig DashChargeConfig
+    {
+        get { return dashChargeConfig; }
+    }
+
+    #endregion
+
+
 
     private void Awake()
     {
@@ -24,7 +46,7 @@ public class PlayerMaster : Character, Test
     }
     void Start()
     {
-        baseStates = new List<State>() { new GroundedState(this), new GravityState(this) };// Make Components
+        //baseStates = new List<State>() { new GroundedState(this), new GravityState(this) };// Make Components
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
 
@@ -33,7 +55,7 @@ public class PlayerMaster : Character, Test
         InputManager.INSTANCE.moveDelegate += movementController.Move;
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
-        InputManager.INSTANCE.dashAttackDelegate += movementController.DashAttack;
+        //InputManager.INSTANCE.dashAttackDelegate += movementController.DashAttack;
         InputManager.INSTANCE.dashDelegate += SetDashState;
         //movementController.setDashState += SetDashState;
     }
@@ -41,15 +63,15 @@ public class PlayerMaster : Character, Test
     {
         if (currentState != null)
         {
-
             currentState.Update();
         }
 
+       
 
-        for (int i = 0; i < baseStates.Count; i++)
-        {
-            baseStates[i].Update();
-        }
+        //for (int i = 0; i < baseStates.Count; i++)
+        //{
+        //    baseStates[i].Update(); // todo: make components
+        //}
     }
 
     public override void ReceiveDamage(ulong damage)
@@ -67,14 +89,16 @@ public class PlayerMaster : Character, Test
         currentState.EnterState();
     }
 
-    public override void GetHit()
+    public override void GetHit(Vector2 pos)
     {
-        UpdateCurrentState(new PlayerIsHitState(this));
+        Debug.Log("Call");
+        UpdateCurrentState(new PlayerIsHitState(this, pos));
     }
 
-    public void SetDashState(Vector2 pos, float multiplier)
+    public void SetDashState(Vector2 pos)
     {
-        UpdateCurrentState(new DashState(this, pos));
+        Debug.Log("Test1");
+        UpdateCurrentState(new DashChargeState(this, pos));
     }
 
     public void Notify()

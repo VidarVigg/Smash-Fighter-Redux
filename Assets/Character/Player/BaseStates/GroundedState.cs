@@ -2,28 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundedState : State
+public class GroundedState : MonoBehaviour
 {
+
     private PlayerMaster player;
-    public GroundedState(Character character) : base(character)
+
+    private void Start()
     {
-        this.player = (PlayerMaster)character;
+        player = GetComponent<PlayerMaster>();
     }
 
-    public override void EnterState()
-    {
 
-    }
-
-    public override void ExitState()
-    {
-
-    }
-
-    public override void Update()
+    private void Update()
     {
         GroundCheck();
-
     }
 
     public void GroundCheck()

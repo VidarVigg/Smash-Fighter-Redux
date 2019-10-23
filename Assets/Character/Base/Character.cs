@@ -30,6 +30,6 @@ public abstract class Character : MonoBehaviour
     public abstract void ReceiveDamage(ulong damage);
     public abstract void UpdateCurrentState(State newState);
 
-    public abstract void GetHit();
+    public abstract void GetHit(Vector2 pos);
 
 }
