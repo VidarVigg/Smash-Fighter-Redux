@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9e4e9b0f576324c8e658c9b80e5f7a, type: 3}
   m_Name: New Attack Config
   m_EditorClassIdentifier: 
-  attackRange: 0
-  attackMovementSpeed: 15
+  attackRange: 10
+  attackMovementSpeed: 3
+  minAttackRange: 5
   baseDamage: 0
   attackFrequency: 2

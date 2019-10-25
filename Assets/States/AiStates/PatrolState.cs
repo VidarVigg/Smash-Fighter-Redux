@@ -55,4 +55,9 @@ public class PatrolState : State
     {
 
     }
+
+    public override void Handle(State state)
+    {
+        
+    }
 }

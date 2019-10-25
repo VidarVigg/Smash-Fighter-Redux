@@ -7,6 +7,7 @@ public class AttackConfig : ScriptableObject
 {
     public float attackRange;
     public float attackMovementSpeed;
+    public float minAttackRange;
     public float baseDamage;
     public float attackFrequency;
 }

@@ -25,6 +25,11 @@ public class DashAttackState : State
 
     }
 
+    public override void Handle(State state)
+    {
+        
+    }
+
     public override void Update()
     {
         if ((tick += Time.deltaTime) >= player.DashConfig.dashDuration)

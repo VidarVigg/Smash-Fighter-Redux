@@ -242,6 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e8bb837d28e7342a1cc992ad7f03d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterConfig:
+    baseDamage: 5
+    baseHealth: 5
+  characterData:
+    damage: 0
+    health: 0
   movementController: {fileID: 0}
   attackController: {fileID: 0}
   successfulHit: 0
@@ -1254,6 +1260,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615864999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615865001}
+  - component: {fileID: 615865000}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &615865000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615864999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507a7f955e7ac974382c786cd1d6ce30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &615865001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615864999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.520664, y: -3.4727123, z: -59.751724}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794620022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,6 +1777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab77a4cb7bf18d448b015d134688e93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterConfig:
+    baseDamage: 5
+    baseHealth: 5
+  characterData:
+    damage: 0
+    health: 0
   movementController: {fileID: 0}
   attackController: {fileID: 0}
   successfulHit: 0
@@ -2497,7 +2552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputConfig:
     maxJumpMultiplierValue: 4
-    maxDashMultiplierValue: 5
+    maxDashMultiplierValue: 3.5
     jumpMultiplier: 2
     resetJumpMultiplier: 2
     dashMultiplier: 2

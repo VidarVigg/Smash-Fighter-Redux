@@ -54,8 +54,9 @@ public class EnemyMaster : Character, IStateObserver
 
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         aIController = new EnemyController(this, aIConfig, aIData);
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
@@ -103,10 +104,9 @@ public class EnemyMaster : Character, IStateObserver
         get { return playerStateOfInterest; }
     }
 
-    public override void ReceiveDamage(ulong damage)
+    public override void ReceiveDamage(float damage)
     {
-
-        
+        Debug.Log("Enemy Took " + damage + " Damage");
     }
 
     public override void GetHit(Vector2 pos)
@@ -116,6 +116,7 @@ public class EnemyMaster : Character, IStateObserver
 
     public void Notify(State state)
     {
+        currentState.Handle(state);
         playerStateOfInterest = state;
         Debug.Log("Enemy Got Notified" + state.ToString());
     }

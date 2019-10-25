@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Timers;
-using System.Diagnostics;
 using TMPro;
 
 public class InputManager : MonoBehaviour
@@ -121,6 +120,12 @@ public class InputManager : MonoBehaviour
             inputConfig.DashMultiplier += 0.01f;
             Time.timeScale -= Time.deltaTime * inputConfig.SlowMoMultiplier;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+            if(Time.timeScale<= 0.3)
+            {
+                Time.timeScale = 0.3f;
+            }
+
             if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
             {
                 inputConfig.DashMultiplier = inputConfig.MaxDashMultiplierValue;

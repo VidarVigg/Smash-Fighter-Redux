@@ -39,9 +39,13 @@ public class PlayerIsHitState : State
 
     public override void ExitState()
     {
-        player.transform.rotation = new Quaternion(0, 0, 0, 0);
+        player.transform.rotation = Quaternion.identity;
         player.rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.rigidbody.gravityScale = 0;
     }
 
+    public override void Handle(State state)
+    {
+        
+    }
 }

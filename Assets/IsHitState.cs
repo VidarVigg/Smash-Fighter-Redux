@@ -33,7 +33,7 @@ public class IsHitState : State
             enemy.UpdateCurrentState(new PatrolState(character));
 
         }
-        enemy.transform.Rotate(0, 0, Random.Range(1, 10));
+        enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
         for (int i = 0; i < enemy.GetWallCollisionArray().Length; i++)
         {
             if (enemy.GetWallCollisionArray()[3].collider != null)
@@ -47,9 +47,13 @@ public class IsHitState : State
 
     public override void ExitState()
     {
-        enemy.transform.rotation = new Quaternion(0, 0, 0, 0);
         enemy.Rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        enemy.transform.rotation = Quaternion.identity;
         enemy.Rigidbody.gravityScale = 0;
     }
 
+    public override void Handle(State state)
+    {
+
+    }
 }

@@ -46,9 +46,9 @@ public class AttackCollision : MonoBehaviour
         if (collision.tag == "Enemy" || collision.tag == "Player")
         {
             Character victim = collision.GetComponent<Character>();
-            victim.ReceiveDamage(damageDealer.damage);
             damageDealer.successfulHit = true;
             victim.GetHit(damageDealer.transform.position);
+            victim.ReceiveDamage(damageDealer.Damage);
         }
 
     }

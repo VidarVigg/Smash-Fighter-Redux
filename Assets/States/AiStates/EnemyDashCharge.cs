@@ -2,32 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NullState : State
+public class EnemyDashCharge : State
 {
-    public NullState(Character character) : base(character)
-    {
+    private EnemyMaster enemy;
 
+    public EnemyDashCharge(Character character) : base(character)
+    {
+        this.enemy = (EnemyMaster)character;
     }
 
     public override void EnterState()
     {
-
+        
     }
-
 
     public override void Update()
     {
-        
-        Debug.Log("We are In Null State");
-
+        enemy.transform.Rotate(enemy.GetTarget().transform.position);
     }
+
     public override void ExitState()
     {
-
+        
     }
 
     public override void Handle(State state)
     {
         
     }
+
+
+
 }

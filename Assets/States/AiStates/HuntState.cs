@@ -7,6 +7,7 @@ public class HuntState : State
     private EnemyMaster enemy;
     private float tick;
     private float attackFrequency;
+    private State stateOfInterest;
 
     public HuntState(Character character) : base(character)
     {
@@ -17,7 +18,7 @@ public class HuntState : State
     {
         attackFrequency = GenerateRandomNumber(1, 5);
     }
-
+    
     public override void Update()
     {
         enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
@@ -25,18 +26,14 @@ public class HuntState : State
         if ((tick += Time.deltaTime) >= attackFrequency)// should be put in a config file
         {
             tick -= attackFrequency;
-            enemy.UpdateCurrentState(new AttackState(character));
+            enemy.UpdateCurrentState(new StartAttacking(character));
             attackFrequency = GenerateRandomNumber(1, 3);
         }
 
-        if(enemy.PlayerStateOfInterest is DashChargeState)
-        {
-            enemy.UpdateCurrentState(new FleeState(character));
-        }
+
 
         if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
-
             enemy.UpdateCurrentState(new PatrolState(character));
 
         }
@@ -50,4 +47,15 @@ public class HuntState : State
     {
 
     }
+
+    public override void Handle(State state)
+    {
+
+        if (state is DashChargeState)
+        {
+            enemy.UpdateCurrentState(new FleeState(character));
+        }
+
+    }
+
 }

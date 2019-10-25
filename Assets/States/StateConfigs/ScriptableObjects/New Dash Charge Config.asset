@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec364b5b06c33c4581186ea16527f57, type: 3}
   m_Name: New Dash Charge Config
   m_EditorClassIdentifier: 
-  dashMultiplier: 0
+  chargeAmt: 0
   tick: 0.03
   reset: 0
   maxDashMultiplier: 5
+  timeBeforeEnemyNotified: 0.2

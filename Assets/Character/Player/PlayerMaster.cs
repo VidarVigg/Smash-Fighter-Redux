@@ -37,37 +37,40 @@ public class PlayerMaster : Character
 
     #endregion
 
-
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         //controller = new PlayerController(this, config, data);
         rigidbody = GetComponent<Rigidbody2D>();
         stateObserver = FindObjectOfType<EnemyMaster>(); // Think About This
     }
     void Start()
     {
+
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
 
         InputManager.INSTANCE.moveDelegate += movementController.Move;
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
-        //InputManager.INSTANCE.dashAttackDelegate += movementController.DashAttack;
         InputManager.INSTANCE.dashDelegate += SetDashState;
 
     }
     private void Update()
     {
+
         if (currentState != null)
         {
+
             currentState.Update();
+
         }
+
     }
 
-    public override void ReceiveDamage(ulong damage)
+    public override void ReceiveDamage(float damage)
     {
-        Debug.Log("Player Took Damage");
+        Debug.Log("Player Took " + damage + " Damage");
     }
 
     public override void UpdateCurrentState(State newState)
@@ -82,7 +85,6 @@ public class PlayerMaster : Character
 
     public override void GetHit(Vector2 pos)
     {
-        Debug.Log("Call");
         UpdateCurrentState(new PlayerIsHitState(this, pos));
     }
 
