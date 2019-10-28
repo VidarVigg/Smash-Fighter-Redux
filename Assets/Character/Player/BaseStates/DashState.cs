@@ -17,6 +17,7 @@ public class DashState : State
     public override void EnterState()
     {
 
+        player.movementController.VerticalVelocity = 0;
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
         player.stateObserver.Notify(this);
 

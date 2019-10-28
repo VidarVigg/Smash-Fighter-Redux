@@ -17,7 +17,6 @@ public class PlayerMaster : Character
     private DashChargeConfig dashChargeConfig;
     public IStateObserver stateObserver;
 
-
     public Rigidbody2D rigidbody;
     private State currentState;
 
@@ -70,6 +69,7 @@ public class PlayerMaster : Character
 
     public override void ReceiveDamage(float damage)
     {
+        base.ReceiveDamage(damage);
         Debug.Log("Player Took " + damage + " Damage");
     }
 

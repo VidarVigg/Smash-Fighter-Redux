@@ -15,5 +15,4 @@ MonoBehaviour:
   attackRange: 10
   attackMovementSpeed: 3
   minAttackRange: 5
-  baseDamage: 0
-  attackFrequency: 2
+  attackChargeTime: 1

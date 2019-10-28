@@ -6,4 +6,5 @@ using UnityEngine;
 public class FleeConfig : ScriptableObject
 {
     public float fleeMovementSpeed;
+    public float safeDistance;
 }

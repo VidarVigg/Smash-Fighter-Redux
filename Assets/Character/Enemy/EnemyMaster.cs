@@ -23,6 +23,8 @@ public class EnemyMaster : Character, IStateObserver
     private AttackConfig attackConfig;
     [SerializeField]
     private FleeConfig fleeConfig;
+    [SerializeField]
+    private EnemyDashConfig enemyDashConfig;
 
     private EnemyController aIController = null;
     private State currentState;
@@ -50,6 +52,11 @@ public class EnemyMaster : Character, IStateObserver
     public FleeConfig FleeConfig
     {
         get { return fleeConfig; }
+    }
+
+    public EnemyDashConfig EnemyDashConfig
+    {
+        get { return enemyDashConfig; }
     }
 
     #endregion
@@ -106,6 +113,7 @@ public class EnemyMaster : Character, IStateObserver
 
     public override void ReceiveDamage(float damage)
     {
+        base.ReceiveDamage(damage);
         Debug.Log("Enemy Took " + damage + " Damage");
     }
 

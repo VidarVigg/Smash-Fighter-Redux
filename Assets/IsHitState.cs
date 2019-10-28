@@ -12,6 +12,7 @@ public class IsHitState : State
 
     public IsHitState(Character character, Vector2 pos) : base(character)
     {
+        DisplayState.INSTANCE.Display(this.ToString());
         this.enemy = (EnemyMaster)character;
         this.pos = pos;
     }

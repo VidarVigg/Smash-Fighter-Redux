@@ -4,7 +4,6 @@ using UnityEngine;
 public abstract class MovementController : MonoBehaviour
 {
 
-    public Test[] test = new Test[1];
     public delegate void TestDelegate();
     public TestDelegate setDashState;
 
@@ -90,6 +89,11 @@ public abstract class MovementController : MonoBehaviour
         //dashing = true;
         Debug.Log("MC call");
         dashVelocity = (aim - (Vector2)transform.position).normalized * dashSpeed;
+    }
+    public void EnemyDash(Vector2 aim)
+    {
+        dashVelocity = (aim - (Vector2)transform.position).normalized * dashSpeed;
+        rb.velocity = dashVelocity;
     }
     public void DashAttack(Vector2 aim)
     {

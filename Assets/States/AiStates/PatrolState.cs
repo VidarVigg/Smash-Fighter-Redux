@@ -9,6 +9,7 @@ public class PatrolState : State
 
     public PatrolState(Character character) : base(character)
     {
+        DisplayState.INSTANCE.Display(this.ToString());
         this.enemy = (EnemyMaster)character;
     }
 

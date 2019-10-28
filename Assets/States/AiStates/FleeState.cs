@@ -9,6 +9,7 @@ public class FleeState : State
     Transform target;
     public FleeState(Character character) : base(character)
     {
+        DisplayState.INSTANCE.Display(this.ToString());
         this.enemy = (EnemyMaster)character;
     }
 
@@ -21,9 +22,9 @@ public class FleeState : State
     {
         target = enemy.GetTarget();
         enemy.movementController.Move(((enemy.transform.position - target.position).normalized) * enemy.FleeConfig.fleeMovementSpeed);
-        if(enemy.PlayerStateOfInterest is DashState)
+        if((enemy.transform.position - target.position).sqrMagnitude >= enemy.FleeConfig.safeDistance)
         {
-            enemy.UpdateCurrentState(new HuntState(character));
+            enemy.UpdateCurrentState(new PatrolState(character));
         }
     }
 

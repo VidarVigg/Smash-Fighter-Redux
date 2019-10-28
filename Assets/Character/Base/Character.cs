@@ -54,6 +54,5 @@ public abstract class Character : MonoBehaviour
     {
         Debug.Log("Call from the void");
         characterData.Health -= damage;
-        Debug.Log(characterData.Health -= damage);
     }
 }

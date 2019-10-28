@@ -11,6 +11,7 @@ public class HuntState : State
 
     public HuntState(Character character) : base(character)
     {
+        DisplayState.INSTANCE.Display(this.ToString());
         this.enemy = (EnemyMaster)character;
     }
 

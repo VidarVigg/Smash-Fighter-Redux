@@ -6,6 +6,7 @@ public class EnemyDashCharge : State
 {
     private EnemyMaster enemy;
 
+
     public EnemyDashCharge(Character character) : base(character)
     {
         this.enemy = (EnemyMaster)character;
@@ -18,7 +19,7 @@ public class EnemyDashCharge : State
 
     public override void Update()
     {
-        enemy.transform.Rotate(enemy.GetTarget().transform.position);
+
     }
 
     public override void ExitState()
