@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
@@ -15,7 +16,9 @@ public class PlayerMaster : Character
     private DashConfig dashConfig;
     [SerializeField]
     private DashChargeConfig dashChargeConfig;
-    public IStateObserver stateObserver;
+    [SerializeField]
+    private PlayerAttackConfig playerAttackConfig;
+    public List <IStateObserver> stateObservers;
 
     public Rigidbody2D rigidbody;
     private State currentState;
@@ -34,6 +37,11 @@ public class PlayerMaster : Character
         get { return dashChargeConfig; }
     }
 
+    public PlayerAttackConfig PlayerAttackConfig
+    {
+        get { return playerAttackConfig; }
+    }
+
     #endregion
 
     protected override void Awake()
@@ -41,11 +49,12 @@ public class PlayerMaster : Character
         base.Awake();
         //controller = new PlayerController(this, config, data);
         rigidbody = GetComponent<Rigidbody2D>();
-        stateObserver = FindObjectOfType<EnemyMaster>(); // Think About This
+        
     }
     void Start()
     {
 
+        stateObservers = new List<IStateObserver>(EnemyHolderMaster.INSTANCE.activeEnemies);
         movementController = GetComponent<MovementController>();
         attackController = GetComponent<AttackController>();
 
@@ -53,6 +62,7 @@ public class PlayerMaster : Character
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
         InputManager.INSTANCE.dashDelegate += SetDashState;
+
 
     }
     private void Update()
@@ -91,6 +101,16 @@ public class PlayerMaster : Character
     public void SetDashState(Vector2 pos)
     {
         UpdateCurrentState(new DashChargeState(this, pos));
+    }
+
+    public void SetAttackState()
+    {
+        UpdateCurrentState(new PlayerAttackState(this));
+    }
+
+    public override void Die()
+    {
+        
     }
 
     public Rigidbody2D Rigidbody2D

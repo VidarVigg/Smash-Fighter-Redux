@@ -12,7 +12,7 @@ public class StartAttacking : State
 
     public StartAttacking(Character character) : base(character)
     {
-        DisplayState.INSTANCE.Display(this.ToString());
+        character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
     }
 

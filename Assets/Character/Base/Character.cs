@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class Character : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public abstract class Character : MonoBehaviour
 
     public bool successfulHit;
     public Rigidbody2D Rigidbody { get; set; }
+    public TextMeshProUGUI stateText;
 
 
     #endregion
@@ -49,10 +51,10 @@ public abstract class Character : MonoBehaviour
 
     public abstract void UpdateCurrentState(State newState);
     public abstract void GetHit(Vector2 pos);
+    public abstract void Die();
 
     public virtual void ReceiveDamage(float damage)
     {
-        Debug.Log("Call from the void");
         characterData.Health -= damage;
     }
 }

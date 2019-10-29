@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     public delegate void Vector2Delegate(Vector2 aim);
     public Vector2Delegate dashAttackDelegate;
     public Vector2Delegate dashDelegate;
+    
 
 
     public delegate void IntDelegate(int variable);

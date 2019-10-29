@@ -11,7 +11,7 @@ public class HuntState : State
 
     public HuntState(Character character) : base(character)
     {
-        DisplayState.INSTANCE.Display(this.ToString());
+        character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
     }
 
@@ -54,6 +54,7 @@ public class HuntState : State
 
         if (state is DashChargeState)
         {
+            Debug.Log("test");
             enemy.UpdateCurrentState(new FleeState(character));
         }
 

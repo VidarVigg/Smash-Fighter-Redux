@@ -8,6 +8,7 @@ public class EnemyController
     private EnemyConfig aIConfig;
     private EnemyData aIData;
 
+
     private EnemyController() { }
 
     public EnemyController(EnemyMaster enemyAIMaster, EnemyConfig aIConfig, EnemyData aIData)
@@ -19,10 +20,10 @@ public class EnemyController
 
     public void RaycastWallCheck()
     {
-        aIData.HitRight = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Right, aIConfig.RaycastLengthHorizontal, aIConfig.LayerMask);
-        aIData.HitLeft = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Left, aIConfig.RaycastLengthHorizontal, aIConfig.LayerMask);
-        aIData.HitUp = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Up, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
-        aIData.HitDown = Physics2D.Raycast(enemyAIMaster.transform.position, aIData.Down, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
+        aIData.HitRight = Physics2D.Raycast(enemyAIMaster.transform.position + new Vector3(aIConfig.RayCastOffset, 0, 0), aIData.Right, aIConfig.RaycastLengthHorizontal, aIConfig.LayerMask);
+        aIData.HitLeft = Physics2D.Raycast(enemyAIMaster.transform.position + new Vector3(-aIConfig.RayCastOffset, 0, 0), aIData.Left, aIConfig.RaycastLengthHorizontal, aIConfig.LayerMask);
+        aIData.HitUp = Physics2D.Raycast(enemyAIMaster.transform.position + new Vector3(0, aIConfig.RayCastOffset, 0), aIData.Up, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
+        aIData.HitDown = Physics2D.Raycast(enemyAIMaster.transform.position + new Vector3(0, -aIConfig.RayCastOffset, 0), aIData.Down, aIConfig.RaycastLengthVertical, aIConfig.LayerMask);
         DebugRays();
 
         //Using the null object pattern, all the indexes is set to null
@@ -52,10 +53,10 @@ public class EnemyController
 
     public void DebugRays()
     {
-        Debug.DrawRay(enemyAIMaster.transform.position, aIData.Right * aIConfig.RaycastLengthHorizontal, Color.blue, 0.1f);
-        Debug.DrawRay(enemyAIMaster.transform.position, aIData.Left * aIConfig.RaycastLengthHorizontal, Color.blue, 0.1f);
-        Debug.DrawRay(enemyAIMaster.transform.position, aIData.Up * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
-        Debug.DrawRay(enemyAIMaster.transform.position, aIData.Down * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
+        Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(aIConfig.RayCastOffset, 0, 0), aIData.Right * aIConfig.RaycastLengthHorizontal, Color.blue, 0.1f);
+        Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(-aIConfig.RayCastOffset, 0, 0), aIData.Left * aIConfig.RaycastLengthHorizontal, Color.blue, 0.1f);
+        Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, aIConfig.RayCastOffset, 0), aIData.Up * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
+        Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, -aIConfig.RayCastOffset, 0), aIData.Down * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
     }
 
 }

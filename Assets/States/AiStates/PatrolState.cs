@@ -9,13 +9,14 @@ public class PatrolState : State
 
     public PatrolState(Character character) : base(character)
     {
-        DisplayState.INSTANCE.Display(this.ToString());
+        //DisplayState.INSTANCE.Display(this.ToString());
+        character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
     }
 
     public override void EnterState()
     {
-        character.movementController.Move(GetRandomDirection() * enemy.PatrolConfig.patrolMovementSpeed);
+        enemy.movementController.Move((GetRandomDirection()).normalized * enemy.PatrolConfig.patrolMovementSpeed);
     }
 
     public override void Update()
@@ -39,7 +40,7 @@ public class PatrolState : State
     }
     private Vector2 GetRandomDirection()
     {
-        return new Vector2(Random.Range(1, 2), Random.Range(1, 2)).normalized;
+        return new Vector2(Random.Range(1, 2), Random.Range(1, 2));
     }
     private void SetRandomDirection(Vector2 rand)
     {
@@ -59,6 +60,6 @@ public class PatrolState : State
 
     public override void Handle(State state)
     {
-        
+
     }
 }

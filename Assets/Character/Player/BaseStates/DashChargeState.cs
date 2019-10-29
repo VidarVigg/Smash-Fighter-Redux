@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DashChargeState : State
 {
@@ -32,7 +33,9 @@ public class DashChargeState : State
         }
         if (player.DashChargeConfig.chargeAmt >= player.DashChargeConfig.timeBeforeEnemyNotified)
         {
-            player.stateObserver.Notify(this);
+
+            player.stateObservers.ForEach(x => x.Notify(this));
+            //player.stateObservers.Notify(this);
             
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))

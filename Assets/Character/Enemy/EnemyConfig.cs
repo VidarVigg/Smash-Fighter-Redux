@@ -19,6 +19,9 @@ public class EnemyConfig
     [SerializeField]
     private Transform target;
 
+    [SerializeField]
+    private float raycastOffset;
+
     public LayerMask LayerMask
     {
         get { return layerMask; }
@@ -39,6 +42,12 @@ public class EnemyConfig
     {
         get { return target; }
         set { target = value; }
+    }
+
+    public float RayCastOffset
+    {
+        get { return raycastOffset; }
+        set { raycastOffset = value; }
     }
 
 

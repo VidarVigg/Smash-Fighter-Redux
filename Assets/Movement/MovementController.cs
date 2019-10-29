@@ -75,7 +75,6 @@ public abstract class MovementController : MonoBehaviour
     public void Move(Vector2 dir)
     {
         Move(dir.x, dir.y);
-
     }
 
     public void Jump(float multiplier)

@@ -72,11 +72,13 @@ public class EnemyMaster : Character, IStateObserver
 
     void Start()
     {
+        aIConfig.Target = FindObjectOfType<PlayerMaster>().transform;
         UpdateCurrentState(new PatrolState(this));
     }
 
     void Update()
     {
+
         currentState.Update();
         RayCastWallCheck();
     }
@@ -119,7 +121,7 @@ public class EnemyMaster : Character, IStateObserver
 
     public override void GetHit(Vector2 pos)
     {
-        UpdateCurrentState(new IsHitState(this, pos));
+        UpdateCurrentState(new EnemyIsHitState(this, pos));
     }
 
     public void Notify(State state)
@@ -127,5 +129,11 @@ public class EnemyMaster : Character, IStateObserver
         currentState.Handle(state);
         playerStateOfInterest = state;
         Debug.Log("Enemy Got Notified" + state.ToString());
+    }
+
+    public override void Die()
+    {
+        //DisplayState.INSTANCE.Display("ded xd");
+        
     }
 }

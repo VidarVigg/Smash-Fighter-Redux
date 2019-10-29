@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsHitState : State
+public class EnemyIsHitState : State
 {
     private EnemyMaster enemy;
     private Rigidbody2D enemyRigidbody;
     private float tick;
-    private float stunTime = 0.5f;// move to config file
+    private float stunTime = 2f;// move to config file
     private Vector2 pos;
 
-    public IsHitState(Character character, Vector2 pos) : base(character)
+    public EnemyIsHitState(Character character, Vector2 pos) : base(character)
     {
-        DisplayState.INSTANCE.Display(this.ToString());
+        character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
         this.pos = pos;
     }
@@ -31,18 +31,34 @@ public class IsHitState : State
         {
             tick -= stunTime;
             enemy.transform.rotation = Quaternion.identity;
-            enemy.UpdateCurrentState(new PatrolState(character));
+           // enemy.UpdateCurrentState(new PatrolState(character));
+            if (enemy.Health < 1)
+            {
+
+                enemy.UpdateCurrentState(new DeadState(character));
+
+            }
 
         }
-        enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
+       enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
         for (int i = 0; i < enemy.GetWallCollisionArray().Length; i++)
         {
             if (enemy.GetWallCollisionArray()[3].collider != null)
             {
+                Debug.Log(enemy.GetWallCollisionArray()[3].collider.name);
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.UpdateCurrentState(new PatrolState(enemy));
+                if (enemy.Health < 1)
+                {
+
+                    enemy.UpdateCurrentState(new DeadState(character));
+
+                }
+
             }
         }
+
+
 
     }
 

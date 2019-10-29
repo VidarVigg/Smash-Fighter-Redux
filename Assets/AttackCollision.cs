@@ -45,11 +45,21 @@ public class AttackCollision : MonoBehaviour
     {
         if (collision.tag == "Enemy" || collision.tag == "Player")
         {
+            
             Character victim = collision.GetComponent<Character>();
+            if(victim is EnemyMaster && damageDealer is EnemyMaster)
+            {
+                return;
+            }
+            else if (victim is PlayerMaster && damageDealer is PlayerMaster)
+            {
+                return;
+            }
             damageDealer.successfulHit = true;
             victim.GetHit(damageDealer.transform.position);
-            Debug.Log("Damage Sent : " + damageDealer.Damage);
             victim.ReceiveDamage(damageDealer.Damage);
+            Debug.Log("Damage Sent : " + damageDealer.Damage);
+            
         }
 
     }

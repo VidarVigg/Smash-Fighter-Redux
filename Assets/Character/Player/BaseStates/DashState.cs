@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class DashState : State
 {
@@ -19,7 +21,11 @@ public class DashState : State
 
         player.movementController.VerticalVelocity = 0;
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
-        player.stateObserver.Notify(this);
+
+
+        player.stateObservers.ForEach(x => x.Notify(this));
+
+       // player.stateObservers.Notify(this);
 
     }
 
@@ -39,7 +45,7 @@ public class DashState : State
         {
             tick -= player.DashConfig.dashDuration;
             player.movementController.ResetDash();
-            player.UpdateCurrentState(new NullState(character));
+            //player.UpdateCurrentState(new NullState(character));
         }
     }
 

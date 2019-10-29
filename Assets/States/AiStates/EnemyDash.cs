@@ -13,7 +13,7 @@ public class EnemyDash : State
 
     public override void EnterState()
     {
-        DisplayState.INSTANCE.Display(this.ToString());
+        character.stateText.text = this.ToString();
         enemy.movementController.EnemyDash((enemy.GetTarget().position));
         enemy.attackController.Attack();
     }
