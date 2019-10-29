@@ -21,6 +21,7 @@ public class PatrolState : State
 
     public override void Update()
     {
+
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
 
         for (int i = 0; i < test.Length; i++)

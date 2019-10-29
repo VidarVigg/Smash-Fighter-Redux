@@ -80,7 +80,8 @@ public class EnemyMaster : Character, IStateObserver
     {
 
         currentState.Update();
-        RayCastWallCheck();
+        aIController.Update();
+        //RayCastWallCheck();
     }
 
     public override void UpdateCurrentState(State newState)
@@ -95,7 +96,7 @@ public class EnemyMaster : Character, IStateObserver
 
     private void RayCastWallCheck()
     {
-        aIController.RaycastWallCheck();
+        //aIController.RaycastWallCheck();
     }
 
     public RaycastHit2D[] GetWallCollisionArray()

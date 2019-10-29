@@ -11,6 +11,9 @@ public class EnemyConfig
     private LayerMask layerMask;
 
     [SerializeField]
+    private LayerMask obstacleLayerMask;
+
+    [SerializeField]
     private float raycastLengthHorizontal;
 
     [SerializeField]
@@ -22,9 +25,19 @@ public class EnemyConfig
     [SerializeField]
     private float raycastOffset;
 
+    [SerializeField]
+    private float raycastObstacleLength;
+
+    [SerializeField]
+    private float distanceBeforeObstacleCheck;
+
     public LayerMask LayerMask
     {
         get { return layerMask; }
+    }
+    public LayerMask ObstacleLayerMask
+    {
+        get { return obstacleLayerMask; }
     }
 
     public float RaycastLengthHorizontal
@@ -36,6 +49,15 @@ public class EnemyConfig
     {
         get { return raycastLengthVertical; }
         set { raycastLengthVertical = value; }
+    }
+
+    public float RayCastObstacleLength
+    {
+        get { return raycastObstacleLength; }
+    }
+    public float DistanceBeforeObstacleCheck
+    {
+        get { return distanceBeforeObstacleCheck; }
     }
 
     public Transform Target

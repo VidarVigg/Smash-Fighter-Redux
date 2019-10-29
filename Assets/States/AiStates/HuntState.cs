@@ -22,16 +22,16 @@ public class HuntState : State
 
     public override void Update()
     {
-        if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
-        {
+        //if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
+        //{
 
             enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
-        }
-        else
-        {
-            enemy.movementController.Move(Vector2.zero);
-        }
+        //}
+        //else
+        //{
+        //    enemy.movementController.Move(Vector2.zero);
+        //}
 
         if ((tick += Time.deltaTime) >= attackFrequency)// should be put in a config file
         {

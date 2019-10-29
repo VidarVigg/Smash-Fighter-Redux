@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ea55a92895033643af0075a610c161f, type: 3}
   m_Name: New Dash Config
   m_EditorClassIdentifier: 
-  dashDuration: 0.3
+  dashDuration: 0.2

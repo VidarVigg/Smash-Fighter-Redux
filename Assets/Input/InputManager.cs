@@ -69,6 +69,7 @@ public class InputManager : MonoBehaviour
             dir = 0;
         }
         moveDelegate?.Invoke(dir);
+        GlobalStatistics.playerDirection = dir;
     }
 
     private void Jump()
