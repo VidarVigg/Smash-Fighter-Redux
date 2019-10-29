@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: New Hunt Config
   m_EditorClassIdentifier: 
   huntSpeed: 3
+  minHuntRange: 3
   huntRange: 50

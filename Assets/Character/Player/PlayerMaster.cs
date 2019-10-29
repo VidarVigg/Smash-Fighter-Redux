@@ -62,6 +62,8 @@ public class PlayerMaster : Character
         InputManager.INSTANCE.jumpDelegate += movementController.Jump;
         InputManager.INSTANCE.attackDelegate += attackController.Attack;
         InputManager.INSTANCE.dashDelegate += SetDashState;
+        EnemyHolderMaster.INSTANCE.AddObserver += AddObserver;
+        EnemyHolderMaster.INSTANCE.RemoveObserver += RemoveObserver;
 
 
     }
@@ -75,6 +77,15 @@ public class PlayerMaster : Character
 
         }
 
+    }
+
+    public void AddObserver(IStateObserver observer)
+    {
+        stateObservers.Add(observer);
+    }
+    public void RemoveObserver(IStateObserver observer)
+    {
+        stateObservers.Remove(observer);
     }
 
     public override void ReceiveDamage(float damage)

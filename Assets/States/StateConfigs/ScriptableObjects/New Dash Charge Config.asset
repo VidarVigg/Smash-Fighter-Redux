@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Dash Charge Config
   m_EditorClassIdentifier: 
   chargeAmt: 0
-  tick: 0.03
+  tick: 0.04
   reset: 0
-  maxDashMultiplier: 5
+  maxDashMultiplier: 2
   timeBeforeEnemyNotified: 0.2

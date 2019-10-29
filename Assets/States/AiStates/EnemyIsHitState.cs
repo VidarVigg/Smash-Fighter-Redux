@@ -12,8 +12,8 @@ public class EnemyIsHitState : State
 
     public EnemyIsHitState(Character character, Vector2 pos) : base(character)
     {
-        character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
+        character.stateText.text = this.ToString();
         this.pos = pos;
     }
 
@@ -23,6 +23,7 @@ public class EnemyIsHitState : State
         enemyRigidbody.constraints = RigidbodyConstraints2D.None;
         enemyRigidbody.AddForce(((Vector2)enemy.transform.position - pos).normalized * 20, ForceMode2D.Impulse);
         enemyRigidbody.gravityScale = 3;
+        
     }
 
     public override void Update()

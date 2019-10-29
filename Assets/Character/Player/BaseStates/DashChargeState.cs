@@ -29,11 +29,9 @@ public class DashChargeState : State
         {
             Debug.Log(player.DashChargeConfig.chargeAmt);
             player.DashChargeConfig.chargeAmt = player.DashChargeConfig.maxDashMultiplier;
-
         }
         if (player.DashChargeConfig.chargeAmt >= player.DashChargeConfig.timeBeforeEnemyNotified)
-        {
-
+        {    
             player.stateObservers.ForEach(x => x.Notify(this));
             //player.stateObservers.Notify(this);
             
@@ -56,7 +54,8 @@ public class DashChargeState : State
 
     public override void ExitState()
     {
-
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02f;
     }
 
     public override void Handle(State state)

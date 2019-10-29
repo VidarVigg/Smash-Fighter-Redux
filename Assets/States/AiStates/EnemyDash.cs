@@ -36,5 +36,6 @@ public class EnemyDash : State
             enemy.movementController.ResetDash();
             enemy.UpdateCurrentState(new PatrolState(character));
         }
+        
     }
 }

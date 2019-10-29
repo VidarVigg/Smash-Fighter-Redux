@@ -58,6 +58,7 @@ public class AttackCollision : MonoBehaviour
             damageDealer.successfulHit = true;
             victim.GetHit(damageDealer.transform.position);
             victim.ReceiveDamage(damageDealer.Damage);
+            //damageDealer.UpdateCurrentState(new HuntState(damageDealer));
             Debug.Log("Damage Sent : " + damageDealer.Damage);
             
         }

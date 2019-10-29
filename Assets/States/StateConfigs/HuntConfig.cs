@@ -6,5 +6,6 @@ using UnityEngine;
 public class HuntConfig : ScriptableObject
 {
     public float huntSpeed;
+    public float minHuntRange;
     public float huntRange;
 }

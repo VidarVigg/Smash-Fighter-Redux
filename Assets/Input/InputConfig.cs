@@ -20,6 +20,10 @@ public class InputConfig
     private float resetDashMultiplier;
     [SerializeField]
     private float slowMoMultiplier;
+    [SerializeField]
+    private float dashTick;
+    [SerializeField]
+    private float minTime;
 
     public float MaxJumpMultiplierValue
     {
@@ -60,6 +64,18 @@ public class InputConfig
     {
         get { return slowMoMultiplier; }
         private set { slowMoMultiplier = value; }
+    }
+
+    public float DashTick
+    {
+        get { return dashTick; }
+        set { dashTick = value; }
+    }
+
+    public float MinTime
+    {
+        get { return minTime; }
+        set { minTime = value; }
     }
 
 }
