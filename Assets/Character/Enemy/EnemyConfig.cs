@@ -11,7 +11,7 @@ public class EnemyConfig
     private LayerMask layerMask;
 
     [SerializeField]
-    private LayerMask obstacleLayerMask;
+    private LayerMask neighbourLayerMask;
 
     [SerializeField]
     private float raycastLengthHorizontal;
@@ -25,15 +25,19 @@ public class EnemyConfig
     [SerializeField]
     private float raycastOffset;
 
+    private BoxCollider2D thisCollider;
+
+    public List<GameObject> neighbours = new List<GameObject>();
+
 
 
     public LayerMask LayerMask
     {
         get { return layerMask; }
     }
-    public LayerMask ObstacleLayerMask
+    public LayerMask NeighbourLayerMask
     {
-        get { return obstacleLayerMask; }
+        get { return neighbourLayerMask; }
     }
 
     public float RaycastLengthHorizontal
@@ -57,6 +61,12 @@ public class EnemyConfig
     {
         get { return raycastOffset; }
         set { raycastOffset = value; }
+    }
+
+    public BoxCollider2D ThisCollider
+    {
+        get { return thisCollider; }
+        set { thisCollider = value; }
     }
 
 

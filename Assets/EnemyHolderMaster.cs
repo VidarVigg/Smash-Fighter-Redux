@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHolderMaster : MonoBehaviour
 {
     public List<EnemyMaster> activeEnemies = new List<EnemyMaster>();
+    public List<GameObject> neighbours = new List<GameObject>();
     public static EnemyHolderMaster INSTANCE;
     public delegate void VoidDelegate(IStateObserver stateObserver);
     public VoidDelegate AddObserver;

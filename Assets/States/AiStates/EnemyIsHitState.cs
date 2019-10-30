@@ -46,7 +46,6 @@ public class EnemyIsHitState : State
         {
             if (enemy.GetWallCollisionArray()[3].collider != null)
             {
-                Debug.Log(enemy.GetWallCollisionArray()[3].collider.name);
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.UpdateCurrentState(new PatrolState(enemy));
                 if (enemy.Health < 1)

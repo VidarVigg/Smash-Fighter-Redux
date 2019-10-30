@@ -9,7 +9,6 @@ public class PlayerAttackController : AttackController
 
     public override void Attack()
     {
-        Debug.Log("Player Attacked");
         attackCollider.enabled = true;
     }
 

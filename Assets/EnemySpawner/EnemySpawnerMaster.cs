@@ -11,6 +11,7 @@ public class EnemySpawnerMaster : MonoBehaviour
     private EnemySpawnerConfig config;
     [SerializeField]
     private EnemySpawnerData data;
+    private static int enemyNumber;
 
     private EnemySpawnerController controller;
 
@@ -36,8 +37,10 @@ public class EnemySpawnerMaster : MonoBehaviour
     }
     public void Spawn()
     {
+        enemyNumber++;
         EnemyMaster enemyClone = (EnemyMaster)Instantiate(config.EnemyPrefab, Vector3.zero, Quaternion.identity).GetComponent<EnemyMaster>();
         enemyClone.transform.position = Random.insideUnitCircle.normalized * 3;
+        enemyClone.gameObject.name = "Enemy " + enemyNumber.ToString();
         EnemyHolderMaster.INSTANCE.AddEnemy(enemyClone);
     }
 

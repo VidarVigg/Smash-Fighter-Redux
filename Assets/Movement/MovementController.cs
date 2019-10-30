@@ -86,7 +86,6 @@ public abstract class MovementController : MonoBehaviour
     public void Dash(Vector2 aim)
     {
         //dashing = true;
-        Debug.Log("MC call");
         dashVelocity = (aim - (Vector2)transform.position).normalized * dashSpeed;
     }
     public void EnemyDash(Vector2 aim)
@@ -96,7 +95,6 @@ public abstract class MovementController : MonoBehaviour
     }
     public void DashAttack(Vector2 aim)
     {
-        Debug.Log("DashAttack");
     }
 
     public void ResetDash()

@@ -62,7 +62,6 @@ public class HuntState : State
 
         if (state is DashChargeState)
         {
-            Debug.Log("test");
             enemy.UpdateCurrentState(new FleeState(character));
         }
 

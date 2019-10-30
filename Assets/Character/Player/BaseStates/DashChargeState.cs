@@ -19,7 +19,7 @@ public class DashChargeState : State
 
     public override void EnterState()
     {
-        Debug.Log("Test");
+
     }
 
     public override void Update()

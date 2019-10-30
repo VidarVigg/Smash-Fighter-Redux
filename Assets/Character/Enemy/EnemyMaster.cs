@@ -85,7 +85,6 @@ public class EnemyMaster : Character, IStateObserver
     {
         currentState.Update();
         aIController.Update();
-        //RayCastWallCheck();
     }
 
     public override void UpdateCurrentState(State newState)
@@ -96,11 +95,6 @@ public class EnemyMaster : Character, IStateObserver
         }
         currentState = newState;
         currentState.EnterState();
-    }
-
-    private void RayCastWallCheck()
-    {
-        //aIController.RaycastWallCheck();
     }
 
     public RaycastHit2D[] GetWallCollisionArray()
@@ -121,7 +115,6 @@ public class EnemyMaster : Character, IStateObserver
     public override void ReceiveDamage(float damage)
     {
         base.ReceiveDamage(damage);
-        Debug.Log("Enemy Took " + damage + " Damage");
     }
 
     public override void GetHit(Vector2 pos)
@@ -133,7 +126,6 @@ public class EnemyMaster : Character, IStateObserver
     {
         currentState.Handle(state);
         playerStateOfInterest = state;
-        Debug.Log("Enemy Got Notified" + state.ToString());
     }
 
     public override void Die()

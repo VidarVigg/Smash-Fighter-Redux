@@ -485,9 +485,9 @@ MonoBehaviour:
     layerMask:
       serializedVersion: 2
       m_Bits: 1792
-    obstacleLayerMask:
+    neighbourLayerMask:
       serializedVersion: 2
-      m_Bits: 2048
+      m_Bits: 1024
     raycastLengthHorizontal: 0.1
     raycastLengthVertical: 0.1
     target: {fileID: 0}

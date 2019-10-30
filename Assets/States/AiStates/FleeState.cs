@@ -15,7 +15,7 @@ public class FleeState : State
 
     public override void EnterState()
     {
-        Debug.Log("Enemy Is Fleeing");
+
     }
 
     public override void Update()

@@ -91,7 +91,6 @@ public class PlayerMaster : Character
     public override void ReceiveDamage(float damage)
     {
         base.ReceiveDamage(damage);
-        Debug.Log("Player Took " + damage + " Damage");
     }
 
     public override void UpdateCurrentState(State newState)

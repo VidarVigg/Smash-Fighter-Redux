@@ -16,13 +16,21 @@ public class EnemyController
         this.enemyAIMaster = enemyAIMaster;
         this.aIConfig = aIConfig;
         this.aIData = aIData;
+        Initialize();
 
+    }
+
+    private void Initialize()
+    {
+        aIConfig.ThisCollider = enemyAIMaster.GetComponent<BoxCollider2D>();
     }
 
     public void Update()
     {
         RaycastWallCheck();
         DebugRays();
+        FindNeighbours();
+        MarkNeighbours();
     }
 
     private void RaycastWallCheck()
@@ -63,6 +71,48 @@ public class EnemyController
         Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(-aIConfig.RayCastOffset, 0, 0), aIData.Left * aIConfig.RaycastLengthHorizontal, Color.blue, 0.1f);
         Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, aIConfig.RayCastOffset, 0), aIData.Up * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
         Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, -aIConfig.RayCastOffset, 0), aIData.Down * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
+    }
+
+    private void FindNeighbours()
+    {
+        RaycastHit2D[] hits;
+
+        for (int i = 0; i < aIConfig.neighbours.Count; i++)
+        {
+            aIConfig.neighbours.Clear();
+        }
+        hits = Physics2D.CircleCastAll(enemyAIMaster.transform.position, 1, Vector2.zero, 1, aIConfig.NeighbourLayerMask);
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+
+            if (hits[i].collider != null)
+            {
+                if (hits[i].collider != aIConfig.ThisCollider)
+                {
+                    Debug.Log(enemyAIMaster.gameObject.name + " has " + hits[i].collider.name + " as neighbour");
+
+                    if (!aIConfig.neighbours.Contains(hits[i].collider.gameObject))
+                    {
+                        aIConfig.neighbours.Add(hits[i].collider.gameObject);
+
+                    }
+                    
+                }
+            }
+
+
+        }
+
+
+    }
+
+    private void MarkNeighbours()
+    {
+        for (int i = 0; i < aIConfig.neighbours.Count; i++)
+        {
+            aIConfig.neighbours[i].GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        }
     }
 
 
