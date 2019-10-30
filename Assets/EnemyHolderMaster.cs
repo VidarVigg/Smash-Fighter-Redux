@@ -27,5 +27,8 @@ public class EnemyHolderMaster : MonoBehaviour
         RemoveObserver.Invoke(enemy);
     }
 
-
+    private void Update()
+    {
+       
+    }
 }

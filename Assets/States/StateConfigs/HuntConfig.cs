@@ -8,4 +8,6 @@ public class HuntConfig : ScriptableObject
     public float huntSpeed;
     public float minHuntRange;
     public float huntRange;
+    public float raycastObstacleLength;
+    public float distanceBeforeObstacleCheck;
 }

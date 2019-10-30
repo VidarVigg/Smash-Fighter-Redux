@@ -59,6 +59,11 @@ public class EnemyMaster : Character, IStateObserver
         get { return enemyDashConfig; }
     }
 
+    public State ActiveState
+    {
+        get { return currentState; }
+    }
+
     #endregion
 
     protected override void Awake()
@@ -78,7 +83,6 @@ public class EnemyMaster : Character, IStateObserver
 
     void Update()
     {
-
         currentState.Update();
         aIController.Update();
         //RayCastWallCheck();

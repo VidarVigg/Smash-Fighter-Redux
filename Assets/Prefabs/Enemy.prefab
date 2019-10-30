@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6008365089841002337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -492,8 +492,6 @@ MonoBehaviour:
     raycastLengthVertical: 0.1
     target: {fileID: 0}
     raycastOffset: 0.4
-    raycastObstacleLength: 5
-    distanceBeforeObstacleCheck: 10
   huntConfig: {fileID: 11400000, guid: 989eb16b5daddb34f84c69d1da8698c3, type: 2}
   patrolConfig: {fileID: 11400000, guid: f2432ba11fcd4c74a82e71c857e2836d, type: 2}
   attackConfig: {fileID: 11400000, guid: 650400a81c98483449d97ec67c136b47, type: 2}

@@ -23,7 +23,6 @@ public class EnemyController
     {
         RaycastWallCheck();
         DebugRays();
-        CheckObstacleInWay();
     }
 
     private void RaycastWallCheck()
@@ -51,7 +50,7 @@ public class EnemyController
         {
             aIData.HitPoints[2] = aIData.HitUp;
         }
-        if(aIData.HitDown.collider != null)
+        if (aIData.HitDown.collider != null)
         {
             aIData.HitPoints[3] = aIData.HitDown;
         }
@@ -66,26 +65,6 @@ public class EnemyController
         Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, -aIConfig.RayCastOffset, 0), aIData.Down * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
     }
 
-    private void CheckObstacleInWay()
-    {
-        Vector3 target = enemyAIMaster.GetTarget().position;
-        RaycastHit2D hit;
-        if((target - enemyAIMaster.transform.position).sqrMagnitude < aIConfig.DistanceBeforeObstacleCheck)
-        {
-            hit = Physics2D.Raycast(enemyAIMaster.transform.position, enemyAIMaster.Rigidbody.velocity.normalized, aIConfig.RayCastObstacleLength, aIConfig.ObstacleLayerMask);
-            Debug.DrawRay(enemyAIMaster.transform.position, enemyAIMaster.Rigidbody.velocity.normalized * aIConfig.RayCastObstacleLength, Color.green);
-            if(hit.collider != null)
-            {
-                Debug.Log(hit.collider.name);
-                ApplyForce(enemyAIMaster.Rigidbody.velocity.normalized);
-            }
-        }
-    }
 
-    private void ApplyForce(Vector2 enemyTrajectory)
-    {
-        Debug.Log(enemyTrajectory);
-        enemyAIMaster.Rigidbody.AddForce((Vector2.right) * 100);
-    }
 
 }

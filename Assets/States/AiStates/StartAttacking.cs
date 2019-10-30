@@ -43,9 +43,11 @@ public class StartAttacking : State
         else
         { 
             enemy.movementController.Move(Vector3.zero);
+
             float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, 5f * Time.deltaTime);
+
             if((tick += Time.deltaTime) >= enemy.AttackConfig.attackChargeTime)
             {
                 tick -= enemy.AttackConfig.attackChargeTime;

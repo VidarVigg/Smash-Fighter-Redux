@@ -22,16 +22,17 @@ public class HuntState : State
 
     public override void Update()
     {
-        //if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
-        //{
+        if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
+        {
 
-            enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+          enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
-        //}
-        //else
-        //{
-        //    enemy.movementController.Move(Vector2.zero);
-        //}
+        }
+        else
+        {
+            enemy.movementController.Move(Vector2.zero);
+            //ApplyForce();
+        }
 
         if ((tick += Time.deltaTime) >= attackFrequency)// should be put in a config file
         {
@@ -39,8 +40,6 @@ public class HuntState : State
             enemy.UpdateCurrentState(new StartAttacking(character));
             attackFrequency = GenerateRandomNumber(1, 3);
         }
-
-
 
         if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
@@ -68,5 +67,26 @@ public class HuntState : State
         }
 
     }
+
+    //private void CheckObstacleInWay()
+    //{
+    //    RaycastHit2D hit;
+    //    if ((target - enemy.transform.position).sqrMagnitude < enemy.HuntConfig.distanceBeforeObstacleCheck)
+    //    {
+    //        hit = Physics2D.Raycast(enemy.transform.position, enemy.Rigidbody.velocity.normalized, enemy.HuntConfig.raycastObstacleLength, enemy.HuntConfig.);
+    //        Debug.DrawRay(enemy.transform.position, enemy.Rigidbody.velocity.normalized * enemy.HuntConfig.raycastObstacleLength, Color.green);
+    //        if (hit.collider != null)
+    //        {
+    //            Debug.Log(hit.collider.name);
+    //            ApplyForce();
+    //        }
+    //    }
+    //}
+
+    //private void ApplyForce()
+    //{
+    //    Vector3 target = enemy.GetTarget().position;
+    //    enemy.Rigidbody.AddForce((enemy.transform.position - target).normalized * 100);
+    //}
 
 }
