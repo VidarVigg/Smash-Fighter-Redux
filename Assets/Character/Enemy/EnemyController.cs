@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,8 +30,8 @@ public class EnemyController
     {
         RaycastWallCheck();
         DebugRays();
-        FindNeighbours();
-        MarkNeighbours();
+        //FindNeighbours();
+        //MarkNeighbours();
     }
 
     private void RaycastWallCheck()
@@ -73,47 +74,66 @@ public class EnemyController
         Debug.DrawRay(enemyAIMaster.transform.position + new Vector3(0, -aIConfig.RayCastOffset, 0), aIData.Down * aIConfig.RaycastLengthVertical, Color.blue, 0.1f);
     }
 
-    private void FindNeighbours()
+    internal void AddNeighbour(EnemyMaster enemy)
     {
-        RaycastHit2D[] hits;
+        aIConfig.neighbours.Add(enemy);
+    }
+    internal void RemoveNeighbour(EnemyMaster enemy)
+    {
+        aIConfig.neighbours.Remove(enemy);
+    }
 
-        for (int i = 0; i < aIConfig.neighbours.Count; i++)
-        {
-            aIConfig.neighbours.Clear();
-        }
-        hits = Physics2D.CircleCastAll(enemyAIMaster.transform.position, 1, Vector2.zero, 1, aIConfig.NeighbourLayerMask);
+    internal void ChangeColor()
+    {
+        aIConfig.SpriteRenderer.color = aIConfig.NeighbourColor;
+    }
 
-        for (int i = 0; i < hits.Length; i++)
-        {
+    internal void ResetColor()
+    {
+        aIConfig.SpriteRenderer.color = aIConfig.DefaultColor;
+    }
 
-            if (hits[i].collider != null)
-            {
-                if (hits[i].collider != aIConfig.ThisCollider)
-                {
-                    Debug.Log(enemyAIMaster.gameObject.name + " has " + hits[i].collider.name + " as neighbour");
+    //private void FindNeighbours()
+    //{
+    //    RaycastHit2D[] hits;
 
-                    if (!aIConfig.neighbours.Contains(hits[i].collider.gameObject))
-                    {
-                        aIConfig.neighbours.Add(hits[i].collider.gameObject);
+    //    for (int i = 0; i < aIConfig.neighbours.Count; i++)
+    //    {
+    //        aIConfig.neighbours.Clear();
+    //    }
+    //    hits = Physics2D.CircleCastAll(enemyAIMaster.transform.position, 1, Vector2.zero, 1, aIConfig.NeighbourLayerMask);
 
-                    }
+    //    for (int i = 0; i < hits.Length; i++)
+    //    {
+
+    //        if (hits[i].collider != null)
+    //        {
+    //            if (hits[i].collider != aIConfig.ThisCollider)
+    //            {
+    //                Debug.Log(enemyAIMaster.gameObject.name + " has " + hits[i].collider.name + " as neighbour");
+
+    //                if (!aIConfig.neighbours.Contains(hits[i].collider.gameObject))
+    //                {
+    //                    aIConfig.neighbours.Add(hits[i].collider.gameObject);
+
+    //                }
                     
-                }
-            }
+    //            }
+    //        }
 
 
-        }
+    //    }
 
 
-    }
+    //}
 
-    private void MarkNeighbours()
-    {
-        for (int i = 0; i < aIConfig.neighbours.Count; i++)
-        {
-            aIConfig.neighbours[i].GetComponentInChildren<SpriteRenderer>().color = Color.green;
-        }
-    }
+    //private void MarkNeighbours()
+    //{
+    //    for (int i = 0; i < aIConfig.neighbours.Count; i++)
+    //    {
+    //        aIConfig.neighbours[i].GetComponentInChildren<SpriteRenderer>().color = Color.green;
+    //    }
+    //}
 
 
 

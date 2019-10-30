@@ -14,6 +14,8 @@ public class EnemyMaster : Character, IStateObserver
     [SerializeField]
     private EnemyData aIData = null;
 
+
+
     [Header("State Configs")]
     [SerializeField]
     private HuntConfig huntConfig;
@@ -95,6 +97,25 @@ public class EnemyMaster : Character, IStateObserver
         }
         currentState = newState;
         currentState.EnterState();
+    }
+
+    internal void AddNeighbour(EnemyMaster enemy)
+    {
+        aIController.AddNeighbour(enemy);
+    }
+
+    internal void RemoveNeighbour(EnemyMaster enemy)
+    {
+        aIController.RemoveNeighbour(enemy);
+    }
+
+    internal void ChangeColor()
+    {
+        aIController.ChangeColor();
+    }
+    internal void DefaultColor()
+    {
+        aIController.ResetColor();
     }
 
     public RaycastHit2D[] GetWallCollisionArray()

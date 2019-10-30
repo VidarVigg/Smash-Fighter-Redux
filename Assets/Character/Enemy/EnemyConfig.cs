@@ -25,10 +25,18 @@ public class EnemyConfig
     [SerializeField]
     private float raycastOffset;
 
+    [SerializeField]
+    private Color neighbourColor;
+
+    [SerializeField]
+    private Color defaultColor;
+
     private BoxCollider2D thisCollider;
 
-    public List<GameObject> neighbours = new List<GameObject>();
+    public List<EnemyMaster> neighbours = new List<EnemyMaster>();
 
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
 
 
     public LayerMask LayerMask
@@ -69,5 +77,19 @@ public class EnemyConfig
         set { thisCollider = value; }
     }
 
+    public Color DefaultColor
+    {
+        get { return defaultColor; }
+    }
+
+    public Color NeighbourColor
+    {
+        get { return neighbourColor; }
+    }
+
+    public SpriteRenderer SpriteRenderer
+    {
+        get { return spriteRenderer; }
+    }
 
 }
