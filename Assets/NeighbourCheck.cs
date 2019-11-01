@@ -19,17 +19,21 @@ public class NeighbourCheck : MonoBehaviour
             //Debug.Log("collidingDude collision happened");
             EnemyMaster collidingDude = collision.GetComponent<EnemyMaster>();
             collidingDude.ChangeColor();
-            Debug.Log(collidingDude.name);
-
-
             if (enemy.CurrentState is HuntState)
             {
-                collidingDude.UpdateCurrentState(new HuntState(collidingDude, true));
+
+                collidingDude.UpdateCurrentState(new GotNotifiedAboutFightState(collidingDude, enemy));
             }
-            if(collidingDude.CurrentState is HuntState)
-            {
-                enemy.UpdateCurrentState(new HuntState(enemy, true));
-            }
+            //enemy.AddNeighbour(collidingDude);
+
+            //if (enemy.CurrentState is HuntState)
+            //{
+            //    collidingDude.UpdateCurrentState(new HuntState(collidingDude, true));
+            //}
+            //if(collidingDude.CurrentState is HuntState)
+            //{
+            //    enemy.UpdateCurrentState(new HuntState(enemy, true));
+            //}
 
 
 
@@ -108,16 +112,19 @@ public class NeighbourCheck : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            EnemyMaster neighbour = collision.GetComponent<EnemyMaster>();
-            neighbour.ChangeColor();
+           
+            EnemyMaster collidingDude = collision.GetComponent<EnemyMaster>();
+            collidingDude.ChangeColor();
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
-            EnemyMaster neighbour = collision.GetComponent<EnemyMaster>();
-            neighbour.DefaultColor();
+            EnemyMaster collidingDude = collision.GetComponent<EnemyMaster>();
+            collidingDude.DefaultColor();
+            enemy.RemoveNeighbour(collidingDude);
             //if(collidingDude.myRightPatrolTarget == enemy)
             //{
             //    collidingDude.myRightPatrolTarget = null;

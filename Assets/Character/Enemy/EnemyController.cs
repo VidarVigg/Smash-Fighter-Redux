@@ -95,11 +95,6 @@ public class EnemyController
     }
 
 
-    public void Formation(EnemyMaster neighbour, EnemyMaster host)
-    {
-        host.transform.position = Vector3.Lerp(host.transform.position, neighbour.transform.position + new Vector3(1, 0, 0), 0.05f);  // enemyAIMaster.transform.position + new Vector3(1, 0, 0);
-
-    }
     //private void FindNeighbours()
     //{
     //    RaycastHit2D[] hits;

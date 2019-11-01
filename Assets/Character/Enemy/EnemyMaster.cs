@@ -14,7 +14,7 @@ public class EnemyMaster : Character, IStateObserver
     [SerializeField]
     private EnemyData aIData = null;
 
-    public EnemyMaster myRightPatrolTarget;
+    public List<EnemyMaster> visitor = new List<EnemyMaster>();
 
 
 
@@ -29,6 +29,8 @@ public class EnemyMaster : Character, IStateObserver
     private FleeConfig fleeConfig;
     [SerializeField]
     private EnemyDashConfig enemyDashConfig;
+    [SerializeField]
+    private NeighbourConfig neighbourConfig;
 
     private EnemyController aIController = null;
     private State currentState;
@@ -66,6 +68,16 @@ public class EnemyMaster : Character, IStateObserver
     public State CurrentState
     {
         get { return currentState; }
+    }
+
+    public List<EnemyMaster> Neighbours
+    {
+        get { return aIConfig.neighbours; }
+    }
+
+    public NeighbourConfig NeighbourConfig
+    {
+        get { return neighbourConfig; }
     }
 
     #endregion
@@ -108,14 +120,19 @@ public class EnemyMaster : Character, IStateObserver
         aIController.AddNeighbour(enemy);
     }
 
+    internal void DetectNeighbours()
+    {
+        aIConfig.NeighborDetector.enabled = true;
+    }
+
+    internal void IgnoreNeighbours()
+    {
+        aIConfig.NeighborDetector.enabled = false;
+    }
+
     internal void RemoveNeighbour(EnemyMaster enemy)
     {
         aIController.RemoveNeighbour(enemy);
-    }
-
-    internal void MoveNeighbour(EnemyMaster neighbour, EnemyMaster host)
-    {
-        aIController.Formation(neighbour, host);
     }
 
     internal void ChangeColor()
@@ -125,6 +142,11 @@ public class EnemyMaster : Character, IStateObserver
     internal void DefaultColor()
     {
         aIController.ResetColor();
+    }
+
+    internal void NotifyNeighbours()
+    {
+        //aIController.NotifyNeighbours();
     }
 
     public RaycastHit2D[] GetWallCollisionArray()

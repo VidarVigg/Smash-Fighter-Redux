@@ -38,6 +38,9 @@ public class EnemyConfig
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField]
+    private CircleCollider2D neighbourDetector;
+
 
     public LayerMask LayerMask
     {
@@ -90,6 +93,11 @@ public class EnemyConfig
     public SpriteRenderer SpriteRenderer
     {
         get { return spriteRenderer; }
+    }
+
+    public CircleCollider2D NeighborDetector
+    {
+        get { return neighbourDetector; }
     }
 
 }

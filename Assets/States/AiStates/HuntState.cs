@@ -8,23 +8,33 @@ public class HuntState : State
     private float tick;
     private float attackFrequency;
     private State stateOfInterest;
-    private bool knownTarget;
+    private bool hereBecauseIWasNotified;
 
-    public HuntState(Character character, bool knownTarget = false) : base(character)
+    public HuntState(Character character, bool hereBecauseIWasNotified = false) : base(character)
     {
         character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
-        this.knownTarget = knownTarget;
+        this.hereBecauseIWasNotified = hereBecauseIWasNotified;
     }
 
     public override void EnterState()
     {
         attackFrequency = GenerateRandomNumber(1, 5);
+        if (!hereBecauseIWasNotified)
+        {
+            enemy.DetectNeighbours();
+
+        }
+        //if (knownTarget)
+        //{
+        //    enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+        //}
     }
 
     public override void Update()
     {
 
+        //NotifyNeighbours();
         if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
         {
 
@@ -45,20 +55,9 @@ public class HuntState : State
         }
 
 
-        if (!knownTarget)
+        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
         {
-            if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
-            {
-
-                enemy.UpdateCurrentState(new PatrolState(character));
-
-            }
-        }
-        else
-        {
-
-            Debug.DrawLine(enemy.transform.position, enemy.GetTarget().position);
-            Debug.Log(enemy.gameObject.name + " was outside HuntRange");
+            enemy.UpdateCurrentState(new PatrolState(character));
         }
 
     }
@@ -69,7 +68,7 @@ public class HuntState : State
 
     public override void ExitState()
     {
-
+        enemy.IgnoreNeighbours();
     }
 
     public override void Handle(State state)
@@ -82,25 +81,42 @@ public class HuntState : State
 
     }
 
-    //private void CheckObstacleInWay()
+    //public void NotifyNeighbours() // Move This to master 
     //{
-    //    RaycastHit2D hit;
-    //    if ((target - enemy.transform.position).sqrMagnitude < enemy.HuntConfig.distanceBeforeObstacleCheck)
+    //    for (int i = 0; i < enemy.Neighbours.Count; i++)
     //    {
-    //        hit = Physics2D.Raycast(enemy.transform.position, enemy.Rigidbody.velocity.normalized, enemy.HuntConfig.raycastObstacleLength, enemy.HuntConfig.);
-    //        Debug.DrawRay(enemy.transform.position, enemy.Rigidbody.velocity.normalized * enemy.HuntConfig.raycastObstacleLength, Color.green);
-    //        if (hit.collider != null)
-    //        {
-    //            Debug.Log(hit.collider.name);
-    //            ApplyForce();
-    //        }
+    //        Debug.Log(enemy.Neighbours[i].name);
+    //        enemy.Neighbours[i].UpdateCurrentState(new GotNotifiedAboutFightState(enemy.Neighbours[i], enemy.transform.position));
+    //        //Notify(this);
+    //        //if (enemyAIMaster.CurrentState is HuntState)
+    //        //{
+    //        //aIConfig.neighbours[i].UpdateCurrentState(new HuntState(enemyAIMaster, true));
+
+    //        //}
     //    }
-    //}
 
-    //private void ApplyForce()
-    //{
-    //    Vector3 target = enemy.GetTarget().position;
-    //    enemy.Rigidbody.AddForce((enemy.transform.position - target).normalized * 100);
     //}
-
 }
+
+//private void CheckObstacleInWay()
+//{
+//    RaycastHit2D hit;
+//    if ((target - enemy.transform.position).sqrMagnitude < enemy.HuntConfig.distanceBeforeObstacleCheck)
+//    {
+//        hit = Physics2D.Raycast(enemy.transform.position, enemy.Rigidbody.velocity.normalized, enemy.HuntConfig.raycastObstacleLength, enemy.HuntConfig.);
+//        Debug.DrawRay(enemy.transform.position, enemy.Rigidbody.velocity.normalized * enemy.HuntConfig.raycastObstacleLength, Color.green);
+//        if (hit.collider != null)
+//        {
+//            Debug.Log(hit.collider.name);
+//            ApplyForce();
+//        }
+//    }
+//}
+
+//private void ApplyForce()
+//{
+//    Vector3 target = enemy.GetTarget().position;
+//    enemy.Rigidbody.AddForce((enemy.transform.position - target).normalized * 100);
+//}
+
+//}
