@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ea9da10b6c2224c9498908985e1f55, type: 3}
   m_Name: New Patrol Config
   m_EditorClassIdentifier: 
-  patrolMovementSpeed: 2
-  patrolRange: 20
+  patrolMovementSpeed: 1
+  patrolRange: 10

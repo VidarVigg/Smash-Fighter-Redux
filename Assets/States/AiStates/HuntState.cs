@@ -8,11 +8,13 @@ public class HuntState : State
     private float tick;
     private float attackFrequency;
     private State stateOfInterest;
+    private bool knownTarget;
 
-    public HuntState(Character character) : base(character)
+    public HuntState(Character character, bool knownTarget = false) : base(character)
     {
         character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
+        this.knownTarget = knownTarget;
     }
 
     public override void EnterState()
@@ -22,10 +24,11 @@ public class HuntState : State
 
     public override void Update()
     {
+
         if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
         {
 
-          enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+            enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
         }
         else
@@ -41,11 +44,23 @@ public class HuntState : State
             attackFrequency = GenerateRandomNumber(1, 3);
         }
 
-        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
-        {
-            enemy.UpdateCurrentState(new PatrolState(character));
 
+        if (!knownTarget)
+        {
+            if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
+            {
+
+                enemy.UpdateCurrentState(new PatrolState(character));
+
+            }
         }
+        else
+        {
+
+            Debug.DrawLine(enemy.transform.position, enemy.GetTarget().position);
+            Debug.Log(enemy.gameObject.name + " was outside HuntRange");
+        }
+
     }
     public float GenerateRandomNumber(float min, float max)
     {

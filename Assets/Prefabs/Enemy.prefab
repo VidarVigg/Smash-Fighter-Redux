@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6008365089658466976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 6008365090411165334}
   m_RootOrder: 0
@@ -421,7 +421,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &6008365090411165419
 MonoBehaviour:
@@ -485,7 +485,7 @@ MonoBehaviour:
   aIConfig:
     layerMask:
       serializedVersion: 2
-      m_Bits: 1792
+      m_Bits: 768
     neighbourLayerMask:
       serializedVersion: 2
       m_Bits: 1024
@@ -497,6 +497,7 @@ MonoBehaviour:
     defaultColor: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
     neighbours: []
     spriteRenderer: {fileID: 6008365089658466990}
+  myRightPatrolTarget: {fileID: 0}
   huntConfig: {fileID: 11400000, guid: 989eb16b5daddb34f84c69d1da8698c3, type: 2}
   patrolConfig: {fileID: 11400000, guid: f2432ba11fcd4c74a82e71c857e2836d, type: 2}
   attackConfig: {fileID: 11400000, guid: 650400a81c98483449d97ec67c136b47, type: 2}
@@ -638,7 +639,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &6008365091049973105
 MonoBehaviour:
@@ -665,7 +666,7 @@ GameObject:
   - component: {fileID: 3443972762216839715}
   - component: {fileID: 5107764640967183546}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: NeighbourTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,7 +701,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 5
 --- !u!114 &5107764640967183546
 MonoBehaviour:
   m_ObjectHideFlags: 0

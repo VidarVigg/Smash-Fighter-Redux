@@ -20,7 +20,7 @@ public class GroundedState : MonoBehaviour
 
     public void GroundCheck()
     {
-        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.2f, player.groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(player.transform.position, Vector2.down, 0.1f, player.groundLayer);
         Debug.DrawRay(player.transform.position, Vector2.down * 0.3f, Color.green, 0.1f);
         if (hit.collider != null)
         {

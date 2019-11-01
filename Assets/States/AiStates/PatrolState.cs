@@ -21,6 +21,10 @@ public class PatrolState : State
 
     public override void Update()
     {
+        //if (enemy.myRightPatrolTarget != null)
+        //{
+        //    enemy.transform.position =  Vector3.Lerp(enemy.transform.position, enemy.myRightPatrolTarget.transform.position + Vector3.right, Time.deltaTime);
+        //}
 
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
 
@@ -33,7 +37,7 @@ public class PatrolState : State
             }
         }
 
-        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude < enemy.PatrolConfig.patrolRange)
+        if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude < enemy.HuntConfig.huntRange)
         {
             enemy.UpdateCurrentState(new HuntState(character));
         }
@@ -41,7 +45,7 @@ public class PatrolState : State
     }
     private Vector2 GetRandomDirection()
     {
-        return new Vector2(Random.Range(1, 2), Random.Range(1, 2));
+        return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
     }
     private void SetRandomDirection(Vector2 rand)
     {

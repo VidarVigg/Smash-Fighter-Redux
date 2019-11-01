@@ -14,6 +14,8 @@ public class EnemyMaster : Character, IStateObserver
     [SerializeField]
     private EnemyData aIData = null;
 
+    public EnemyMaster myRightPatrolTarget;
+
 
 
     [Header("State Configs")]
@@ -61,7 +63,7 @@ public class EnemyMaster : Character, IStateObserver
         get { return enemyDashConfig; }
     }
 
-    public State ActiveState
+    public State CurrentState
     {
         get { return currentState; }
     }
@@ -99,6 +101,8 @@ public class EnemyMaster : Character, IStateObserver
         currentState.EnterState();
     }
 
+
+
     internal void AddNeighbour(EnemyMaster enemy)
     {
         aIController.AddNeighbour(enemy);
@@ -107,6 +111,11 @@ public class EnemyMaster : Character, IStateObserver
     internal void RemoveNeighbour(EnemyMaster enemy)
     {
         aIController.RemoveNeighbour(enemy);
+    }
+
+    internal void MoveNeighbour(EnemyMaster neighbour, EnemyMaster host)
+    {
+        aIController.Formation(neighbour, host);
     }
 
     internal void ChangeColor()
