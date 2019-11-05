@@ -21,7 +21,6 @@ public class NeighbourCheck : MonoBehaviour
             collidingDude.ChangeColor();
             if (enemy.CurrentState is HuntState)
             {
-
                 collidingDude.UpdateCurrentState(new GotNotifiedAboutFightState(collidingDude, enemy));
             }
             //enemy.AddNeighbour(collidingDude);

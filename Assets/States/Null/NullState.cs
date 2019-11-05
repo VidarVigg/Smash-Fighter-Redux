@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NullState : State
 {
+
     public NullState(Character character) : base(character)
     {
 
@@ -13,7 +14,6 @@ public class NullState : State
     {
 
     }
-
 
     public override void Update()
     {

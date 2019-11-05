@@ -10,6 +10,8 @@ public class EnemyHolderMaster : MonoBehaviour
     public delegate void VoidDelegate(IStateObserver stateObserver);
     public VoidDelegate AddObserver;
     public VoidDelegate RemoveObserver;
+    [SerializeField]
+    private GameObject floor;
 
     private void Awake()
     {
@@ -30,6 +32,11 @@ public class EnemyHolderMaster : MonoBehaviour
 
     private void Update()
     {
-       
+      
+    }
+
+    public GameObject Floor
+    {
+        get { return floor; }
     }
 }

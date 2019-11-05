@@ -7,8 +7,6 @@ public class GotNotifiedAboutFightState : State
     private EnemyMaster enemy;
     private EnemyMaster caller;
     private Vector2 positionOfCaller;
-    private float offset;
-    private bool initialMove;
 
     public GotNotifiedAboutFightState(Character character, EnemyMaster caller) : base(character)
     {
@@ -19,64 +17,32 @@ public class GotNotifiedAboutFightState : State
 
     public override void EnterState()
     {
-        enemy.IgnoreNeighbours();
-        Debug.Log(enemy.gameObject.name + " Entered " + this.ToString());
-        initialMove = false;
+
 
     }
 
     public override void Update()
     {
-        positionOfCaller = caller.GetComponent<Transform>().position;
-        enemy.movementController.Move((positionOfCaller - (Vector2)enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
-        if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude < enemy.NeighbourConfig.minDistance)
-        {
-            enemy.movementController.Move(Vector3.zero);
+        enemy.IgnoreNeighbours();
 
-            //if (!initialMove)
-            //{
-            //    initialMove = true;
-            //}
+        //if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.minDistance)
+        //{
+        //    enemy.UpdateCurrentState(new ShootState(character));
+        //}
+        //else
+        //{
+            positionOfCaller = caller.transform.position;
+            enemy.movementController.Move((positionOfCaller - (Vector2)enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
-
-            RaycastHit2D[] hits = enemy.GetWallCollisionArray();
-
-            for (int i = 0; i < hits.Length; i++)
+            if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude < enemy.NeighbourConfig.minDistance)
             {
-                if (hits[0].collider != null)
-                {
-                    Debug.Log(hits[0].collider);
-                    enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(-0.5f, 0), 0.1f);
-                }
-                if (hits[1].collider != null)
-                {
-                    Debug.Log(hits[1].collider);
-                    enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(0.5f, 0), 0.1f);
+                enemy.movementController.Move(Vector3.zero);
 
-                }
-                if (hits[2].collider != null)
-                {
-                    Debug.Log(hits[2].collider);
-                    enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(0, -0.5f), 0.1f);
-
-                }
-                if (hits[3].collider != null)
-                {
-                    Debug.Log(hits[3].collider);
-                    enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(0, 0.5f), 0.1f);
-
-                }
-                if (hits[i].collider == null)
-                {
-                    enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(0.5f, 0), 0.1f);
-
-                }
-                //enemy.transform.position = Vector3.Lerp(enemy.transform.position, positionOfCaller + new Vector2(0, 0.5f), 0.1f);
-
+                enemy.UpdateCurrentState(new StartAttacking(character));
             }
-            //enemy.RemoveNeighbour(enemy);
-            //enemy.UpdateCurrentState(new HuntState(character, true));
-        }
+            return;
+        //}
+
     }
     public override void ExitState()
     {

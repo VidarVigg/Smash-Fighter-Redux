@@ -6,5 +6,6 @@ using UnityEngine;
 public class NeighbourConfig : ScriptableObject
 {
     public float minDistance;
+    public float maxDistance;
 
 }

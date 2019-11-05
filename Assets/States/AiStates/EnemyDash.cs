@@ -34,7 +34,8 @@ public class EnemyDash : State
         {
             tick -= enemy.EnemyDashConfig.dashDuration;
             enemy.movementController.ResetDash();
-            enemy.UpdateCurrentState(new PatrolState(character));
+            enemy.UpdateCurrentState(new MoveAwayState(character));
+            //MoveAwayState
         }
         
     }

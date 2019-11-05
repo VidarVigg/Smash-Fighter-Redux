@@ -19,7 +19,7 @@ public class HuntState : State
 
     public override void EnterState()
     {
-        attackFrequency = GenerateRandomNumber(1, 5);
+        attackFrequency = GenerateRandomNumber(0.5f, 1);
         if (!hereBecauseIWasNotified)
         {
             enemy.DetectNeighbours();
@@ -51,7 +51,7 @@ public class HuntState : State
         {
             tick -= attackFrequency;
             enemy.UpdateCurrentState(new StartAttacking(character));
-            attackFrequency = GenerateRandomNumber(1, 3);
+            attackFrequency = GenerateRandomNumber(0.5f, 1);
         }
 
 

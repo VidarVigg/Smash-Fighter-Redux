@@ -31,10 +31,15 @@ public class EnemyMaster : Character, IStateObserver
     private EnemyDashConfig enemyDashConfig;
     [SerializeField]
     private NeighbourConfig neighbourConfig;
+    [SerializeField]
+    private CollectAmmoConfig collectAmmoConfig;
 
     private EnemyController aIController = null;
     private State currentState;
     private State playerStateOfInterest;
+
+    public LayerMask floorLm;
+
 
     #endregion
 
@@ -80,6 +85,19 @@ public class EnemyMaster : Character, IStateObserver
         get { return neighbourConfig; }
     }
 
+    public CollectAmmoConfig CollectAmmoConfig
+    {
+        get { return collectAmmoConfig; }
+    }
+
+    public int AmmoAmt
+    {
+        get { return aIData.AmmoAmt; }
+    }
+
+    public GameObject BulletPrefab => aIConfig.BulletPrefab;
+
+
     #endregion
 
     protected override void Awake()
@@ -101,6 +119,12 @@ public class EnemyMaster : Character, IStateObserver
     {
         currentState.Update();
         aIController.Update();
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            UpdateCurrentState(new ShootState(this));
+        }
+
     }
 
     public override void UpdateCurrentState(State newState)
@@ -154,10 +178,7 @@ public class EnemyMaster : Character, IStateObserver
         return aIData.HitPoints;
     }
 
-    public Transform GetTarget()
-    {
-        return aIConfig.Target;
-    }
+    public Transform GetTarget() => aIConfig.Target;
 
     public State PlayerStateOfInterest
     {
@@ -174,6 +195,15 @@ public class EnemyMaster : Character, IStateObserver
         UpdateCurrentState(new EnemyIsHitState(this, pos));
     }
 
+    public void IncreaseAmmo()
+    {
+        aIData.AmmoAmt += 1;
+    }
+    public void DecreaseAmmo()
+    {
+        aIData.AmmoAmt -= 1;
+    }
+
     public void Notify(State state)
     {
         currentState.Handle(state);
@@ -183,6 +213,6 @@ public class EnemyMaster : Character, IStateObserver
     public override void Die()
     {
         //DisplayState.INSTANCE.Display("ded xd");
-        
+
     }
 }

@@ -19,6 +19,8 @@ public class EnemyData
     private Vector2 left;
     private Vector2 up;
     private Vector2 down;
+    [SerializeField]
+    private int ammoAmt;
 
     [SerializeField]
     private RaycastHit2D[] hitPoints = new RaycastHit2D[4];
@@ -67,6 +69,12 @@ public class EnemyData
     {
         get { return hitPoints; }
         set { hitPoints = value; }
+    }
+
+    public int AmmoAmt
+    {
+        get { return ammoAmt; }
+        set { ammoAmt = value; }
     }
 
     #endregion

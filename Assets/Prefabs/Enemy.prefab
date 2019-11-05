@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6008365089841002348}
   - component: {fileID: 6008365089841002351}
   - component: {fileID: 6008365089841002350}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 6008365090151120576}
   - component: {fileID: 6008365090151120590}
   - component: {fileID: 6008365090151120577}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,15 +489,19 @@ MonoBehaviour:
     neighbourLayerMask:
       serializedVersion: 2
       m_Bits: 1024
-    raycastLengthHorizontal: 0.5
-    raycastLengthVertical: 0.5
+    raycastLengthHorizontal: 0.1
+    raycastLengthVertical: 0.1
     target: {fileID: 0}
-    raycastOffset: 0.15
+    raycastOffset: 0.1
     neighbourColor: {r: 1, g: 0.6266366, b: 0, a: 1}
     defaultColor: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
     neighbours: []
     spriteRenderer: {fileID: 6008365089658466990}
     neighbourDetector: {fileID: 3443972762216839715}
+    bulletPrefab: {fileID: 7328443586554629854, guid: 5c983a26c8e3bb949a39ed1cdef06298,
+      type: 3}
+  aIData:
+    ammoAmt: 0
   visitor: []
   huntConfig: {fileID: 11400000, guid: 989eb16b5daddb34f84c69d1da8698c3, type: 2}
   patrolConfig: {fileID: 11400000, guid: f2432ba11fcd4c74a82e71c857e2836d, type: 2}
@@ -505,6 +509,10 @@ MonoBehaviour:
   fleeConfig: {fileID: 11400000, guid: 4297ff40d990b744a9e5bcbfcecb829c, type: 2}
   enemyDashConfig: {fileID: 11400000, guid: fef988c47acfe56459b46ddd22e97465, type: 2}
   neighbourConfig: {fileID: 11400000, guid: f9ca6f2cf34696746ad4b3cc5bf9c18a, type: 2}
+  collectAmmoConfig: {fileID: 11400000, guid: 1031f8fbbf9448c41a45e15d871896e6, type: 2}
+  floorLm:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!1 &6008365090459029944
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +649,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0
 --- !u!114 &6008365091049973105
 MonoBehaviour:

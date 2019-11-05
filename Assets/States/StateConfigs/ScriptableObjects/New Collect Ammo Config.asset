@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76d053f4bb690664e8343a41e0e46f5b, type: 3}
-  m_Name: New Neighbour Config
+  m_Script: {fileID: 11500000, guid: 833dd92e40a9b0e4d9aefc71789f8a9e, type: 3}
+  m_Name: New Collect Ammo Config
   m_EditorClassIdentifier: 
-  minDistance: 1
-  maxDistance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4096
