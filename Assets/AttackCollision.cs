@@ -43,7 +43,7 @@ public class AttackCollision : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" || collision.tag == "Player")
+        if (collision.tag == "Enemy" || collision.tag == "Player" || collision.tag == "Bullet")
         {
             
             Character victim = collision.GetComponent<Character>();

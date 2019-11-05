@@ -19,6 +19,7 @@ public class StartAttacking : State
     public override void EnterState()
     {
 
+        enemy.ShowWeapon();
         // enemy.attackController.Attack();
     }
 
@@ -34,19 +35,15 @@ public class StartAttacking : State
 
     public override void Update()
     {
-        target = enemy.GetTarget().position - enemy.transform.position;
         if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude < enemy.AttackConfig.minAttackRange)
         {
             enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
-
         }
         else
         { 
             enemy.movementController.Move(Vector3.zero);
 
-            float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, 5f * Time.deltaTime);
+            enemy.TurnTowardsPlayer(enemy);
 
             if((tick += Time.deltaTime) >= enemy.AttackConfig.attackChargeTime)
             {

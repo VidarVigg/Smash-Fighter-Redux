@@ -37,6 +37,7 @@ public class EnemyMaster : Character, IStateObserver
     private EnemyController aIController = null;
     private State currentState;
     private State playerStateOfInterest;
+    public List<EnemyMaster> enemiesInRange = new List<EnemyMaster>();
 
     public LayerMask floorLm;
 
@@ -159,6 +160,16 @@ public class EnemyMaster : Character, IStateObserver
         aIController.RemoveNeighbour(enemy);
     }
 
+    internal void ShowWeapon()
+    {
+        aIController.ShowWeapon();
+    }
+
+    internal void RetractWeapon()
+    {
+        aIController.RetractWeapon();
+    }
+
     internal void ChangeColor()
     {
         aIController.ChangeColor();
@@ -166,6 +177,15 @@ public class EnemyMaster : Character, IStateObserver
     internal void DefaultColor()
     {
         aIController.ResetColor();
+    }
+
+    internal void TurnTowardsPlayer(Character turner)
+    {
+        aIController.TurnTowardsPlayer(turner);
+    }
+    internal void ResetRotation(Character turner)
+    {
+        aIController.ResetRotation(turner);
     }
 
     internal void NotifyNeighbours()

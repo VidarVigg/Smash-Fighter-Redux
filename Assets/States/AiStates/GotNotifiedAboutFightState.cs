@@ -18,6 +18,7 @@ public class GotNotifiedAboutFightState : State
     public override void EnterState()
     {
 
+        enemy.ResetRotation(enemy);
 
     }
 
@@ -25,12 +26,12 @@ public class GotNotifiedAboutFightState : State
     {
         enemy.IgnoreNeighbours();
 
-        //if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.minDistance)
-        //{
-        //    enemy.UpdateCurrentState(new ShootState(character));
-        //}
-        //else
-        //{
+        if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance)
+        {
+            enemy.UpdateCurrentState(new ShootState(character));
+        }
+        else
+        {
             positionOfCaller = caller.transform.position;
             enemy.movementController.Move((positionOfCaller - (Vector2)enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
@@ -41,7 +42,7 @@ public class GotNotifiedAboutFightState : State
                 enemy.UpdateCurrentState(new StartAttacking(character));
             }
             return;
-        //}
+        }
 
     }
     public override void ExitState()

@@ -41,9 +41,11 @@ public class EnemyConfig
     [SerializeField]
     private CircleCollider2D neighbourDetector;
 
+
     [SerializeField]
     private GameObject bulletPrefab;
-
+    [SerializeField]
+    private GameObject weapon;
 
     public LayerMask LayerMask
     {
@@ -106,6 +108,11 @@ public class EnemyConfig
     public GameObject BulletPrefab
     {
         get { return bulletPrefab; }
+    }
+
+    public GameObject Weapon
+    {
+        get { return weapon; }
     }
 
 }

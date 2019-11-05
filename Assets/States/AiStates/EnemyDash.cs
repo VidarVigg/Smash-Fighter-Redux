@@ -20,7 +20,8 @@ public class EnemyDash : State
 
     public override void ExitState()
     {
-        enemy.transform.rotation = Quaternion.identity;
+        enemy.ResetRotation(enemy);
+        enemy.RetractWeapon();
     }
 
     public override void Handle(State state)

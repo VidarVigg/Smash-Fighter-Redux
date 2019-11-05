@@ -500,6 +500,7 @@ MonoBehaviour:
     neighbourDetector: {fileID: 3443972762216839715}
     bulletPrefab: {fileID: 7328443586554629854, guid: 5c983a26c8e3bb949a39ed1cdef06298,
       type: 3}
+    weapon: {fileID: 6008365090459029944}
   aIData:
     ammoAmt: 0
   visitor: []
@@ -510,6 +511,7 @@ MonoBehaviour:
   enemyDashConfig: {fileID: 11400000, guid: fef988c47acfe56459b46ddd22e97465, type: 2}
   neighbourConfig: {fileID: 11400000, guid: f9ca6f2cf34696746ad4b3cc5bf9c18a, type: 2}
   collectAmmoConfig: {fileID: 11400000, guid: 1031f8fbbf9448c41a45e15d871896e6, type: 2}
+  enemiesInRange: []
   floorLm:
     serializedVersion: 2
     m_Bits: 768
@@ -529,7 +531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6008365090459029945
 Transform:
   m_ObjectHideFlags: 0
@@ -539,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 6008365090459029944}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 0.04, y: 0.04, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 1}
   m_Children: []
   m_Father: {fileID: 6008365090411165334}
   m_RootOrder: 2
@@ -583,7 +585,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 27430aad52b57d64c827a55ef3822a62, type: 3}
-  m_Color: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
+  m_Color: {r: 1, g: 0.98043203, b: 0.3176471, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -724,3 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165f76d907d6f894db541226a971c7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfEnemies: 0
+  test:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

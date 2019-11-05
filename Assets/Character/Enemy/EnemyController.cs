@@ -94,6 +94,31 @@ public class EnemyController
         aIConfig.SpriteRenderer.color = aIConfig.DefaultColor;
     }
 
+    internal void TurnTowardsPlayer(Character enemy)
+    {
+        Vector2 target = enemyAIMaster.GetTarget().position - enemy.transform.position;
+        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, 10f * Time.deltaTime);
+    }
+
+    internal void ResetRotation(Character turner)
+    {
+        turner.transform.rotation = Quaternion.identity;
+    }
+
+    internal void ShowWeapon()
+    {
+        aIConfig.Weapon.SetActive(true);
+    }
+
+    internal void RetractWeapon()
+    {
+        
+        aIConfig.Weapon.SetActive(false);
+        
+    }
+
 
     //private void FindNeighbours()
     //{
