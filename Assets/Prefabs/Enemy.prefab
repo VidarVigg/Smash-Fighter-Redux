@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6008365089658466976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 6008365090411165334}
   m_RootOrder: 0
@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c6c765b963d70fc4791f95cc3c6bdb46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a8d5a10efd43874429b30bfb88a66338, type: 3}
-  m_Color: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
+  m_Color: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6008365089841002337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!114 &6008365090411165419
 MonoBehaviour:
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterConfig:
     baseDamage: 5
-    baseHealth: 15
+    baseHealth: 10
   characterData:
     damage: 0
     health: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
     target: {fileID: 0}
     raycastOffset: 0.1
     neighbourColor: {r: 1, g: 0.6266366, b: 0, a: 1}
-    defaultColor: {r: 1, g: 0.31764707, b: 0.31764707, a: 1}
+    defaultColor: {r: 1, g: 0.39215687, b: 0.39215687, a: 1}
     neighbours: []
     spriteRenderer: {fileID: 6008365089658466990}
     neighbourDetector: {fileID: 3443972762216839715}
@@ -502,7 +502,7 @@ MonoBehaviour:
       type: 3}
     weapon: {fileID: 6008365090459029944}
   aIData:
-    ammoAmt: 0
+    ammoAmt: 1
   visitor: []
   huntConfig: {fileID: 11400000, guid: 989eb16b5daddb34f84c69d1da8698c3, type: 2}
   patrolConfig: {fileID: 11400000, guid: f2432ba11fcd4c74a82e71c857e2836d, type: 2}
@@ -511,6 +511,7 @@ MonoBehaviour:
   enemyDashConfig: {fileID: 11400000, guid: fef988c47acfe56459b46ddd22e97465, type: 2}
   neighbourConfig: {fileID: 11400000, guid: f9ca6f2cf34696746ad4b3cc5bf9c18a, type: 2}
   collectAmmoConfig: {fileID: 11400000, guid: 1031f8fbbf9448c41a45e15d871896e6, type: 2}
+  enemyDeathConfig: {fileID: 11400000, guid: 5eb1bb473b134f443937d33148fec8c0, type: 2}
   enemiesInRange: []
   floorLm:
     serializedVersion: 2
@@ -665,6 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fc408d1764fae4cb126c0b0d10ab37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   attackResetTime: 0.5
 --- !u!1 &9158620532315486868
 GameObject:

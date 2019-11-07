@@ -13,9 +13,11 @@ public class EnemyDash : State
 
     public override void EnterState()
     {
+
         character.stateText.text = this.ToString();
         enemy.movementController.EnemyDash((enemy.GetTarget().position));
         enemy.attackController.Attack();
+
     }
 
     public override void ExitState()
@@ -35,6 +37,7 @@ public class EnemyDash : State
         {
             tick -= enemy.EnemyDashConfig.dashDuration;
             enemy.movementController.ResetDash();
+            enemy.RetractWeapon();
             enemy.UpdateCurrentState(new MoveAwayState(character));
             //MoveAwayState
         }

@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
 
     public TextMeshProUGUI text;
 
+    public bool playerIsHit;
+
     private KeyCode rightKey = KeyCode.D;
     private KeyCode leftKey = KeyCode.A;
     private KeyCode jumpKey = KeyCode.Space;
@@ -127,6 +129,11 @@ public class InputManager : MonoBehaviour
             {
                 Time.timeScale = inputConfig.MinTime;
             }
+            if (playerIsHit)
+            {
+                Time.timeScale = 1;
+                Time.fixedDeltaTime = 0.02f;
+            }
 
             //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
             //{
@@ -136,21 +143,20 @@ public class InputManager : MonoBehaviour
         }
         if (dashRelease)
         {
-        //    Time.timeScale = 1;
-        //    Time.fixedDeltaTime = 0.02f;
-        //    dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+
+            //    dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
             inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
 
-        //    //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
-        //    //{
-        //    //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
-        //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-        //    //}
-        //    //else
-        //    //{
-        //    //    dashDelegate?.Invoke(MousePosition());
-        //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-        //    //}
+            //    //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
+            //    //{
+            //    //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
+            //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            //    //}
+            //    //else
+            //    //{
+            //    //    dashDelegate?.Invoke(MousePosition());
+            //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
+            //    //}
         }
     }
 

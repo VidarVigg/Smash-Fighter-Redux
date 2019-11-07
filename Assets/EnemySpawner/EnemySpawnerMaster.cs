@@ -12,6 +12,10 @@ public class EnemySpawnerMaster : MonoBehaviour
     [SerializeField]
     private EnemySpawnerData data;
     private static int enemyNumber;
+    float tick;
+    int enemiesInScene;
+    [SerializeField]
+    private int maxEnemiesAllowed;
 
     private EnemySpawnerController controller;
 
@@ -25,15 +29,21 @@ public class EnemySpawnerMaster : MonoBehaviour
     }
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+
+        if ((tick += Time.deltaTime) >= 2)
         {
-            Spawn();
+            if (enemiesInScene < maxEnemiesAllowed)
+            {
+                tick -= 2;
+                Spawn();
+            }
         }
+
     }
     public void Spawn()
     {
@@ -42,6 +52,7 @@ public class EnemySpawnerMaster : MonoBehaviour
         enemyClone.transform.position = Random.insideUnitCircle.normalized * 3;
         enemyClone.gameObject.name = "Enemy " + enemyNumber.ToString();
         EnemyHolderMaster.INSTANCE.AddEnemy(enemyClone);
+        enemiesInScene++;
     }
 
     #endregion

@@ -35,13 +35,13 @@ public class StartAttacking : State
 
     public override void Update()
     {
-        if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude < enemy.AttackConfig.minAttackRange)
-        {
-            enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
-        }
-        else
-        { 
-            enemy.movementController.Move(Vector3.zero);
+        //if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude < enemy.AttackConfig.minAttackRange)
+        //{
+        //    enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
+        //}
+        //else
+        //{ 
+        //    enemy.movementController.Move(Vector3.zero);
 
             enemy.TurnTowardsPlayer(enemy);
 
@@ -50,7 +50,7 @@ public class StartAttacking : State
                 tick -= enemy.AttackConfig.attackChargeTime;
                 enemy.UpdateCurrentState(new EnemyDash(character));
             }
-        }
+        //}
 
     }
 

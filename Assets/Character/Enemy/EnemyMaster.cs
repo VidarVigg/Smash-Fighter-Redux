@@ -33,6 +33,8 @@ public class EnemyMaster : Character, IStateObserver
     private NeighbourConfig neighbourConfig;
     [SerializeField]
     private CollectAmmoConfig collectAmmoConfig;
+    [SerializeField]
+    private EnemyDeathConfig enemyDeathConfig;
 
     private EnemyController aIController = null;
     private State currentState;
@@ -94,6 +96,11 @@ public class EnemyMaster : Character, IStateObserver
     public int AmmoAmt
     {
         get { return aIData.AmmoAmt; }
+    }
+
+    public EnemyDeathConfig EnemyDeathConfig
+    {
+        get { return enemyDeathConfig; }
     }
 
     public GameObject BulletPrefab => aIConfig.BulletPrefab;

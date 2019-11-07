@@ -28,17 +28,27 @@ public class GotNotifiedAboutFightState : State
 
         if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance)
         {
-            enemy.UpdateCurrentState(new ShootState(character));
+            if (enemy.AmmoAmt > 0)
+            {
+                enemy.UpdateCurrentState(new ShootState(character));
+            }
+            else
+            {
+                enemy.UpdateCurrentState(new CollectAmmoState(character));
+            }
         }
         else
         {
-            positionOfCaller = caller.transform.position;
+            if (caller)
+            {
+                positionOfCaller = caller.transform.position;
+
+            }
             enemy.movementController.Move((positionOfCaller - (Vector2)enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
             if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude < enemy.NeighbourConfig.minDistance)
             {
                 enemy.movementController.Move(Vector3.zero);
-
                 enemy.UpdateCurrentState(new StartAttacking(character));
             }
             return;

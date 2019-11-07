@@ -21,10 +21,17 @@ public class PatrolState : State
 
     public override void Update()
     {
-        //if (enemy.myRightPatrolTarget != null)
-        //{
-        //    enemy.transform.position =  Vector3.Lerp(enemy.transform.position, enemy.myRightPatrolTarget.transform.position + Vector3.right, Time.deltaTime);
-        //}
+
+        for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
+        {
+            if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
+            {
+                if (enemy.AmmoAmt < 1)
+                {
+                    enemy.UpdateCurrentState(new CollectAmmoState(character));
+                }
+            }
+        }
 
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
 
@@ -32,7 +39,6 @@ public class PatrolState : State
         {
             if (test[i].collider != null)
             {
-                //SetRandomDirection(CalculateDirection(test[i].point).normalized * enemy.PatrolConfig.patrolMovementSpeed);
                 enemy.movementController.Move((CalculateDirection(test[i].point).normalized) * enemy.PatrolConfig.patrolMovementSpeed);
             }
         }

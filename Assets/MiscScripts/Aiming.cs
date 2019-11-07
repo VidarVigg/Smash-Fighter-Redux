@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Aiming : MonoBehaviour
 {
-
-
-
     private void Update()
     {
         Vector2 direction = InputManager.INSTANCE.MousePosition() - (Vector2)transform.position;

@@ -16,20 +16,26 @@ public class PlayerIsHitState : State
 
     public override void EnterState()
     {
-        //enemy hit direction
+        InputManager.INSTANCE.playerIsHit = true;
+        CameraShake.StartShaking();
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f;
+        }
+
         player.rigidbody.constraints = RigidbodyConstraints2D.None;
         player.movementController.Move(Vector2.zero);
-        //player.rigidbody.angularVelocity = 1000;
         player.rigidbody.gravityScale = 1.5f;
         player.rigidbody.AddForce(((Vector2)player.transform.position - pos) * 20, ForceMode2D.Impulse);
-        InputManager.INSTANCE.moveDelegate -= player.movementController.Move;  
+        InputManager.INSTANCE.moveDelegate -= player.movementController.Move;
     }
 
     public override void Update()
     {
         player.transform.Rotate(Vector3.forward, 1.5f);
         //player.movementController.Move(0, -1);
-        
+
         if (player.movementController.grounded)
         {
             player.UpdateCurrentState(new NullState(character));
@@ -42,10 +48,13 @@ public class PlayerIsHitState : State
         player.transform.rotation = Quaternion.identity;
         player.rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.rigidbody.gravityScale = 0;
+        InputManager.INSTANCE.playerIsHit = false;
+        
+
     }
 
     public override void Handle(State state)
     {
-        
+
     }
 }

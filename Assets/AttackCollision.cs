@@ -10,6 +10,8 @@ public class AttackCollision : MonoBehaviour
     private Character victim;
     private Character character;
     private bool successfulHit;
+    [SerializeField]
+    private GameObject weapon;
 
     float tick;
 
@@ -23,7 +25,6 @@ public class AttackCollision : MonoBehaviour
 
     private void Start()
     {
-
         damageDealer = GetComponentInParent<Character>();
         boxCollider2D = GetComponent<BoxCollider2D>();
     }
@@ -45,9 +46,9 @@ public class AttackCollision : MonoBehaviour
     {
         if (collision.tag == "Enemy" || collision.tag == "Player" || collision.tag == "Bullet")
         {
-            
+
             Character victim = collision.GetComponent<Character>();
-            if(victim is EnemyMaster && damageDealer is EnemyMaster)
+            if (victim is EnemyMaster && damageDealer is EnemyMaster)
             {
                 return;
             }
@@ -56,10 +57,14 @@ public class AttackCollision : MonoBehaviour
                 return;
             }
             damageDealer.successfulHit = true;
-            victim.GetHit(damageDealer.transform.position);
-            victim.ReceiveDamage(damageDealer.Damage);
+            if (collision.tag != "Bullet")
+            {
+                victim.GetHit(transform.TransformDirection(Vector2.right));
+                victim.ReceiveDamage(damageDealer.Damage);
+
+            }
             //damageDealer.UpdateCurrentState(new HuntState(damageDealer));
-            
+
         }
 
     }

@@ -106,6 +106,7 @@ public class PlayerMaster : Character
     public override void GetHit(Vector2 pos)
     {
         UpdateCurrentState(new PlayerIsHitState(this, pos));
+
     }
 
     public void SetDashState(Vector2 pos)

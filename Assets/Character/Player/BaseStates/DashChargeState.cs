@@ -24,7 +24,7 @@ public class DashChargeState : State
 
     public override void Update()
     {
-
+       
         if ((player.DashChargeConfig.chargeAmt += player.DashChargeConfig.tick) >= player.DashChargeConfig.maxDashMultiplier)
         {
             Debug.Log(player.DashChargeConfig.chargeAmt);
@@ -60,6 +60,6 @@ public class DashChargeState : State
 
     public override void Handle(State state)
     {
-
+        
     }
 }

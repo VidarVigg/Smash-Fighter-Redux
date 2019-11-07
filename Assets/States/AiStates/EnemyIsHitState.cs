@@ -21,9 +21,9 @@ public class EnemyIsHitState : State
     {
         enemyRigidbody = enemy.Rigidbody;
         enemyRigidbody.constraints = RigidbodyConstraints2D.None;
-        enemyRigidbody.AddForce(((Vector2)enemy.transform.position - pos).normalized * 20, ForceMode2D.Impulse);
+        enemyRigidbody.AddForce(/*((Vector2)enemy.transform.position -*/ pos.normalized * 40, ForceMode2D.Impulse);
         enemyRigidbody.gravityScale = 3;
-        
+
     }
 
     public override void Update()
@@ -32,7 +32,7 @@ public class EnemyIsHitState : State
         {
             tick -= stunTime;
             enemy.transform.rotation = Quaternion.identity;
-           // enemy.UpdateCurrentState(new PatrolState(character));
+            // enemy.UpdateCurrentState(new PatrolState(character));
             if (enemy.Health < 1)
             {
 
@@ -41,10 +41,10 @@ public class EnemyIsHitState : State
             }
 
         }
-       enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
+        enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
         for (int i = 0; i < enemy.GetWallCollisionArray().Length; i++)
         {
-            if (enemy.GetWallCollisionArray()[3].collider != null)
+            if (enemy.GetWallCollisionArray()[i].collider != null)
             {
                 enemy.transform.rotation = Quaternion.identity;
                 enemy.UpdateCurrentState(new PatrolState(enemy));

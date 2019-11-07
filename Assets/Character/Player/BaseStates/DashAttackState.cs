@@ -39,6 +39,10 @@ public class DashAttackState : State
             
             player.UpdateCurrentState(new NullState(character));
         }
+        if (player.successfulHit)
+        {
+            CameraShake.StartShaking();
+        }
     }
 
 }

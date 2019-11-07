@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ea55a92895033643af0075a610c161f, type: 3}
-  m_Name: New Dash Config
+  m_Script: {fileID: 11500000, guid: 2094bfd9ef0995647a8e73e0c7613412, type: 3}
+  m_Name: New Enemy Death Config
   m_EditorClassIdentifier: 
-  dashDuration: 0.3
+  deathBlox: {fileID: 4732620994294207113, guid: 6601699d246dfeb47a06bfe6b2d788cd,
+    type: 3}
