@@ -22,11 +22,11 @@ public class PatrolState : State
     public override void Update()
     {
 
-        for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
+        if (enemy.AmmoAmt < 1)
         {
-            if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
+            for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
             {
-                if (enemy.AmmoAmt < 1)
+                if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
                 {
                     enemy.UpdateCurrentState(new CollectAmmoState(character));
                 }

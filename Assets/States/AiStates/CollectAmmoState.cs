@@ -21,36 +21,27 @@ public class CollectAmmoState : State
     public override void EnterState()
     {
         character.stateText.text = this.ToString();
-        for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
-        {
-            if(AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
-            {
-                chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
-            }
-        }
         Debug.Log(AmmoSpawner.INSTANCE.index - 1);
     }
 
     public override void Update()
     {
+        CheckForBullets();
         if (chosenBullet)
         {
-            enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.01f);
+            enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.1f);
+            Debug.Log(enemy.gameObject.name + "After Lerp");
 
 
-            if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 1)
+            if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 10 * Time.deltaTime)
             {
-
+                Debug.Log("Close");
                 enemy.IncreaseAmmo();
-                enemy.UpdateCurrentState(new PatrolState(character));
                 AmmoSpawner.INSTANCE.DeleteBullet(chosenBullet);
+                chosenBullet = null;
+                enemy.UpdateCurrentState(new PatrolState(character));
 
             }
-        }
-        else
-        {
-                enemy.UpdateCurrentState(new PatrolState(character));
-            
         }
 
     }
@@ -65,5 +56,19 @@ public class CollectAmmoState : State
 
     }
 
+    public void CheckForBullets()
+    {
+        for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
+        {
+            if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
+            {
+                chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
+            }
+            else
+            {
+                enemy.UpdateCurrentState(new PatrolState(character));
+            }
+        }
+    }
 
 }

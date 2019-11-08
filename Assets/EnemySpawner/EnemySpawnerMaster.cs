@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemySpawnerMaster : MonoBehaviour
 {
-
-
     #region Fields
     [SerializeField]
     private EnemySpawnerConfig config;
@@ -13,7 +11,7 @@ public class EnemySpawnerMaster : MonoBehaviour
     private EnemySpawnerData data;
     private static int enemyNumber;
     float tick;
-    int enemiesInScene;
+    public static int enemiesInScene;
     [SerializeField]
     private int maxEnemiesAllowed;
 

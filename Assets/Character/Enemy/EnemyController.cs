@@ -96,10 +96,12 @@ public class EnemyController
 
     internal void TurnTowardsPlayer(Character enemy)
     {
+
         Vector2 target = enemyAIMaster.GetTarget().position - enemy.transform.position;
         float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, rotation, 10f * Time.deltaTime);
+
     }
 
     internal void ResetRotation(Character turner)

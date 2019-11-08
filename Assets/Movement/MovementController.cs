@@ -28,6 +28,12 @@ public abstract class MovementController : MonoBehaviour
     [SerializeField]
     protected float dashDuration;
 
+    [SerializeField]
+    private int availableDoubleJumps;
+
+    [SerializeField]
+    internal int executedJump;
+
     protected Vector2 dashVelocity;
 
     float tick;
@@ -79,8 +85,14 @@ public abstract class MovementController : MonoBehaviour
 
     public void Jump(float multiplier)
     {
-        jumping = true;
-        verticalVelocity = jumpForce * multiplier;
+        if (executedJump < availableDoubleJumps)
+        {
+
+            jumping = true;
+            executedJump++;
+            verticalVelocity = jumpForce * multiplier;
+
+        }
     }
 
     public void Dash(Vector2 aim)

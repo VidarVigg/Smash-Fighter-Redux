@@ -33,7 +33,6 @@ public class CameraShake : MonoBehaviour
     }
     public void Shake()
     {
-        Debug.Log(transform.position);
         transform.position = Vector3.Lerp(transform.position, (Vector3)Random.insideUnitCircle.normalized * circleSize, shakeSpeed);
         if ((tick += Time.deltaTime) >= shakeTime)
         {

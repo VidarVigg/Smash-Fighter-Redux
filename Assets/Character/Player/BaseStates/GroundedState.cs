@@ -25,7 +25,7 @@ public class GroundedState : MonoBehaviour
         if (hit.collider != null)
         {
             player.movementController.grounded = true;
-
+            player.movementController.executedJump = 0;
             if (!player.movementController.jumping)
             {
                 player.movementController.VerticalVelocity = 0;

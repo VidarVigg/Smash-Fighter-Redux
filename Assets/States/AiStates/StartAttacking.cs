@@ -18,14 +18,14 @@ public class StartAttacking : State
 
     public override void EnterState()
     {
-
         enemy.ShowWeapon();
+        enemy.lr.enabled = true;
         // enemy.attackController.Attack();
     }
 
     public override void ExitState()
     {
-
+        enemy.lr.enabled = false;
     }
 
     public override void Handle(State state)
@@ -35,6 +35,8 @@ public class StartAttacking : State
 
     public override void Update()
     {
+        enemy.lr.SetPosition(0, enemy.transform.position);
+        enemy.lr.SetPosition(1, enemy.GetTarget().position);
         //if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude < enemy.AttackConfig.minAttackRange)
         //{
         //    enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);

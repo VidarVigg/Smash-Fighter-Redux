@@ -12,6 +12,7 @@ public class PlayerMaster : Character
     //private PlayerData data = null;
     //private PlayerController controller = null;
     [Header("State Configs")]
+
     [SerializeField]
     private DashConfig dashConfig;
     [SerializeField]
@@ -19,6 +20,8 @@ public class PlayerMaster : Character
     [SerializeField]
     private PlayerAttackConfig playerAttackConfig;
     public List <IStateObserver> stateObservers;
+
+
 
     public Rigidbody2D rigidbody;
     private State currentState;
@@ -106,7 +109,6 @@ public class PlayerMaster : Character
     public override void GetHit(Vector2 pos)
     {
         UpdateCurrentState(new PlayerIsHitState(this, pos));
-
     }
 
     public void SetDashState(Vector2 pos)

@@ -15,8 +15,7 @@ public class EnemyMaster : Character, IStateObserver
     private EnemyData aIData = null;
 
     public List<EnemyMaster> visitor = new List<EnemyMaster>();
-
-
+    public LineRenderer lr;
 
     [Header("State Configs")]
     [SerializeField]
@@ -126,13 +125,13 @@ public class EnemyMaster : Character, IStateObserver
     void Update()
     {
         currentState.Update();
+
         aIController.Update();
 
         if (Input.GetKeyDown(KeyCode.H))
         {
             UpdateCurrentState(new ShootState(this));
         }
-
     }
 
     public override void UpdateCurrentState(State newState)

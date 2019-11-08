@@ -204,11 +204,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalDirection: 0
   verticalVelocity: 0
-  jumpForce: 4.75
+  jumpForce: 4.5
   baseMovementSpeed: 5
   dashSpeed: 30
   gravityStrength: 20
   dashDuration: 0.5
+  availableDoubleJumps: 2
+  executedJump: 0
   jumping: 0
   grounded: 0
   dashing: 0
@@ -255,6 +257,8 @@ MonoBehaviour:
   dashConfig: {fileID: 11400000, guid: 8e76bb0a53e5dc949ad9e1764d34c621, type: 2}
   dashChargeConfig: {fileID: 11400000, guid: 1fc57b882e412cf4b9b9166a51d8ad5a, type: 2}
   playerAttackConfig: {fileID: 11400000, guid: 69e80fd7c4fc3c64c80cb978d54518ff, type: 2}
+  availableDoubleJumps: 0
+  executedJump: 0
   rigidbody: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -1753,7 +1757,7 @@ GameObject:
   - component: {fileID: 1523366998}
   m_Layer: 8
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

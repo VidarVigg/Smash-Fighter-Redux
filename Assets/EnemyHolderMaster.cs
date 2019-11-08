@@ -27,6 +27,7 @@ public class EnemyHolderMaster : MonoBehaviour
     public  void RemoveEnemy(EnemyMaster enemy)
     {
         activeEnemies.Remove(enemy);
+        EnemySpawnerMaster.enemiesInScene--;
         RemoveObserver.Invoke(enemy);
     }
 
