@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6008365089841002337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6008365090411165418}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: dcff569aec848514eb4c1539b8b00ad3, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -443,6 +443,8 @@ MonoBehaviour:
   dashSpeed: 30
   gravityStrength: 0
   dashDuration: 0
+  availableDoubleJumps: 0
+  executedJump: 0
   jumping: 0
   grounded: 0
   dashing: 0
@@ -475,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterConfig:
     baseDamage: 5
-    baseHealth: 10
+    baseHealth: 5
   characterData:
     damage: 0
     health: 0

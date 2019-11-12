@@ -7,7 +7,7 @@ public class EnemyIsHitState : State
     private EnemyMaster enemy;
     private Rigidbody2D enemyRigidbody;
     private float tick;
-    private float stunTime = 2f;// move to config file
+    private float stunTime = 1f;// move to config file
     private Vector2 pos;
 
     public EnemyIsHitState(Character character, Vector2 pos) : base(character)
@@ -28,26 +28,28 @@ public class EnemyIsHitState : State
 
     public override void Update()
     {
-        if ((tick += Time.deltaTime) >= stunTime)
-        {
-            tick -= stunTime;
-            enemy.transform.rotation = Quaternion.identity;
-            // enemy.UpdateCurrentState(new PatrolState(character));
-            if (enemy.Health < 1)
-            {
+        //if ((tick += Time.deltaTime) >= stunTime)
+        //{
+        //    tick -= stunTime;
+        //    enemy.transform.rotation = Quaternion.identity;
+        //    // enemy.UpdateCurrentState(new PatrolState(character));
+        //    if (enemy.Health < 1)
+        //    {
+        //        enemy.UpdateCurrentState(new DeadState(character));
+        //    }
 
-                enemy.UpdateCurrentState(new DeadState(character));
-
-            }
-
-        }
-        enemy.transform.Rotate(Vector3.forward, 266 * Time.deltaTime);
+        //}
+        enemy.transform.Rotate(Vector3.forward, 133 * Time.deltaTime);
         for (int i = 0; i < enemy.GetWallCollisionArray().Length; i++)
         {
             if (enemy.GetWallCollisionArray()[i].collider != null)
             {
                 enemy.transform.rotation = Quaternion.identity;
-                enemy.UpdateCurrentState(new PatrolState(enemy));
+                if ((tick += Time.deltaTime) >= stunTime)
+                {
+                    enemy.UpdateCurrentState(new PatrolState(enemy));
+                }
+
                 if (enemy.Health < 1)
                 {
 

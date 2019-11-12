@@ -27,7 +27,7 @@ public class DashChargeState : State
        
         if ((player.DashChargeConfig.chargeAmt += player.DashChargeConfig.tick) >= player.DashChargeConfig.maxDashMultiplier)
         {
-            Debug.Log(player.DashChargeConfig.chargeAmt);
+            //Debug.Log(player.DashChargeConfig.chargeAmt);
             player.DashChargeConfig.chargeAmt = player.DashChargeConfig.maxDashMultiplier;
         }
         if (player.DashChargeConfig.chargeAmt >= player.DashChargeConfig.timeBeforeEnemyNotified)

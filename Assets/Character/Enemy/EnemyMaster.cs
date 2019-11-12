@@ -136,12 +136,14 @@ public class EnemyMaster : Character, IStateObserver
 
     public override void UpdateCurrentState(State newState)
     {
+
         if (currentState != null)
         {
             currentState.ExitState();
         }
         currentState = newState;
         currentState.EnterState();
+
     }
 
 

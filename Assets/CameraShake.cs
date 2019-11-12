@@ -20,10 +20,6 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            StartShaking();
-        }
 
         if (shake)
         {

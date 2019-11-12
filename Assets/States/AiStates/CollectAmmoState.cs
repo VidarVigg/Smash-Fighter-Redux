@@ -21,7 +21,7 @@ public class CollectAmmoState : State
     public override void EnterState()
     {
         character.stateText.text = this.ToString();
-        Debug.Log(AmmoSpawner.INSTANCE.index - 1);
+        //Debug.Log(AmmoSpawner.INSTANCE.index - 1);
     }
 
     public override void Update()
@@ -30,12 +30,10 @@ public class CollectAmmoState : State
         if (chosenBullet)
         {
             enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.1f);
-            Debug.Log(enemy.gameObject.name + "After Lerp");
-
 
             if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 10 * Time.deltaTime)
             {
-                Debug.Log("Close");
+                //Debug.Log("Close");
                 enemy.IncreaseAmmo();
                 AmmoSpawner.INSTANCE.DeleteBullet(chosenBullet);
                 chosenBullet = null;

@@ -26,6 +26,7 @@ public class StartAttacking : State
     public override void ExitState()
     {
         enemy.lr.enabled = false;
+        enemy.RetractWeapon();
     }
 
     public override void Handle(State state)

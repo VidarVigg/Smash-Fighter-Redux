@@ -19,7 +19,7 @@ public class NullState : State
     public override void Update()
     {
         
-        Debug.Log("We are In Null State");
+        //Debug.Log("We are In Null State");
 
     }
     public override void ExitState()

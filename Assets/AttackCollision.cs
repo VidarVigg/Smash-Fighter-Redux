@@ -48,6 +48,7 @@ public class AttackCollision : MonoBehaviour
         {
 
             Character victim = collision.GetComponent<Character>();
+
             if (victim is EnemyMaster && damageDealer is EnemyMaster)
             {
                 return;
@@ -56,7 +57,9 @@ public class AttackCollision : MonoBehaviour
             {
                 return;
             }
+
             damageDealer.successfulHit = true;
+
             if (collision.tag != "Bullet")
             {
                 victim.GetHit(transform.TransformDirection(Vector2.right));
