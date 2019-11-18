@@ -22,16 +22,16 @@ public class PatrolState : State
     public override void Update()
     {
 
-        if (enemy.AmmoAmt < 1)
-        {
-            for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
-            {
-                if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
-                {
-                    enemy.UpdateCurrentState(new CollectAmmoState(character));
-                }
-            }
-        }
+        //if (enemy.AmmoAmt < 1)
+        //{
+        //    for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
+        //    {
+        //        if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
+        //        {
+        //            enemy.UpdateCurrentState(new CollectAmmoState(character));
+        //        }
+        //    }
+        //}
 
         RaycastHit2D[] test = enemy.GetWallCollisionArray();
 

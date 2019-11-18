@@ -13,6 +13,8 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     private CharacterData characterData = new CharacterData();
 
+
+
     public MovementController movementController; // should not be public. Change This
     public AttackController attackController;
 
@@ -44,6 +46,11 @@ public abstract class Character : MonoBehaviour
     {
         characterData.Damage = characterConfig.BaseDamage;
         characterData.Health = characterConfig.BaseHealth;
+    }
+
+    private void Start()
+    {
+
     }
 
     #endregion

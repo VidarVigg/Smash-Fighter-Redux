@@ -15,6 +15,9 @@ public class AmmoSpawner : MonoBehaviour
 
     public int index = 0;
 
+    [SerializeField]
+    private float spawnRate;
+
 
     [SerializeField]
     private int maxAmmoAllowed;
@@ -35,9 +38,9 @@ public class AmmoSpawner : MonoBehaviour
 
     private void Update()
     {
-        if ((tick += Time.deltaTime) >= 1)
+        if ((tick += Time.deltaTime) >= spawnRate)
         {
-            tick -= 1;
+            tick -= spawnRate;
 
             if (index < maxAmmoAllowed)
             {
@@ -49,7 +52,7 @@ public class AmmoSpawner : MonoBehaviour
     private void Spawn()
     {
         bulletClone = Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity);
-        bulletClone.transform.position = new Vector2(Random.Range(-8f, 8f), -4.8f);
+        bulletClone.transform.position = new Vector2(Random.Range(-15f, 15f), -14.8f);
         spawnedBullets.Add(bulletClone);
         index++;
     }

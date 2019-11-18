@@ -8,6 +8,11 @@ public class DisableRB : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField]
     private BoxCollider2D col;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private Color deadColor;
+
     private bool delete;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,6 +20,7 @@ public class DisableRB : MonoBehaviour
         {
             delete = true;
             Invoke("DisableRigidBody", 4);
+            spriteRenderer.color = deadColor;
         }
     }
 

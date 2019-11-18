@@ -10,12 +10,17 @@ public class EnemySpawnerMaster : MonoBehaviour
     [SerializeField]
     private EnemySpawnerData data;
     private static int enemyNumber;
-    float tick;
+    private float tick;
     public static int enemiesInScene;
     [SerializeField]
     private int maxEnemiesAllowed;
-
+    [SerializeField]
+    private float spawnRate;
+    private int[] waves = new int[6] { 1, 2, 4, 8, 16, 32 };
     private EnemySpawnerController controller;
+
+    [SerializeField]
+    private int waveIndex = 0;
 
     #endregion
 
@@ -24,23 +29,35 @@ public class EnemySpawnerMaster : MonoBehaviour
     private void Awake()
     {
         controller = new EnemySpawnerController(this, config, data);
+        waveIndex = 0;
+        enemiesInScene = 0;
     }
     private void Start()
     {
-
     }
 
     private void Update()
     {
-
-        if ((tick += Time.deltaTime) >= 2)
+        if (enemiesInScene == 0)
         {
-            if (enemiesInScene < maxEnemiesAllowed)
+            maxEnemiesAllowed = waves[waveIndex];
+            Debug.Log(waves[waveIndex]);
+
+            for (int i = 0; i < waves[waveIndex]; i++)
             {
-                tick -= 2;
-                Spawn();
+
+                    tick -= spawnRate;
+                    Spawn();
+
+            }
+
+            if (waveIndex < 6)
+            {
+                waveIndex++;
+
             }
         }
+
 
     }
     public void Spawn()

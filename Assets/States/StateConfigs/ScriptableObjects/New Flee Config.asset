@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bffd416e062a9042a8532d8642a2ad8, type: 3}
   m_Name: New Flee Config
   m_EditorClassIdentifier: 
-  fleeMovementSpeed: 4
-  safeDistance: 20
+  fleeMovementSpeed: 8
+  safeDistance: 200

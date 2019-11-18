@@ -19,7 +19,7 @@ public class DashChargeState : State
 
     public override void EnterState()
     {
-
+        ServiceLocator.AudioService.PlaySound(SoundTypes.PlayerDash);
     }
 
     public override void Update()
@@ -38,6 +38,8 @@ public class DashChargeState : State
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            ServiceLocator.AudioService.StopSound(SoundTypes.PlayerDash, FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            ServiceLocator.AudioService.PlaySound(SoundTypes.PlayerDashRelease);
             Time.timeScale = 1;
             Time.fixedDeltaTime = 0.02f;
             if (player.DashChargeConfig.chargeAmt < player.DashChargeConfig.maxDashMultiplier)
@@ -50,6 +52,7 @@ public class DashChargeState : State
             }
             player.DashChargeConfig.chargeAmt = player.DashChargeConfig.reset;
         }
+        
     }
 
     public override void ExitState()

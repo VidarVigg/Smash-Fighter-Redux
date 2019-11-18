@@ -144,6 +144,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2672047466675664722}
   col: {fileID: 8950044254799688515}
+  spriteRenderer: {fileID: 1728311581442556555}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &4723605787454895172
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7631793956551025678}
   col: {fileID: 6391673609703992124}
+  spriteRenderer: {fileID: 5847163201995840967}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &4732620993183909676
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +436,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4732620993183909650}
   col: {fileID: 4732620993183909648}
+  spriteRenderer: {fileID: 4732620993183909649}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &4732620993960956417
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4732620993960956423}
   col: {fileID: 4732620993960956421}
+  spriteRenderer: {fileID: 4732620993960956422}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &4732620994294207113
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4732620994571339973}
   col: {fileID: 4732620994571339979}
+  spriteRenderer: {fileID: 4732620994571339972}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &4732620995100674504
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,6 +913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4732620995100674510}
   col: {fileID: 4732620995100674508}
+  spriteRenderer: {fileID: 4732620995100674509}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &5064976029049988582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +1059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 272441690339944864}
   col: {fileID: 6503962343997458784}
+  spriteRenderer: {fileID: 8225493898339222313}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &5670989796994511862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,6 +1205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 5696547618112248582}
   col: {fileID: 7364670554049926774}
+  spriteRenderer: {fileID: 8080068276695355896}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}
 --- !u!1 &8171804265536600152
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,3 +1351,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 378261284619219003}
   col: {fileID: 5876148425975015535}
+  spriteRenderer: {fileID: 7277112864588668199}
+  deadColor: {r: 0.5377358, g: 0.4235938, b: 0.4235938, a: 0.59607846}

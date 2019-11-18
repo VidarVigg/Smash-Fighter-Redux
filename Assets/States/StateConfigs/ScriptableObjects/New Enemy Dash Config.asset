@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe22315cce4c96246bfb8fdf4170a1d1, type: 3}
   m_Name: New Enemy Dash Config
   m_EditorClassIdentifier: 
-  dashDuration: 0.2
+  dashDuration: 0.3

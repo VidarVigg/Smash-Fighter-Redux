@@ -21,10 +21,8 @@ public class InputManager : MonoBehaviour
     public VoidDelegate attackDelegate;
 
     public delegate void Vector2Delegate(Vector2 aim);
-    public Vector2Delegate dashAttackDelegate;
+
     public Vector2Delegate dashDelegate;
-
-
 
     public delegate void IntDelegate(int variable);
 
@@ -116,12 +114,10 @@ public class InputManager : MonoBehaviour
         if (dashCharge)
         {
             dashDelegate?.Invoke(MousePosition());
-
         }
         if (dash)
         {
 
-            //inputConfig.DashMultiplier += inputConfig.DashTick;
             Time.timeScale -= Time.deltaTime * inputConfig.SlowMoMultiplier;
             Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
@@ -135,28 +131,11 @@ public class InputManager : MonoBehaviour
                 Time.fixedDeltaTime = 0.02f;
             }
 
-            //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
-            //{
-            //    inputConfig.DashMultiplier = inputConfig.MaxDashMultiplierValue;
-            //}
-
         }
         if (dashRelease)
         {
-
-            //    dashDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
             inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
 
-            //    //if (inputConfig.DashMultiplier >= inputConfig.MaxDashMultiplierValue)
-            //    //{
-            //    //    dashAttackDelegate?.Invoke(MousePosition(), inputConfig.DashMultiplier);
-            //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            //    //}
-            //    //else
-            //    //{
-            //    //    dashDelegate?.Invoke(MousePosition());
-            //    //    inputConfig.DashMultiplier = inputConfig.ResetDashMultiplier;
-            //    //}
         }
     }
 

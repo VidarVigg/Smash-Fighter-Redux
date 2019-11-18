@@ -14,11 +14,11 @@ public class DeadState : State
 
     public override void EnterState()
     {
-        
+
         GameObject clone = GameObject.Instantiate(enemy.EnemyDeathConfig.deathBlox, enemy.transform.position, Quaternion.identity);
         clone.GetComponentInChildren<Rigidbody2D>().AddForce(enemy.transform.position.normalized * 20, ForceMode2D.Impulse);
         CameraShake.StartShaking();
-
+        GameObject.Destroy(enemy.stateTextObjectClone);
         //GameObject.Destroy(clone, 2f);
         character.stateText.text = this.ToString();
         GameObject.Destroy(character.gameObject);

@@ -16,6 +16,8 @@ public class DashAttackState : State
 
     public override void EnterState()
     {
+        player.movementController.VerticalVelocity = 0;
+        player.movementController.Move(Vector3.zero);
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
         player.attackController.Attack();
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
 public class EnemyMaster : Character, IStateObserver
@@ -16,6 +17,8 @@ public class EnemyMaster : Character, IStateObserver
 
     public List<EnemyMaster> visitor = new List<EnemyMaster>();
     public LineRenderer lr;
+
+   
 
     [Header("State Configs")]
     [SerializeField]
@@ -41,6 +44,11 @@ public class EnemyMaster : Character, IStateObserver
     public List<EnemyMaster> enemiesInRange = new List<EnemyMaster>();
 
     public LayerMask floorLm;
+
+    [SerializeField]
+    private GameObject stateTextObject;
+
+    public GameObject stateTextObjectClone;
 
 
     #endregion
@@ -120,18 +128,17 @@ public class EnemyMaster : Character, IStateObserver
     {
         aIConfig.Target = FindObjectOfType<PlayerMaster>().transform;
         UpdateCurrentState(new PatrolState(this));
+        stateTextObjectClone = Instantiate(stateTextObject);
+        stateText = stateTextObjectClone.GetComponentInChildren<TextMeshProUGUI>();
+
     }
 
     void Update()
     {
+        stateTextObjectClone.transform.position = transform.position + new Vector3(0, 1f, 0);
         currentState.Update();
 
         aIController.Update();
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            UpdateCurrentState(new ShootState(this));
-        }
     }
 
     public override void UpdateCurrentState(State newState)
@@ -240,6 +247,7 @@ public class EnemyMaster : Character, IStateObserver
 
     public override void Die()
     {
+
         //DisplayState.INSTANCE.Display("ded xd");
 
     }

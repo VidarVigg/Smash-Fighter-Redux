@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: New Neighbour Config
   m_EditorClassIdentifier: 
   minDistance: 1
-  maxDistance: 20
+  maxDistance: 10

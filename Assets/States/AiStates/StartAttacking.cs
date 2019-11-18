@@ -46,13 +46,22 @@ public class StartAttacking : State
         //{ 
         //    enemy.movementController.Move(Vector3.zero);
 
-            enemy.TurnTowardsPlayer(enemy);
+        enemy.TurnTowardsPlayer(enemy);
 
-            if((tick += Time.deltaTime) >= enemy.AttackConfig.attackChargeTime)
+        if ((tick += Time.deltaTime) >= enemy.AttackConfig.attackChargeTime)
+        {
+            tick -= enemy.AttackConfig.attackChargeTime;
+
+            if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude > enemy.HuntConfig.huntRange)
             {
-                tick -= enemy.AttackConfig.attackChargeTime;
+                enemy.UpdateCurrentState(new ShootState(character));
+            }
+            else
+            {
+
                 enemy.UpdateCurrentState(new EnemyDash(character));
             }
+        }
         //}
 
     }

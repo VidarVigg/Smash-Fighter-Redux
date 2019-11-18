@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb237a74390c0d24280f23d6e242cfa5, type: 3}
   m_Name: New Hunt Config
   m_EditorClassIdentifier: 
-  huntSpeed: 3
+  huntSpeed: 10
   minHuntRange: 3
-  huntRange: 10
+  huntRange: 100
   raycastObstacleLength: 0
   distanceBeforeObstacleCheck: 0

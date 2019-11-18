@@ -20,9 +20,6 @@ public class PlayerMaster : Character
     [SerializeField]
     private PlayerAttackConfig playerAttackConfig;
     public List <IStateObserver> stateObservers;
-
-
-
     public Rigidbody2D rigidbody;
     private State currentState;
 
@@ -52,6 +49,7 @@ public class PlayerMaster : Character
         base.Awake();
         //controller = new PlayerController(this, config, data);
         rigidbody = GetComponent<Rigidbody2D>();
+
         
     }
     void Start()

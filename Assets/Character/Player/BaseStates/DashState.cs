@@ -20,6 +20,7 @@ public class DashState : State
     {
 
         player.movementController.VerticalVelocity = 0;
+        player.movementController.Move(Vector3.zero);
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
 
 
