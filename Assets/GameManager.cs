@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
         {
             if (!paused)
             {
+               
                 Time.timeScale = 0f;
                 paused = true;
 
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
+                paused = false;
             }
         }
     }

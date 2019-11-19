@@ -18,9 +18,11 @@ public class EnemySpawnerMaster : MonoBehaviour
     private float spawnRate;
     private int[] waves = new int[6] { 1, 2, 4, 8, 16, 32 };
     private EnemySpawnerController controller;
+    [SerializeField]
+    private int startWaveIndex;
 
     [SerializeField]
-    private int waveIndex = 0;
+    private int waveIndex;
 
     #endregion
 
@@ -29,11 +31,11 @@ public class EnemySpawnerMaster : MonoBehaviour
     private void Awake()
     {
         controller = new EnemySpawnerController(this, config, data);
-        waveIndex = 0;
         enemiesInScene = 0;
     }
     private void Start()
     {
+        waveIndex = startWaveIndex;
     }
 
     private void Update()

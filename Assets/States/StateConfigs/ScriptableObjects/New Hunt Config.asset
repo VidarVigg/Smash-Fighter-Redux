@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   huntSpeed: 10
   minHuntRange: 3
-  huntRange: 100
+  huntRange: 50
   raycastObstacleLength: 0
   distanceBeforeObstacleCheck: 0
