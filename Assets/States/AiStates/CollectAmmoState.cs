@@ -29,8 +29,8 @@ public class CollectAmmoState : State
        CheckForBullets();
         if (chosenBullet)
         {
-            //enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.1f);
-            enemy.movementController.Move((chosenBullet.transform.position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+            enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.02f);
+           // enemy.movementController.Move((chosenBullet.transform.position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
             if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 10 * Time.deltaTime)
             {

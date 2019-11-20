@@ -20,6 +20,7 @@ public class EnemySpawnerMaster : MonoBehaviour
     private EnemySpawnerController controller;
     [SerializeField]
     private int startWaveIndex;
+    
 
     [SerializeField]
     private int waveIndex;

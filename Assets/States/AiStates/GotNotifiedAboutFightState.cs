@@ -11,7 +11,7 @@ public class GotNotifiedAboutFightState : State
     public GotNotifiedAboutFightState(Character character, ref EnemyMaster caller) : base(character)
     {
         this.enemy = (EnemyMaster)character;
-        character.stateText.text = this.ToString() + caller.name;
+        character.stateText.text = this.ToString();
         this.caller = caller;
     }
 
@@ -33,6 +33,7 @@ public class GotNotifiedAboutFightState : State
 
 
         }
+
         else
         {
             if (caller)
@@ -49,7 +50,8 @@ public class GotNotifiedAboutFightState : State
             }
             return;
         }
-        if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance && enemy.AmmoAmt == 0)
+
+        if (enemy.AmmoAmt < 1)
         {
             for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
             {
@@ -63,7 +65,23 @@ public class GotNotifiedAboutFightState : State
                     enemy.UpdateCurrentState(new PatrolState(character));
                 }
             }
+            //enemy.UpdateCurrentState(new PatrolState(character));
         }
+        //if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance && enemy.AmmoAmt == 0)
+        //{
+        //    for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
+        //    {
+        //        if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
+        //        {
+        //            //chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
+        //            enemy.UpdateCurrentState(new CollectAmmoState(character));
+        //        }
+        //        else
+        //        {
+        //            enemy.UpdateCurrentState(new PatrolState(character));
+        //        }
+        //    }
+        //}
 
 
     }
