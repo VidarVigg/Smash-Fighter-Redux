@@ -31,6 +31,10 @@ public class AudioServiceProvider : MonoBehaviour, IAudioMasterService
     public string enemyShoot;
     private FMOD.Studio.EventInstance enemyShootEV;
 
+    [FMODUnity.EventRef]
+    public string enemyDash;
+    private FMOD.Studio.EventInstance enemyDashEV;
+
     private void Awake()
     {
         enemyIsHitEV = FMODUnity.RuntimeManager.CreateInstance(enemyIsHit);
@@ -39,6 +43,7 @@ public class AudioServiceProvider : MonoBehaviour, IAudioMasterService
         playerIsHitEV = FMODUnity.RuntimeManager.CreateInstance(playerIsHit);
         playerDashReleaseEV = FMODUnity.RuntimeManager.CreateInstance(playerDashRelease);
         enemyShootEV = FMODUnity.RuntimeManager.CreateInstance(enemyShoot);
+        enemyDashEV = FMODUnity.RuntimeManager.CreateInstance(enemyDash);
 
         sounds.Add(SoundTypes.EnemyIsHit, enemyIsHitEV);
         sounds.Add(SoundTypes.EnemyDie, enemyDiesEV);
@@ -46,6 +51,7 @@ public class AudioServiceProvider : MonoBehaviour, IAudioMasterService
         sounds.Add(SoundTypes.PlayerIsHit, playerIsHitEV);
         sounds.Add(SoundTypes.PlayerDashRelease, playerDashReleaseEV);
         sounds.Add(SoundTypes.EnemyShoot, enemyShootEV);
+        sounds.Add(SoundTypes.EnemyDash, enemyDashEV);
     }
 
     public void PlaySound(SoundTypes sound)

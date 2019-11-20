@@ -6,5 +6,6 @@
     EnemyDie,
     PlayerIsHit,
     PlayerDashRelease,
-    EnemyShoot
+    EnemyShoot,
+        EnemyDash
 }

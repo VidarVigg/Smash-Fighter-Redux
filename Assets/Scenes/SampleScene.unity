@@ -350,6 +350,7 @@ MonoBehaviour:
   playerIsHit: event:/PlayerIsHit
   playerDashRelease: event:/PlayerDashRelease
   enemyShoot: event:/EnemyShoot
+  enemyDash: event:/EnemyDash
 --- !u!4 &262256521
 Transform:
   m_ObjectHideFlags: 0
@@ -844,7 +845,7 @@ MonoBehaviour:
   spawnedBullets: []
   index: 0
   spawnRate: 1.3
-  maxAmmoAllowed: 100
+  maxAmmoAllowed: 0
 --- !u!4 &513302371
 Transform:
   m_ObjectHideFlags: 0
@@ -1948,6 +1949,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4534725369081391678, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
+        type: 3}
+      propertyPath: m_Name
+      value: MusicEmitter
+      objectReference: {fileID: 0}
     - target: {fileID: 5864056706714530428, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
         type: 3}
       propertyPath: PlayEvent
@@ -1957,11 +1963,6 @@ PrefabInstance:
         type: 3}
       propertyPath: StopEvent
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4534725369081391678, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
-        type: 3}
-      propertyPath: m_Name
-      value: MusicEmitter
       objectReference: {fileID: 0}
     - target: {fileID: 7732714431131542074, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
         type: 3}

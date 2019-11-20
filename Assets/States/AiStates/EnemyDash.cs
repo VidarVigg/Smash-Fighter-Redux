@@ -17,6 +17,7 @@ public class EnemyDash : State
         character.stateText.text = this.ToString();
         enemy.movementController.EnemyDash((enemy.GetTarget().position));
         enemy.attackController.Attack();
+        ServiceLocator.AudioService.PlaySound(SoundTypes.EnemyDash);
 
     }
 
