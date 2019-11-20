@@ -11,7 +11,7 @@ public class CollectAmmoState : State
     bool right;
     bool left;
     GameObject chosenBullet;
-
+    private bool bulletChosen;
 
     public CollectAmmoState(Character character) : base(character)
     {
@@ -21,16 +21,21 @@ public class CollectAmmoState : State
     public override void EnterState()
     {
         character.stateText.text = this.ToString();
+        bulletChosen = false;
         //Debug.Log(AmmoSpawner.INSTANCE.index - 1);
     }
 
     public override void Update()
     {
-       CheckForBullets();
+        if (!bulletChosen)
+        {
+            CheckForBullets();
+            
+        }
         if (chosenBullet)
         {
-            enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.02f);
-           // enemy.movementController.Move((chosenBullet.transform.position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
+            //enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.02f);
+           enemy.movementController.Move((chosenBullet.transform.position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
             if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 10 * Time.deltaTime)
             {
@@ -67,6 +72,7 @@ public class CollectAmmoState : State
             if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
             {
                 chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
+                bulletChosen = true;
             }
             else
             {

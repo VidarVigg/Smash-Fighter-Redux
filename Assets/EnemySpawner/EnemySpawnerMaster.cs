@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class EnemySpawnerMaster : MonoBehaviour
 {
     #region Fields
@@ -20,7 +20,8 @@ public class EnemySpawnerMaster : MonoBehaviour
     private EnemySpawnerController controller;
     [SerializeField]
     private int startWaveIndex;
-    
+
+
 
     [SerializeField]
     private int waveIndex;
@@ -49,8 +50,9 @@ public class EnemySpawnerMaster : MonoBehaviour
             for (int i = 0; i < waves[waveIndex]; i++)
             {
 
-                    tick -= spawnRate;
-                    Spawn();
+                tick -= spawnRate;
+                Spawn();
+
 
             }
 

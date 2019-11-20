@@ -7,5 +7,5 @@
     PlayerIsHit,
     PlayerDashRelease,
     EnemyShoot,
-        EnemyDash
+    EnemyDash
 }

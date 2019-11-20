@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("SampleScene");
         }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            SceneManager.LoadScene("TutorialSceneAfter");
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (!paused)

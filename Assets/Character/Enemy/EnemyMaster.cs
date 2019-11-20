@@ -130,6 +130,7 @@ public class EnemyMaster : Character, IStateObserver
         UpdateCurrentState(new PatrolState(this));
         stateTextObjectClone = Instantiate(stateTextObject);
         stateText = stateTextObjectClone.GetComponentInChildren<TextMeshProUGUI>();
+        aIData.AmmoAmt = UnityEngine.Random.Range(1, 3);
 
     }
 

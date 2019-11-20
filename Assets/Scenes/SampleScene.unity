@@ -845,7 +845,7 @@ MonoBehaviour:
   spawnedBullets: []
   index: 0
   spawnRate: 1.3
-  maxAmmoAllowed: 0
+  maxAmmoAllowed: 100
 --- !u!4 &513302371
 Transform:
   m_ObjectHideFlags: 0

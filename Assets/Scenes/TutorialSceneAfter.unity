@@ -859,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: headlineTexts.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: headLines
@@ -867,15 +867,15 @@ PrefabInstance:
       objectReference: {fileID: 452692213}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: presentationTexts.Array.data[0]
-      value: Ingen Bakgrund = motivation
+      value: "B\xF6rja med design"
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: presentationTexts.Array.data[1]
-      value: Hur skapar man en A.I. ?
+      value: "Unders\xF6ka sv\xE5righeter fr\xE5n b\xF6rjan"
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: presentationTexts.Array.data[2]
-      value: "Hur skapar man den p\xE5 ett korrekt s\xE4tt?"
+      value: Player / Enemy Relation
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: presentationTexts.Array.data[3]
@@ -883,15 +883,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: presentationTexts.Array.data[4]
-      value: "Unders\xF6ka sv\xE5righeter fr\xE5n b\xF6rjan"
-      objectReference: {fileID: 0}
-    - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
-      propertyPath: presentationTexts.Array.data[5]
       value: Player / Enemy Relation
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
+      propertyPath: presentationTexts.Array.data[5]
+      value: "Unders\xF6ka sv\xE5righeter fr\xE5n b\xF6rjan"
+      objectReference: {fileID: 0}
+    - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: headlineTexts.Array.data[0]
-      value: Bakgrund
+      value: "L\xE4rdomar"
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: headlineTexts.Array.data[1]
@@ -911,7 +911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 277458416, guid: 36e69b06d42199340ae8c236ffd641d5, type: 3}
       propertyPath: headlinePoint1
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1924141336993423816, guid: 36e69b06d42199340ae8c236ffd641d5,
         type: 3}
