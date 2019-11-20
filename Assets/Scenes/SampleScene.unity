@@ -1957,12 +1957,12 @@ PrefabInstance:
     - target: {fileID: 5864056706714530428, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
         type: 3}
       propertyPath: PlayEvent
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5864056706714530428, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
         type: 3}
       propertyPath: StopEvent
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7732714431131542074, guid: 7f67c5a61d7bde440923958d5f8aa6b3,
         type: 3}
