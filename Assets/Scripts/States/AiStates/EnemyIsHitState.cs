@@ -13,7 +13,7 @@ public class EnemyIsHitState : State
     public EnemyIsHitState(Character character, Vector2 pos) : base(character)
     {
         this.enemy = (EnemyMaster)character;
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         this.pos = pos;
     }
 

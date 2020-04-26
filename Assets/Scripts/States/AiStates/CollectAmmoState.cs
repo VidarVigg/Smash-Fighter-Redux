@@ -20,7 +20,7 @@ public class CollectAmmoState : State
 
     public override void EnterState()
     {
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         bulletChosen = false;
         //Debug.Log(AmmoSpawner.INSTANCE.index - 1);
     }

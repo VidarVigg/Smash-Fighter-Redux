@@ -12,7 +12,7 @@ public class HuntState : State
 
     public HuntState(Character character, bool hereBecauseIWasNotified = false) : base(character)
     {
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
         this.hereBecauseIWasNotified = hereBecauseIWasNotified;
     }

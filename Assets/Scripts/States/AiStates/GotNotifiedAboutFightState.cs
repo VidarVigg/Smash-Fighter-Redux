@@ -11,7 +11,7 @@ public class GotNotifiedAboutFightState : State
     public GotNotifiedAboutFightState(Character character, ref EnemyMaster caller) : base(character)
     {
         this.enemy = (EnemyMaster)character;
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         this.caller = caller;
     }
 

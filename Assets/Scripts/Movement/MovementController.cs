@@ -55,16 +55,7 @@ public abstract class MovementController : MonoBehaviour
 
     public void Update()
     {
-        //if (dashing)
-        //{
-        //    if ((tick += Time.deltaTime) >= dashDuration)
-        //    {
-        //        tick -= dashDuration;
-        //        dashVelocity = Vector2.zero;
 
-        //        dashing = false;
-        //    }
-        //}
     }
 
     public void Move(float x = 1, float y = 1)

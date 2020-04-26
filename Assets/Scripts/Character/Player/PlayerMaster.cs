@@ -6,11 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(MovementController), (typeof(AttackController)))]
 public class PlayerMaster : Character
 {
-    //[SerializeField]
-    //private PlayerConfig config = null;
-    //[SerializeField]
-    //private PlayerData data = null;
-    //private PlayerController controller = null;
     [Header("State Configs")]
 
     [SerializeField]
@@ -47,7 +42,7 @@ public class PlayerMaster : Character
     protected override void Awake()
     {
         base.Awake();
-        //controller = new PlayerController(this, config, data);
+       
         rigidbody = GetComponent<Rigidbody2D>();
 
         

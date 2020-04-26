@@ -15,7 +15,7 @@ public abstract class Character : MonoBehaviour
 
 
 
-    public MovementController movementController; // should not be public. Change This
+    public MovementController movementController;
     public AttackController attackController;
 
     public bool successfulHit;

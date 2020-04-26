@@ -9,7 +9,7 @@ public class FleeState : State
     Transform target;
     public FleeState(Character character) : base(character)
     {
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
     }
 

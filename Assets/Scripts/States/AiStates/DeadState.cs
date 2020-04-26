@@ -20,7 +20,7 @@ public class DeadState : State
         CameraShake.StartShaking();
         GameObject.Destroy(enemy.stateTextObjectClone);
         //GameObject.Destroy(clone, 2f);
-        character.stateText.text = this.ToString();
+        //character.stateText.text = this.ToString();
         GameObject.Destroy(character.gameObject);
         EnemyHolderMaster.INSTANCE.RemoveEnemy(enemy);
     }
