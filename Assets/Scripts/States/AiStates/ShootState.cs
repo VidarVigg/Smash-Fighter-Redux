@@ -34,15 +34,8 @@ public class ShootState : State
             rb.velocity = (enemy.GetTarget().position - enemy.transform.position).normalized * 40;
             enemy.DecreaseAmmo();
             GameObject.Destroy(bulletClone, 1f);
-            //if (enemy.AmmoAmt > 0)
-            //{
-                enemy.UpdateCurrentState(new HuntState(character));
-            //    return;
-            //}
-            //else
-            //{
+            enemy.UpdateCurrentState(new HuntState(character));
 
-            //}
         }
     }
 
