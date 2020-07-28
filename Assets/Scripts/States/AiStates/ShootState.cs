@@ -18,9 +18,6 @@ public class ShootState : State
     public override void EnterState()
     {
         enemy.movementController.Move(Vector3.zero);
-        //character.stateText.text = this.ToString();
-
-
     }
     public override void Update()
     {

@@ -35,10 +35,7 @@ public class EnemyIsHitState : State
         {
             if (enemy.GetWallCollisionArray()[i].collider != null)
             {
-                Debug.Log(enemy.GetWallCollisionArray()[i].collider);
-                //FMODUnity.RuntimeManager.PlayOneShot(enemy.enemyIsHitSound);
                 ServiceLocator.AudioService.PlaySound(SoundTypes.EnemyDie);
-                //enemy.transform.rotation = Quaternion.identity;
                 if ((tick += Time.deltaTime) >= stunTime)
                 {
                     enemy.UpdateCurrentState(new PatrolState(enemy));

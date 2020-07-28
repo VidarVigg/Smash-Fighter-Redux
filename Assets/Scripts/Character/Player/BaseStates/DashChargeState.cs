@@ -27,14 +27,11 @@ public class DashChargeState : State
        
         if ((player.DashChargeConfig.chargeAmt += player.DashChargeConfig.tick) >= player.DashChargeConfig.maxDashMultiplier)
         {
-            //Debug.Log(player.DashChargeConfig.chargeAmt);
             player.DashChargeConfig.chargeAmt = player.DashChargeConfig.maxDashMultiplier;
         }
         if (player.DashChargeConfig.chargeAmt >= player.DashChargeConfig.timeBeforeEnemyNotified)
         {    
-            player.stateObservers.ForEach(x => x.Notify(this));
-            //player.stateObservers.Notify(this);
-            
+            player.stateObservers.ForEach(x => x.Notify(this));       
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
@@ -51,8 +48,7 @@ public class DashChargeState : State
                 player.UpdateCurrentState(new DashAttackState(character, InputManager.INSTANCE.MousePosition()));
             }
             player.DashChargeConfig.chargeAmt = player.DashChargeConfig.reset;
-        }
-        
+        } 
     }
 
     public override void ExitState()

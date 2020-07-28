@@ -13,8 +13,6 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     private CharacterData characterData = new CharacterData();
 
-
-
     public MovementController movementController;
     public AttackController attackController;
 
@@ -48,13 +46,7 @@ public abstract class Character : MonoBehaviour
         characterData.Health = characterConfig.BaseHealth;
     }
 
-    private void Start()
-    {
-
-    }
-
     #endregion
-
 
     public abstract void UpdateCurrentState(State newState);
     public abstract void GetHit(Vector2 pos);

@@ -30,9 +30,6 @@ public class EnemyController
     {
         RaycastWallCheck();
         DebugRays();
-        //FindNeighbours();
-        //MarkNeighbours();
-
     }
 
     private void RaycastWallCheck()

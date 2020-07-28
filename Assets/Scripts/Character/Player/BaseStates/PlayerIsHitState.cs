@@ -28,7 +28,7 @@ public class PlayerIsHitState : State
         player.rigidbody.constraints = RigidbodyConstraints2D.None;
         player.movementController.Move(Vector2.zero);
         player.rigidbody.gravityScale = 1.5f;
-        player.rigidbody.AddForce(((Vector2)player.transform.position-pos) * 20, ForceMode2D.Impulse);
+        player.rigidbody.AddForce(((Vector2)player.transform.position - pos) * 20, ForceMode2D.Impulse);
         InputManager.INSTANCE.moveDelegate -= player.movementController.Move;
         InputManager.INSTANCE.dashDelegate -= player.SetDashState;
     }
@@ -36,13 +36,11 @@ public class PlayerIsHitState : State
     public override void Update()
     {
         player.transform.Rotate(Vector3.forward, 1.5f);
-        //player.movementController.Move(0, -1);
-
         if (player.movementController.grounded)
         {
             player.UpdateCurrentState(new NullState(character));
             InputManager.INSTANCE.moveDelegate += player.movementController.Move;
-        InputManager.INSTANCE.dashDelegate += player.SetDashState;
+            InputManager.INSTANCE.dashDelegate += player.SetDashState;
         }
     }
 
@@ -52,9 +50,6 @@ public class PlayerIsHitState : State
         player.rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player.rigidbody.gravityScale = 0;
         InputManager.INSTANCE.playerIsHit = false;
-
-        
-
     }
 
     public override void Handle(State state)

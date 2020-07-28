@@ -33,7 +33,6 @@ public class GroundedState : MonoBehaviour
         }
         else
         {
-
             player.movementController.grounded = false;
         }
 

@@ -16,9 +16,6 @@ public class PlayerMovementController : MovementController
     private void Update()
     {
         base.Update();
-        //Move();
-       //Gravity();
-        //GroundCheck();
     }
 
 

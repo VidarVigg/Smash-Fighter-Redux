@@ -25,13 +25,9 @@ public class GotNotifiedAboutFightState : State
     public override void Update()
     {
         enemy.IgnoreNeighbours();
-
         if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance && enemy.AmmoAmt > 0)
         {
-
             enemy.UpdateCurrentState(new ShootState(character));
-
-
         }
 
         else
@@ -57,7 +53,6 @@ public class GotNotifiedAboutFightState : State
             {
                 if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
                 {
-                    //chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
                     enemy.UpdateCurrentState(new CollectAmmoState(character));
                 }
                 else
@@ -65,25 +60,7 @@ public class GotNotifiedAboutFightState : State
                     enemy.UpdateCurrentState(new PatrolState(character));
                 }
             }
-            //enemy.UpdateCurrentState(new PatrolState(character));
         }
-        //if ((positionOfCaller - (Vector2)enemy.transform.position).sqrMagnitude >= enemy.NeighbourConfig.maxDistance && enemy.AmmoAmt == 0)
-        //{
-        //    for (int i = 0; i < AmmoSpawner.INSTANCE.spawnedBullets.Count; i++)
-        //    {
-        //        if (AmmoSpawner.INSTANCE.spawnedBullets[i] != null)
-        //        {
-        //            //chosenBullet = AmmoSpawner.INSTANCE.spawnedBullets[i];
-        //            enemy.UpdateCurrentState(new CollectAmmoState(character));
-        //        }
-        //        else
-        //        {
-        //            enemy.UpdateCurrentState(new PatrolState(character));
-        //        }
-        //    }
-        //}
-
-
     }
     public override void ExitState()
     {

@@ -13,13 +13,11 @@ public class NullState : State
 
     public override void EnterState()
     {
-        //InputManager.INSTANCE.moveDelegate += player.movementController.Move;
+
     }
 
     public override void Update()
     {
-        
-        //Debug.Log("We are In Null State");
 
     }
     public override void ExitState()

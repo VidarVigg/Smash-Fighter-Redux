@@ -128,17 +128,12 @@ public class EnemyMaster : Character, IStateObserver
     {
         aIConfig.Target = FindObjectOfType<PlayerMaster>().transform;
         UpdateCurrentState(new PatrolState(this));
-        //stateTextObjectClone = Instantiate(stateTextObject);
-        //stateText = stateTextObjectClone.GetComponentInChildren<TextMeshProUGUI>();
         aIData.AmmoAmt = UnityEngine.Random.Range(1, 3);
-
     }
 
     void Update()
     {
-        //stateTextObjectClone.transform.position = transform.position + new Vector3(0, 1f, 0);
         currentState.Update();
-
         aIController.Update();
     }
 
@@ -248,8 +243,6 @@ public class EnemyMaster : Character, IStateObserver
 
     public override void Die()
     {
-
         //DisplayState.INSTANCE.Display("ded xd");
-
     }
 }

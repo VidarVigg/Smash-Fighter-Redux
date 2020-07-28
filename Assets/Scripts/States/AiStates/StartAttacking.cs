@@ -12,7 +12,6 @@ public class StartAttacking : State
 
     public StartAttacking(Character character) : base(character)
     {
-        //character.stateText.text = this.ToString();
         this.enemy = (EnemyMaster)character;
     }
 
@@ -20,7 +19,6 @@ public class StartAttacking : State
     {
         enemy.ShowWeapon();
         enemy.lr.enabled = true;
-        // enemy.attackController.Attack();
     }
 
     public override void ExitState()
@@ -38,14 +36,6 @@ public class StartAttacking : State
     {
         enemy.lr.SetPosition(0, enemy.transform.position);
         enemy.lr.SetPosition(1, enemy.GetTarget().position);
-        //if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude < enemy.AttackConfig.minAttackRange)
-        //{
-        //    enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
-        //}
-        //else
-        //{ 
-        //    enemy.movementController.Move(Vector3.zero);
-
         enemy.TurnTowardsPlayer(enemy);
 
         if ((tick += Time.deltaTime) >= enemy.AttackConfig.attackChargeTime)
@@ -62,20 +52,7 @@ public class StartAttacking : State
                 enemy.UpdateCurrentState(new EnemyDash(character));
             }
         }
-        //}
-
     }
-
-    //if (enemy.successfulHit)
-    //{
-    //    enemy.movementController.Move((enemy.transform.position - enemy.GetTarget().position).normalized * enemy.AttackConfig.attackMovementSpeed);
-
-    //}
-    //if ((enemy.transform.position - enemy.GetTarget().position).sqrMagnitude >= enemy.HuntConfig.huntRange / 3)
-    //{
-    //    enemy.UpdateCurrentState(new HuntState(character));
-    //}
-
 }
 
 

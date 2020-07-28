@@ -9,6 +9,7 @@ public class AmmoSpawner : MonoBehaviour
     private GameObject bulletPrefab;
 
     float tick;
+
     private GameObject bulletClone;
 
     public List<GameObject> spawnedBullets = new List<GameObject>();
@@ -18,22 +19,14 @@ public class AmmoSpawner : MonoBehaviour
     [SerializeField]
     private float spawnRate;
 
-
     [SerializeField]
     private int maxAmmoAllowed;
 
-
     public static AmmoSpawner INSTANCE;
-
 
     private void Awake()
     {
         INSTANCE = this;
-    }
-
-    private void Start()
-    {
-
     }
 
     private void Update()

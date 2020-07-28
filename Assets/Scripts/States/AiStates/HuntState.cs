@@ -32,9 +32,7 @@ public class HuntState : State
 
         if ((enemy.GetTarget().position - enemy.transform.position).sqrMagnitude > enemy.HuntConfig.minHuntRange)
         {
-
             enemy.movementController.Move((enemy.GetTarget().position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
-
         }
         else
         {

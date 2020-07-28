@@ -41,11 +41,8 @@ public class PlayerMaster : Character
 
     protected override void Awake()
     {
-        base.Awake();
-       
-        rigidbody = GetComponent<Rigidbody2D>();
-
-        
+        base.Awake();    
+        rigidbody = GetComponent<Rigidbody2D>();    
     }
     void Start()
     {

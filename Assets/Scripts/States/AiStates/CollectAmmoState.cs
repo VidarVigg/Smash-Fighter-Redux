@@ -20,9 +20,7 @@ public class CollectAmmoState : State
 
     public override void EnterState()
     {
-        //character.stateText.text = this.ToString();
         bulletChosen = false;
-        //Debug.Log(AmmoSpawner.INSTANCE.index - 1);
     }
 
     public override void Update()
@@ -34,7 +32,6 @@ public class CollectAmmoState : State
         }
         if (chosenBullet)
         {
-            //enemy.transform.position = Vector3.Lerp(enemy.transform.position, (Vector2)chosenBullet.transform.position, 0.02f);
            enemy.movementController.Move((chosenBullet.transform.position - enemy.transform.position).normalized * enemy.HuntConfig.huntSpeed);
 
             if ((enemy.transform.position - chosenBullet.transform.position).sqrMagnitude < 10 * Time.deltaTime)
@@ -44,12 +41,10 @@ public class CollectAmmoState : State
                 AmmoSpawner.INSTANCE.DeleteBullet(chosenBullet);
                 chosenBullet = null;
                 enemy.UpdateCurrentState(new PatrolState(character));
-
             }
         }
         else
-        {
-           
+        {      
                 enemy.UpdateCurrentState(new PatrolState(character));
         }
 

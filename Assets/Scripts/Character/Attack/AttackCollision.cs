@@ -67,8 +67,6 @@ public class AttackCollision : MonoBehaviour
 
             }
             //damageDealer.UpdateCurrentState(new HuntState(damageDealer));
-
         }
-
     }
 }

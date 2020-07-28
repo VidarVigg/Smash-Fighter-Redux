@@ -26,7 +26,6 @@ public class GravityState : MonoBehaviour
             {
                 player.movementController.jumping = false;
             }
-
         }
         else
         {

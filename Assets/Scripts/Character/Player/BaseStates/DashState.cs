@@ -22,12 +22,7 @@ public class DashState : State
         player.movementController.VerticalVelocity = 0;
         player.movementController.Move(Vector3.zero);
         player.movementController.Dash(InputManager.INSTANCE.MousePosition());
-
-
         player.stateObservers.ForEach(x => x.Notify(this));
-
-       // player.stateObservers.Notify(this);
-
     }
 
     public override void ExitState()
@@ -46,7 +41,6 @@ public class DashState : State
         {
             tick -= player.DashConfig.dashDuration;
             player.movementController.ResetDash();
-            //player.UpdateCurrentState(new NullState(character));
         }
     }
 
